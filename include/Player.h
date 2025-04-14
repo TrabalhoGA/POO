@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Armadura.h"
+#include "Arma.h"
 #include <vector>
 
 using namespace std;
@@ -33,6 +34,8 @@ class Player
 		void equiparArmadura(Armadura* armadura);
 		Armadura* getArmadura();
 
+		void equiparArma(Arma* arma);
+		Arma* getArma();
     protected:
 
     private:
@@ -43,6 +46,7 @@ class Player
         int sorte;
         int moedas_de_ouro;
 		Armadura* armadura;
+		Arma* arma;
 };
 
 #endif // PLAYER_H

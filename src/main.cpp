@@ -1,5 +1,6 @@
 #include "../include/Player.h"
 #include "../include/Armadura.h"
+#include "../include/Arma.h"
 
 using namespace std;
 
@@ -26,6 +27,20 @@ int main() {
 	}
 	else {
 		cout << "\nNenhuma armadura equipada." << endl;
+	}
+	// Criacao de uma arma
+	Arma arma("Espada Longa", "Uma espada afiada", 15, 25, 10);
+	// Equipar a arma no jogador
+	jogador.equiparArma(&arma);
+	// Exibir informacoes da arma equipada
+	if (jogador.getArma()) {
+		cout << "\nArma equipada:" << endl;
+		cout << "Nome: " << jogador.getArma()->getNome() << endl;
+		cout << "Descricao: " << jogador.getArma()->getDescricao() << endl;
+		cout << "Buff Habilidade: " << jogador.getArma()->getBuffHabilidade() << endl;
+	}
+	else {
+		cout << "\nNenhuma arma equipada." << endl;
 	}
 
 	return 0;

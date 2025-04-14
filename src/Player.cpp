@@ -80,3 +80,13 @@ Armadura* Player::getArmadura()
 {
 	return armadura;
 }
+
+void Player::equiparArma(Arma* arma)
+{
+	this->arma = arma;
+}
+
+Arma* Player::getArma()
+{
+	return arma;
+}
