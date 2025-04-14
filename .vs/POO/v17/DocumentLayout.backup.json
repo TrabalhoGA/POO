@@ -15,12 +15,32 @@
       "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:include\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Arma.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:src\\Arma.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Provisao.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:src\\Provisao.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Provisao.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:include\\Provisao.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Arma.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:include\\Arma.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:src\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:include\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Equipamento.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:include\\Equipamento.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Arma.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F90587E-EE91-B856-9ED7-793DCBF2766D}|POO.vcxproj|solutionrelative:src\\Arma.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,17 +50,90 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 11,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Provisao.cpp",
+              "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Provisao.cpp",
+              "RelativeDocumentMoniker": "src\\Provisao.cpp",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Provisao.cpp",
+              "RelativeToolTip": "src\\Provisao.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-14T18:20:33.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Provisao.h",
+              "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Provisao.h",
+              "RelativeDocumentMoniker": "include\\Provisao.h",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Provisao.h",
+              "RelativeToolTip": "include\\Provisao.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-14T18:08:28.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Item.cpp",
+              "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Item.cpp",
+              "RelativeDocumentMoniker": "src\\Item.cpp",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Item.cpp",
+              "RelativeToolTip": "src\\Item.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-14T18:04:03.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Equipamento.h",
+              "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Equipamento.h",
+              "RelativeDocumentMoniker": "include\\Equipamento.h",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Equipamento.h",
+              "RelativeToolTip": "include\\Equipamento.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-14T18:02:04.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Item.h",
+              "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Item.h",
+              "RelativeDocumentMoniker": "include\\Item.h",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Item.h",
+              "RelativeToolTip": "include\\Item.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-14T17:58:40.282Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Player.cpp",
               "RelativeDocumentMoniker": "src\\Player.cpp",
-              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Player.cpp*",
-              "RelativeToolTip": "src\\Player.cpp*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAFsAAAABAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Player.cpp",
+              "RelativeToolTip": "src\\Player.cpp",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAswGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-14T14:54:38.404Z",
               "EditorCaption": ""
@@ -51,16 +144,16 @@
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Player.h",
               "RelativeDocumentMoniker": "include\\Player.h",
-              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Player.h*",
-              "RelativeToolTip": "include\\Player.h*",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACUAAAASAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Player.h",
+              "RelativeToolTip": "include\\Player.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-04-14T14:53:55.124Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "Arma.cpp",
               "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\Arma.cpp",
               "RelativeDocumentMoniker": "src\\Arma.cpp",
@@ -68,12 +161,11 @@
               "RelativeToolTip": "src\\Arma.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-14T14:53:23.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T14:53:23.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Arma.h",
               "DocumentMoniker": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\include\\Arma.h",
               "RelativeDocumentMoniker": "include\\Arma.h",
@@ -92,7 +184,7 @@
               "RelativeDocumentMoniker": "src\\main.cpp",
               "ToolTip": "C:\\Users\\lucas\\source\\repos\\TrabalhoGA\\POO\\src\\main.cpp*",
               "RelativeToolTip": "src\\main.cpp*",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwCUAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAiwEAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-14T14:47:20.581Z",
               "EditorCaption": ""

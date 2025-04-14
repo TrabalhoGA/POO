@@ -122,14 +122,18 @@
     <ClCompile Include="src\Arma.cpp" />
     <ClCompile Include="src\Armadura.cpp" />
     <ClCompile Include="src\Equipamento.cpp" />
+    <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Provisao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />
     <ClInclude Include="include\Armadura.h" />
     <ClInclude Include="include\Equipamento.h" />
+    <ClInclude Include="include\Item.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Provisao.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -90,3 +90,21 @@ Arma* Player::getArma()
 {
 	return arma;
 }
+
+void Player::adicionarProvisao(Provisao* provisao)
+{
+	provisoes.push_back(provisao);
+}
+
+void Player::removerProvisao(Provisao* provisao)
+{
+	auto it = find(provisoes.begin(), provisoes.end(), provisao);
+	if (it != provisoes.end()) {
+		provisoes.erase(it);
+	}
+}
+
+vector<Provisao*> Player::getProvisoes()
+{
+	return provisoes;
+}

@@ -24,11 +24,12 @@ public:
 	int getResistenciaMinimaNecessaria();
 
 protected:
-private:
 	string nome;
 	string descricao;
 	int habilidade_minima_necessaria;
 	int resistencia_minima_necessaria;
+private:
+
 };
 
 #endif // EQUIPAMENTO_H

@@ -3,6 +3,8 @@
 
 #include "Armadura.h"
 #include "Arma.h"
+#include "Provisao.h"
+
 #include <vector>
 
 using namespace std;
@@ -36,6 +38,11 @@ class Player
 
 		void equiparArma(Arma* arma);
 		Arma* getArma();
+
+		void adicionarProvisao(Provisao* provisao);
+		void removerProvisao(Provisao* provisao);
+		vector<Provisao*> getProvisoes();
+
     protected:
 
     private:
@@ -47,6 +54,7 @@ class Player
         int moedas_de_ouro;
 		Armadura* armadura;
 		Arma* arma;
+		vector<Provisao*> provisoes;
 };
 
 #endif // PLAYER_H
