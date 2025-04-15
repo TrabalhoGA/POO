@@ -29,6 +29,23 @@ Subclasse de Item que representa itens consumíveis no jogo.
 - Getters e setters para o atributo específico
 - Construtor que inicializa nome, descrição, magia mínima necessária e bônus de energia
 
+### ReliquiaMagica
+
+Subclasse de Item que representa relíquias mágicas especiais que concedem bônus aos atributos do jogador.
+
+#### Atributos:
+- Herda todos os atributos da classe Item
+- `buff_energia`: Bônus de energia que a relíquia proporciona ao jogador
+- `buff_habilidade`: Bônus de habilidade que a relíquia proporciona ao jogador
+- `buff_resistencia`: Bônus de resistência que a relíquia proporciona ao jogador
+- `buff_magia`: Bônus de magia que a relíquia proporciona ao jogador
+- `buff_sorte`: Bônus de sorte que a relíquia proporciona ao jogador
+
+#### Métodos:
+- Getters e setters para todos os atributos específicos
+- Construtor que inicializa nome, descrição e magia mínima necessária
+- `exibir_buffs`: Exibe todos os bônus que a relíquia proporciona
+
 ### Equipamento
 
 Classe base que representa itens de equipamento genéricos no jogo.
@@ -74,7 +91,8 @@ Subclasse de Equipamento que representa especificamente as armaduras no jogo.
 Classe que representa o personagem jogável.
 
 #### Atributos:
-- `energia`: Pontos de vida do personagem
+- `max_energia`: Energia máxima do personagem
+- `energia_atual`: Energia atual do personagem
 - `habilidade`: Nível de habilidade e dano do personagem
 - `resistencia`: Capacidade de resistir a danos
 - `magia`: Poder mágico do personagem
@@ -82,7 +100,8 @@ Classe que representa o personagem jogável.
 - `moedas_de_ouro`: Moeda do jogo
 - `armadura`: Referência para a armadura equipada pelo jogador
 - `arma`: Referência para a arma equipada pelo jogador
-- `provisoes`: vetor que referencia os itens equipados pelo jogador
+- `provisoes`: Vetor que referencia as provisões no inventário do jogador
+- `reliquias_magicas`: Vetor que referencia as relíquias mágicas do jogador
 
 #### Métodos:
 - Getters e setters para todos os atributos
@@ -90,7 +109,10 @@ Classe que representa o personagem jogável.
 - `equiparArmadura`: Permite equipar uma armadura ao personagem
 - `getArmadura`: Retorna a armadura atualmente equipada
 - `equiparArma`: Permite equipar uma arma ao personagem
-- `getArma`: Retorna a armadura atualmente equipada
+- `getArma`: Retorna a arma atualmente equipada
 - `adicionarProvisao`: Adiciona a provisão ao inventário do jogador
 - `removerProvisao`: Remove a provisão do inventário do jogador
 - `getProvisoes`: Retorna todas as provisões que estão no inventário do jogador
+- `adicionarReliquiaMagica`: Adiciona uma relíquia mágica ao jogador
+- `removerReliquiaMagica`: Remove uma relíquia mágica do jogador
+- `getReliquiasMagicas`: Retorna todas as relíquias mágicas do jogador

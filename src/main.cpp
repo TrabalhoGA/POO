@@ -1,7 +1,8 @@
 #include "../include/Player.h"
 #include "../include/Armadura.h"
 #include "../include/Arma.h"
-#include "../include/Provisao.h"	
+#include "../include/Provisao.h"
+#include "../include/ReliquiaMagica.h"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ int main() {
 	// Criacao de um jogador
 	Player jogador(100, 50, 30, 20, 10);
 	cout << "Jogador:" << endl;
-	cout << "Energia: " << jogador.getEnergia() << endl;
+	cout << "Energia: " << jogador.getEnergiaAtual() << endl;
 	cout << "Habilidade: " << jogador.getHabilidade() << endl;
 	cout << "Resistencia: " << jogador.getResistencia() << endl;
 	cout << "Magia: " << jogador.getMagia() << endl;
@@ -41,10 +42,23 @@ int main() {
 	cout << "\nProvisao adicionada:" << endl;
 	cout << "Nome: " << provisao.getNome() << endl;
 	cout << "Descricao: " << provisao.getDescricao() << endl;
-	cout << "Buff Energia: " << provisao.getBonusEnergia() << endl;
+	cout << "Bonus Energia: " << provisao.getBonusEnergia() << endl;
 	jogador.removerProvisao(&provisao);
 	cout << "\nProvisao removida." << endl;
 	cout << "Provisoes: " << jogador.getProvisoes().size() << endl;
+
+	// Criacao de uma Reliquia Magica
+	ReliquiaMagica reliquia("Amuleto da Sorte", "Um amuleto que traz sorte", 5);
+	reliquia.setBuffSorte(10);
+	jogador.adicionarReliquiaMagica(&reliquia);
+	cout << "\nReliquia Magica adicionada:" << endl;
+	cout << "Nome: " << jogador.getReliquiasMagicas()[0]->getNome() << endl;
+	cout << "Descricao: " << jogador.getReliquiasMagicas()[0]->getDescricao() << endl;
+	cout << "Buffs: " << endl;
+	jogador.getReliquiasMagicas()[0]->exibir_buffs();
+	jogador.removerReliquiaMagica(&reliquia);
+	cout << "\nReliquia Magica removida." << endl;
+	cout << "Reliquias Magicas: " << jogador.getReliquiasMagicas().size() << endl;
 
 	return 0;
 }

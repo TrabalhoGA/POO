@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Player::Player(int e, int h, int r, int m, int s) : energia(e), habilidade(h), resistencia(r), magia(m), sorte(s), moedas_de_ouro(0), armadura(nullptr)
+Player::Player(int e, int h, int r, int m, int s) : max_energia(e), energia_atual(e), habilidade(h), resistencia(r), magia(m), sorte(s), moedas_de_ouro(0), armadura(nullptr), arma(nullptr)
 {
 	//ctor
 }
@@ -12,14 +12,24 @@ Player::~Player()
     //dtor
 }
 
-void Player::setEnergia(int e)
+void Player::setMaxEnergia(int e)
 {
-	energia = e;
+	max_energia = e;
 }
 
-int Player::getEnergia()
+int Player::getMaxEnergia()
 {
-	return energia;
+	return max_energia;
+}
+
+void Player::setEnergiaAtual(int e)
+{
+	energia_atual = e;
+}
+
+int Player::getEnergiaAtual()
+{
+	return energia_atual;
 }
 
 void Player::setHabilidade(int h)
@@ -107,4 +117,22 @@ void Player::removerProvisao(Provisao* provisao)
 vector<Provisao*> Player::getProvisoes()
 {
 	return provisoes;
+}
+
+void Player::adicionarReliquiaMagica(ReliquiaMagica* reliquia)
+{
+	reliquias_magicas.push_back(reliquia);
+}
+
+void Player::removerReliquiaMagica(ReliquiaMagica* reliquia)
+{
+	auto it = find(reliquias_magicas.begin(), reliquias_magicas.end(), reliquia);
+	if (it != reliquias_magicas.end()) {
+		reliquias_magicas.erase(it);
+	}
+}
+
+vector<ReliquiaMagica*> Player::getReliquiasMagicas()
+{
+	return reliquias_magicas;
 }

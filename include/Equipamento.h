@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EQUIPAMENTO_H
 #define EQUIPAMENTO_H
 

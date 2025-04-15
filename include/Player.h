@@ -1,9 +1,11 @@
+#pragma once
 #ifndef PLAYER_H
 #define PLAYER_H
 
 #include "Armadura.h"
 #include "Arma.h"
 #include "Provisao.h"
+#include "ReliquiaMagica.h"
 
 #include <vector>
 
@@ -15,8 +17,11 @@ class Player
 		Player(int e, int h, int r, int m, int s);
         virtual ~Player();
 
-		void setEnergia(int e);
-		int getEnergia();
+		void setMaxEnergia(int e);
+		int getMaxEnergia();
+
+		void setEnergiaAtual(int e);
+		int getEnergiaAtual();
 
 		void setHabilidade(int h);
 		int getHabilidade();
@@ -43,10 +48,15 @@ class Player
 		void removerProvisao(Provisao* provisao);
 		vector<Provisao*> getProvisoes();
 
+		void adicionarReliquiaMagica(ReliquiaMagica* reliquia);
+		void removerReliquiaMagica(ReliquiaMagica* reliquia);
+		vector<ReliquiaMagica*> getReliquiasMagicas();
+
     protected:
 
     private:
-        int energia;
+		int max_energia;
+		int energia_atual;
         int habilidade;
         int resistencia;
         int magia;
@@ -55,6 +65,7 @@ class Player
 		Armadura* armadura;
 		Arma* arma;
 		vector<Provisao*> provisoes;
+		vector<ReliquiaMagica*> reliquias_magicas;
 };
 
 #endif // PLAYER_H

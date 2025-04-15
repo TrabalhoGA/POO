@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ARMADURA_H
 #define ARMADURA_H
 

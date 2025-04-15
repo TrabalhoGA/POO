@@ -126,6 +126,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Provisao.cpp" />
+    <ClCompile Include="src\ReliquiaMagica.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="include\Item.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Provisao.h" />
+    <ClInclude Include="include\ReliquiaMagica.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
