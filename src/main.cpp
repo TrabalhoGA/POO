@@ -3,6 +3,7 @@
 #include "../include/Arma.h"
 #include "../include/Provisao.h"
 #include "../include/ReliquiaMagica.h"
+#include "../include/Monstro.h"
 
 using namespace std;
 
@@ -59,6 +60,14 @@ int main() {
 	jogador.removerReliquiaMagica(&reliquia);
 	cout << "\nReliquia Magica removida." << endl;
 	cout << "Reliquias Magicas: " << jogador.getReliquiasMagicas().size() << endl;
+
+	// Criacao de um monstro
+	Monstro rato("Rato Gigante", 30, 10, 5);
+	cout << "\nMonstro:" << endl;
+	cout << "Nome: " << rato.getNome() << endl;
+	cout << "Energia: " << rato.getEnergia() << endl;
+	cout << "Habilidade: " << rato.getHabilidade() << endl;
+	cout << "Resistencia: " << rato.getResistencia() << endl;
 
 	return 0;
 }

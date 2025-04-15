@@ -124,6 +124,7 @@
     <ClCompile Include="src\Equipamento.cpp" />
     <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Monstro.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Provisao.cpp" />
     <ClCompile Include="src\ReliquiaMagica.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="include\Armadura.h" />
     <ClInclude Include="include\Equipamento.h" />
     <ClInclude Include="include\Item.h" />
+    <ClInclude Include="include\Monstro.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Provisao.h" />
     <ClInclude Include="include\ReliquiaMagica.h" />

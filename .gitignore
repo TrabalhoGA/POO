@@ -34,3 +34,4 @@
 # Visual Studio settings
 *.vsidx
 *.opendb
+.vs/
