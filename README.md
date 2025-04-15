@@ -46,6 +46,21 @@ Subclasse de Item que representa relíquias mágicas especiais que concedem bôn
 - Construtor que inicializa nome, descrição e magia mínima necessária
 - `exibir_buffs`: Exibe todos os bônus que a relíquia proporciona
 
+### Monstro
+
+Classe que representa os inimigos do jogo.
+
+#### Atributos:
+- `nome`: Nome do monstro
+- `energia`: Pontos de vida do monstro
+- `habilidade`: Nível de habilidade de combate do monstro
+- `resistencia`: Capacidade de resistir a danos
+
+#### Métodos:
+- Getters e setters para todos os atributos
+- Construtor que inicializa nome, energia, habilidade e resistência
+- Destrutor virtual
+
 ### Equipamento
 
 Classe base que representa itens de equipamento genéricos no jogo.
