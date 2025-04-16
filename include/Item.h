@@ -20,6 +20,8 @@ public:
 	void setMagiaMinimaNecessaria(int m);
 	int getMagiaMinimaNecessaria();
 
+	virtual void exibir_atributos() = 0;
+
 protected:
 	string nome;
 	string descricao;

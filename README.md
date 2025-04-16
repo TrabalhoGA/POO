@@ -6,7 +6,7 @@ Este projeto implementa um sistema de personagem com itens, equipamentos e armad
 
 ### Item
 
-Classe base que representa itens genéricos no jogo.
+Classe abstrata para os itens do jogo.
 
 #### Atributos:
 - `nome`: Nome do item
@@ -16,6 +16,7 @@ Classe base que representa itens genéricos no jogo.
 #### Métodos:
 - Getters e setters para todos os atributos
 - Construtor padrão e destrutor virtual
+- `exibir_atributos`: Método virtual puro para forçar a implementação nas classes derivadas
 
 ### Provisao
 
@@ -28,23 +29,24 @@ Subclasse de Item que representa itens consumíveis no jogo.
 #### Métodos:
 - Getters e setters para o atributo específico
 - Construtor que inicializa nome, descrição, magia mínima necessária e bônus de energia
+- `exibir_atributos`: Exibe a quantidade de energia que a provisão recupera
 
 ### ReliquiaMagica
 
-Subclasse de Item que representa relíquias mágicas especiais que concedem bônus aos atributos do jogador.
+Subclasse de Item que representa relíquias mágicas especiais que concedem buffs aos atributos do jogador.
 
 #### Atributos:
 - Herda todos os atributos da classe Item
-- `buff_energia`: Bônus de energia que a relíquia proporciona ao jogador
-- `buff_habilidade`: Bônus de habilidade que a relíquia proporciona ao jogador
-- `buff_resistencia`: Bônus de resistência que a relíquia proporciona ao jogador
-- `buff_magia`: Bônus de magia que a relíquia proporciona ao jogador
-- `buff_sorte`: Bônus de sorte que a relíquia proporciona ao jogador
+- `buff_energia`: Buff de energia que a relíquia proporciona ao jogador
+- `buff_habilidade`: Buff de habilidade que a relíquia proporciona ao jogador
+- `buff_resistencia`: Buff de resistência que a relíquia proporciona ao jogador
+- `buff_magia`: Buff de magia que a relíquia proporciona ao jogador
+- `buff_sorte`: Buff de sorte que a relíquia proporciona ao jogador
 
 #### Métodos:
 - Getters e setters para todos os atributos específicos
 - Construtor que inicializa nome, descrição e magia mínima necessária
-- `exibir_buffs`: Exibe todos os bônus que a relíquia proporciona
+- `exibir_atributos`: Exibe todos os buffs que a relíquia proporciona
 
 ### Monstro
 
@@ -63,7 +65,7 @@ Classe que representa os inimigos do jogo.
 
 ### Equipamento
 
-Classe base que representa itens de equipamento genéricos no jogo.
+Classe abstrata para os equipamentos do jogo.
 
 #### Atributos:
 - `nome`: Nome do equipamento
@@ -74,6 +76,7 @@ Classe base que representa itens de equipamento genéricos no jogo.
 #### Métodos:
 - Getters e setters para todos os atributos
 - Construtor padrão e destrutor virtual
+- `evoluir_equipamento`: Método virtual puro para forçar a implementação nas classes derivadas
 
 ### Arma
 
@@ -81,12 +84,12 @@ Subclasse de Equipamento que representa especificamente as armas no jogo.
 
 #### Atributos:
 - Herda todos os atributos da classe Equipamento
-- `buff_habilidade`: Bônus de habilidade que a arma proporciona ao jogador
+- `buff_habilidade`: Buff de habilidade que a arma proporciona ao jogador
 
 #### Métodos:
 - Getters e setters para o atributo específico
 - Construtor que inicializa nome, descrição, habilidade mínima, resistência mínima, e buff de habilidade
-- `evoluirArma`: Permite melhorar o buff de habilidade da arma
+- `evoluir_equipamento`: Permite melhorar o buff de habilidade da arma
 
 ### Armadura
 
@@ -94,12 +97,12 @@ Subclasse de Equipamento que representa especificamente as armaduras no jogo.
 
 #### Atributos:
 - Herda todos os atributos da classe Equipamento
-- `buff_resistencia`: Bônus de resistência que a armadura proporciona ao jogador
+- `buff_resistencia`: Buff de resistência que a armadura proporciona ao jogador
 
 #### Métodos:
 - Getters e setters para o atributo específico
 - Construtor que inicializa nome, descrição, requisitos mínimos e buff de resistência
-- `evoluirArmadura`: Permite melhorar o buff de resistência da armadura
+- `evoluir_equipamento`: Permite melhorar o buff de resistência da armadura
 
 ### Player
 

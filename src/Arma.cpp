@@ -26,7 +26,7 @@ int Arma::getBuffHabilidade()
 	return buff_habilidade;
 }
 
-void Arma::evoluirArma(int b)
+void Arma::evoluir_equipamento(int b)
 {
 	buff_habilidade += b;
 }

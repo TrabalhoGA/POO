@@ -57,7 +57,7 @@ int ReliquiaMagica::getBuffSorte() {
 	return buff_sorte;
 }
 
-void ReliquiaMagica::exibir_buffs() {
+void ReliquiaMagica::exibir_atributos() {
 	cout << "Buff Energia: " << buff_energia << endl;
 	cout << "Buff Habilidade: " << buff_habilidade << endl;
 	cout << "Buff Resistencia: " << buff_resistencia << endl;

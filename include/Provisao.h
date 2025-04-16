@@ -10,6 +10,8 @@ public:
 	void setBonusEnergia(int b);
 	int getBonusEnergia();
 
+	void exibir_atributos() override;
+
 protected:
 
 private:

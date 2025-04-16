@@ -43,7 +43,7 @@ int main() {
 	cout << "\nProvisao adicionada:" << endl;
 	cout << "Nome: " << provisao.getNome() << endl;
 	cout << "Descricao: " << provisao.getDescricao() << endl;
-	cout << "Bonus Energia: " << provisao.getBonusEnergia() << endl;
+	provisao.exibir_atributos();
 	jogador.removerProvisao(&provisao);
 	cout << "\nProvisao removida." << endl;
 	cout << "Provisoes: " << jogador.getProvisoes().size() << endl;
@@ -56,7 +56,7 @@ int main() {
 	cout << "Nome: " << jogador.getReliquiasMagicas()[0]->getNome() << endl;
 	cout << "Descricao: " << jogador.getReliquiasMagicas()[0]->getDescricao() << endl;
 	cout << "Buffs: " << endl;
-	jogador.getReliquiasMagicas()[0]->exibir_buffs();
+	jogador.getReliquiasMagicas()[0]->exibir_atributos();
 	jogador.removerReliquiaMagica(&reliquia);
 	cout << "\nReliquia Magica removida." << endl;
 	cout << "Reliquias Magicas: " << jogador.getReliquiasMagicas().size() << endl;

@@ -24,6 +24,8 @@ public:
 	void setResistenciaMinimaNecessaria(int r);
 	int getResistenciaMinimaNecessaria();
 
+	virtual void evoluir_equipamento(int buff) = 0;
+
 protected:
 	string nome;
 	string descricao;

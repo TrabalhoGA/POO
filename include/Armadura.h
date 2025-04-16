@@ -15,7 +15,7 @@ public:
 	void setBuffResistencia(int b);
 	int getBuffResistencia();
 
-	void evoluirArmadura(int b);
+	void evoluir_equipamento(int buff) override;
 protected:
 
 private:

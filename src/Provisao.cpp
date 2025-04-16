@@ -24,3 +24,8 @@ int Provisao::getBonusEnergia()
 {
 	return bonus_energia;
 }
+
+void Provisao::exibir_atributos()
+{
+	cout << "Bonus Energia: " << getBonusEnergia() << endl;
+}

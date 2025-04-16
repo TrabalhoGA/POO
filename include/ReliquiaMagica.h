@@ -26,7 +26,7 @@ public:
 	void setBuffSorte(int s);
 	int getBuffSorte();
 
-	void exibir_buffs();
+	void exibir_atributos() override;
 
 protected:
 

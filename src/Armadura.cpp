@@ -26,7 +26,7 @@ int Armadura::getBuffResistencia()
 	return buff_resistencia;
 }
 
-void Armadura::evoluirArmadura(int b)
+void Armadura::evoluir_equipamento(int b)
 {
 	buff_resistencia += b;
 }
