@@ -1,6 +1,6 @@
 #pragma once
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PERSONAGEM_H
+#define PERSONAGEM_H
 
 #include "Armadura.h"
 #include "Arma.h"
@@ -11,11 +11,11 @@
 
 using namespace std;
 
-class Player
+class Personagem
 {
     public:
-		Player(int e, int h, int r, int m, int s);
-        virtual ~Player();
+		Personagem(int e, int h, int r, int m, int s);
+        virtual ~Personagem();
 
 		void setMaxEnergia(int e);
 		int getMaxEnergia();
@@ -68,4 +68,4 @@ class Player
 		vector<ReliquiaMagica*> reliquias_magicas;
 };
 
-#endif // PLAYER_H
+#endif // PERSONAGEM_H

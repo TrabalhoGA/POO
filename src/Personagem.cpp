@@ -1,0 +1,138 @@
+#include "../include/Personagem.h"
+
+using namespace std;
+
+Personagem::Personagem(int e, int h, int r, int m, int s) : max_energia(e), energia_atual(e), habilidade(h), resistencia(r), magia(m), sorte(s), moedas_de_ouro(0), armadura(nullptr), arma(nullptr)
+{
+	//ctor
+}
+
+Personagem::~Personagem()
+{
+    //dtor
+}
+
+void Personagem::setMaxEnergia(int e)
+{
+	max_energia = e;
+}
+
+int Personagem::getMaxEnergia()
+{
+	return max_energia;
+}
+
+void Personagem::setEnergiaAtual(int e)
+{
+	energia_atual = e;
+}
+
+int Personagem::getEnergiaAtual()
+{
+	return energia_atual;
+}
+
+void Personagem::setHabilidade(int h)
+{
+	habilidade = h;
+}
+
+int Personagem::getHabilidade()
+{
+	return habilidade;
+}
+
+void Personagem::setResistencia(int r)
+{
+	resistencia = r;
+}
+
+int Personagem::getResistencia()
+{
+	return resistencia;
+}
+void Personagem::setMagia(int m)
+{
+	magia = m;
+}
+
+int Personagem::getMagia()
+{
+	return magia;
+}
+
+void Personagem::setSorte(int s)
+{
+	sorte = s;
+}
+
+int Personagem::getSorte()
+{
+	return sorte;
+}
+
+void Personagem::setMoedasDeOuro(int m)
+{
+	moedas_de_ouro = m;
+}
+
+int Personagem::getMoedasDeOuro()
+{
+	return moedas_de_ouro;
+}
+
+void Personagem::equiparArmadura(Armadura* armadura)
+{
+	this->armadura = armadura;
+}
+
+Armadura* Personagem::getArmadura()
+{
+	return armadura;
+}
+
+void Personagem::equiparArma(Arma* arma)
+{
+	this->arma = arma;
+}
+
+Arma* Personagem::getArma()
+{
+	return arma;
+}
+
+void Personagem::adicionarProvisao(Provisao* provisao)
+{
+	provisoes.push_back(provisao);
+}
+
+void Personagem::removerProvisao(Provisao* provisao)
+{
+	auto it = find(provisoes.begin(), provisoes.end(), provisao);
+	if (it != provisoes.end()) {
+		provisoes.erase(it);
+	}
+}
+
+vector<Provisao*> Personagem::getProvisoes()
+{
+	return provisoes;
+}
+
+void Personagem::adicionarReliquiaMagica(ReliquiaMagica* reliquia)
+{
+	reliquias_magicas.push_back(reliquia);
+}
+
+void Personagem::removerReliquiaMagica(ReliquiaMagica* reliquia)
+{
+	auto it = find(reliquias_magicas.begin(), reliquias_magicas.end(), reliquia);
+	if (it != reliquias_magicas.end()) {
+		reliquias_magicas.erase(it);
+	}
+}
+
+vector<ReliquiaMagica*> Personagem::getReliquiasMagicas()
+{
+	return reliquias_magicas;
+}

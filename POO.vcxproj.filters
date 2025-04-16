@@ -24,7 +24,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
+    <ClCompile Include="src\Personagem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Arma.cpp">
@@ -50,7 +50,7 @@
     <ClInclude Include="include\Equipamento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player.h">
+    <ClInclude Include="include\Personagem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Arma.h">

@@ -1,4 +1,4 @@
-#include "../include/Player.h"
+#include "../include/Personagem.h"
 #include "../include/Armadura.h"
 #include "../include/Arma.h"
 #include "../include/Provisao.h"
@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 	// Teste
 	// Criacao de um jogador
-	Player jogador(100, 50, 30, 20, 10);
+	Personagem jogador(100, 50, 30, 20, 10);
 	cout << "Jogador:" << endl;
 	cout << "Energia: " << jogador.getEnergiaAtual() << endl;
 	cout << "Habilidade: " << jogador.getHabilidade() << endl;
