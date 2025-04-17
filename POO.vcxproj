@@ -134,10 +134,16 @@
     <ClInclude Include="include\Armadura.h" />
     <ClInclude Include="include\Equipamento.h" />
     <ClInclude Include="include\Item.h" />
+    <ClInclude Include="include\Jogo.h" />
     <ClInclude Include="include\Monstro.h" />
     <ClInclude Include="include\Personagem.h" />
     <ClInclude Include="include\Provisao.h" />
     <ClInclude Include="include\ReliquiaMagica.h" />
+    <ClInclude Include="include\TelaBatalha.h" />
+    <ClInclude Include="include\TelaEstado.h" />
+    <ClInclude Include="include\TelaInicial.h" />
+    <ClInclude Include="include\TelaInventario.h" />
+    <ClInclude Include="include\TelaPadrao.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
