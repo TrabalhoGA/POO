@@ -15,7 +15,7 @@ class Personagem
 {
     public:
 		Personagem(int e, int h, int r, int m, int s);
-        virtual ~Personagem();
+		virtual ~Personagem();
 
 		void setMaxEnergia(int e);
 		int getMaxEnergia();
@@ -57,11 +57,11 @@ class Personagem
     private:
 		int max_energia;
 		int energia_atual;
-        int habilidade;
-        int resistencia;
-        int magia;
-        int sorte;
-        int moedas_de_ouro;
+    	int habilidade;
+    	int resistencia;
+    	int magia;
+    	int sorte;
+		int moedas_de_ouro;
 		Armadura* armadura;
 		Arma* arma;
 		vector<Provisao*> provisoes;
