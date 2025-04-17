@@ -57,15 +57,15 @@ class Personagem
     private:
 		int max_energia;
 		int energia_atual;
-        int habilidade;
-        int resistencia;
-        int magia;
-        int sorte;
-        int moedas_de_ouro;
+		int habilidade;
+		int resistencia;
+		int magia;
+		int sorte;
+		int moedas_de_ouro;
 		Armadura* armadura;
 		Arma* arma;
-		vector<Provisao*> provisoes;
-		vector<ReliquiaMagica*> reliquias_magicas;
+		std::vector<Provisao*>* provisoes;
+		std::vector<ReliquiaMagica*>* reliquias_magicas;
 };
 
 #endif // PERSONAGEM_H

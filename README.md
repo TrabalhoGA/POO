@@ -104,7 +104,7 @@ Subclasse de Equipamento que representa especificamente as armaduras no jogo.
 - Construtor que inicializa nome, descrição, requisitos mínimos e buff de resistência
 - `evoluir_equipamento`: Permite melhorar o buff de resistência da armadura
 
-### Player
+### Personagem
 
 Classe que representa o personagem jogável.
 
