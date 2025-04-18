@@ -1,0 +1,14 @@
+=========================================
+ PASSO 2 - A Emboscada dos Lobos
+=========================================
+
+Enquanto avança pela trilha estreita, você ouve galhos se partindo
+e um rosnado baixo ecoando entre as árvores.
+
+De repente, três lobos de pelos escuros surgem do mato, os olhos
+brilhando com fome. Eles cercam você rapidamente.
+
+O que deseja fazer?
+
+1 - Enfrentar os lobos com sua arma.   
+2 - Tentar assustá-los com uma tocha(se tiver).  

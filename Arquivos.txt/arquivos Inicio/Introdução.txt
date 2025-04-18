@@ -1,0 +1,17 @@
+=========================================
+               INTRODUÇÃO
+=========================================
+
+Você é um aventureiro solitário, conhecido apenas por feitos corajosos e por sobreviver a perigos que muitos sequer ousam imaginar.
+
+Durante anos, você perseguiu lendas, mapas e rumores sobre uma figura sombria que habita o topo da Montanha Negra: o demônio Sparda.
+
+Dizem que Sparda planeja realizar um ritual proibido capaz de quebrar o véu entre os mundos e libertar horrores antigos sobre a terra.
+
+Sua missão é clara:
+Derrotar Malakar e impedir que ele conclua seu ritual.
+
+Você está prestes a iniciar uma jornada onde cada decisão pode significar
+vida ou morte. Escolha com sabedoria, aventureiro.
+
+Digite 1 para continuar...

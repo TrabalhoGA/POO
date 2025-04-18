@@ -1,0 +1,12 @@
+=========================================
+     PASSO 3 - A Passarela Instável
+=========================================
+
+Você chega a uma ponte de madeira podre sobre um abismo escuro.
+Ela range sob o peso de cada passo.
+
+O que deseja fazer?
+
+1 - Atravessar com cuidado, testando as tábuas.  
+2 - Correr rapidamente por ela.  
+3 - Usar uma corda para se equilibrar (se tiver).

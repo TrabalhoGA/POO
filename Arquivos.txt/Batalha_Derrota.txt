@@ -1,0 +1,15 @@
+=========================================
+              GAME OVER 
+=========================================
+
+A batalha foi árdua, e apesar dos seus esforços, seu inimigo
+levou a melhor.
+
+Seus golpes não foram suficientes… e seu corpo não resistiu.
+
+Você cai no chão, sentindo a energia escapar do seu corpo.
+
+Você foi derrotado nesta batalha.
+ 
+
+Digite 1 para voltar ao menu.

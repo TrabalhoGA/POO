@@ -1,0 +1,14 @@
+=========================================
+         TESTE DE SORTE - FALHA
+=========================================
+
+Você arrisca… mas desta vez, o destino não sorri para você.
+
+Seu instinto falhou ou talvez a sorte tenha simplesmente
+lhe abandonado por um breve momento.
+
+Perda: -2 de ENERGIA
+
+Levante-se e siga em frente — nem todo azar dura para sempre.
+
+Digite 1 para continuar.
