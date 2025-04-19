@@ -1,6 +1,5 @@
 #include "../include/TelaInicial.h"
 #include "../include/TelaPadrao.h"
-//#include "../include/TelaCreditos.h"
 #include <iostream>
 
 using namespace std;
@@ -14,10 +13,15 @@ TelaInicial::~TelaInicial() {
 }
 
 void TelaInicial::exibirTela() {
+    int opcao;
+
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Tela_menu.txt");
     
     cout << conteudo << endl;
+    cin >> opcao;
+    cin.ignore(); // Limpar o buffer de entrada
+    handleInput(opcao);
 }
 
 void TelaInicial::handleInput(int input) {
@@ -28,9 +32,8 @@ void TelaInicial::handleInput(int input) {
         case 2: // Novo jogo
             jogo->mudarEstado(new TelaPadrao(jogo));
             break;
-        case 3: // Mostrar créditos
-            //jogo->mudarEstado(new TelaCreditos(jogo));
-            // Futura classe TelaCreditos
+        case 3: // Créditos
+            exibirCreditos();
             break;
         case 4: // Sair
             cout << "Saindo do jogo...\n";
@@ -40,4 +43,16 @@ void TelaInicial::handleInput(int input) {
             cout << "Opção inválida. Tente novamente.\n";
             break;
     }
+}
+
+void TelaInicial::exibirCreditos() {
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Creditos.txt");
+    
+    cout << conteudo << endl;
+    cin.ignore();
+    cin.get();
+    
+    // Exibir a tela inicial novamente
+    exibirTela();
 }

@@ -15,6 +15,8 @@ public:
 	void exibirTela() override;
 	void handleInput(int input) override;
 
+	void exibirCreditos();
+
 private:
 	Jogo* jogo;
 };
