@@ -121,17 +121,22 @@
   <ItemGroup>
     <ClCompile Include="src\Arma.cpp" />
     <ClCompile Include="src\Armadura.cpp" />
+    <ClCompile Include="src\ArquivoManager.cpp" />
     <ClCompile Include="src\Equipamento.cpp" />
     <ClCompile Include="src\Item.cpp" />
+    <ClCompile Include="src\Jogo.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Monstro.cpp" />
     <ClCompile Include="src\Personagem.cpp" />
     <ClCompile Include="src\Provisao.cpp" />
     <ClCompile Include="src\ReliquiaMagica.cpp" />
+    <ClCompile Include="src\TelaInicial.cpp" />
+    <ClCompile Include="src\TelaPadrao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />
     <ClInclude Include="include\Armadura.h" />
+    <ClInclude Include="include\ArquivoManager.h" />
     <ClInclude Include="include\Equipamento.h" />
     <ClInclude Include="include\Item.h" />
     <ClInclude Include="include\Jogo.h" />
