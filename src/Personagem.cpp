@@ -1,6 +1,10 @@
 #include "../include/Personagem.h"
+#include <algorithm>
 
 using namespace std;
+
+// Inicialização da instância estática
+Personagem* Personagem::instance = nullptr;
 
 Personagem::Personagem(int e, int h, int r, int m, int s)
     : max_energia(e), energia_atual(e), habilidade(h), resistencia(r), magia(m), sorte(s), moedas_de_ouro(0), armadura(nullptr), arma(nullptr), provisoes(nullptr), reliquias_magicas(nullptr)
@@ -12,6 +16,33 @@ Personagem::~Personagem()
 {
     if (provisoes) delete provisoes;
     if (reliquias_magicas) delete reliquias_magicas;
+}
+
+// Implementação do método Singleton para obter a instância
+Personagem* Personagem::getInstance(int e, int h, int r, int m, int s)
+{
+    if (instance == nullptr) {
+        instance = new Personagem(e, h, r, m, s);
+    }
+    return instance;
+}
+
+// Método para resetar a instância
+void Personagem::resetInstance()
+{
+    if (instance != nullptr) {
+        delete instance;
+        instance = nullptr;
+    }
+}
+
+// Método para liberar a instância
+void Personagem::releaseInstance()
+{
+    if (instance != nullptr) {
+        delete instance;
+        instance = nullptr;
+    }
 }
 
 void Personagem::setMaxEnergia(int e)
@@ -53,6 +84,7 @@ int Personagem::getResistencia()
 {
     return resistencia;
 }
+
 void Personagem::setMagia(int m)
 {
     magia = m;

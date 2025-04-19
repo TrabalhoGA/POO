@@ -13,59 +13,73 @@ using namespace std;
 
 class Personagem
 {
+    private:
+        // Construtor privado (parte do padrão Singleton)
+        Personagem(int e, int h, int r, int m, int s);
+        // Instância estática
+        static Personagem* instance;
+        
+        // Atributos da classe
+        int max_energia;
+        int energia_atual;
+        int habilidade;
+        int resistencia;
+        int magia;
+        int sorte;
+        int moedas_de_ouro;
+        Armadura* armadura;
+        Arma* arma;
+        std::vector<Provisao*>* provisoes;
+        std::vector<ReliquiaMagica*>* reliquias_magicas;
+
     public:
-		Personagem(int e, int h, int r, int m, int s);
+        // Proibir cópia e atribuição
+        Personagem(const Personagem&) = delete;
+        Personagem& operator=(const Personagem&) = delete;
+        
         virtual ~Personagem();
 
-		void setMaxEnergia(int e);
-		int getMaxEnergia();
+        // Método estático para acessar a instância única
+        static Personagem* getInstance(int e = 0, int h = 0, int r = 0, int m = 0, int s = 0);
+        
+        // Métodos para resetar ou liberar a instância
+        static void resetInstance();
+        static void releaseInstance();
 
-		void setEnergiaAtual(int e);
-		int getEnergiaAtual();
+        void setMaxEnergia(int e);
+        int getMaxEnergia();
 
-		void setHabilidade(int h);
-		int getHabilidade();
+        void setEnergiaAtual(int e);
+        int getEnergiaAtual();
 
-		void setResistencia(int r);
-		int getResistencia();
+        void setHabilidade(int h);
+        int getHabilidade();
 
-		void setMagia(int m);
-		int getMagia();
+        void setResistencia(int r);
+        int getResistencia();
 
-		void setSorte(int s);
-		int getSorte();
+        void setMagia(int m);
+        int getMagia();
 
-		void setMoedasDeOuro(int m);
-		int getMoedasDeOuro();
+        void setSorte(int s);
+        int getSorte();
 
-		void equiparArmadura(Armadura* armadura);
-		Armadura* getArmadura();
+        void setMoedasDeOuro(int m);
+        int getMoedasDeOuro();
 
-		void equiparArma(Arma* arma);
-		Arma* getArma();
+        void equiparArmadura(Armadura* armadura);
+        Armadura* getArmadura();
 
-		void adicionarProvisao(Provisao* provisao);
-		void removerProvisao(Provisao* provisao);
-		vector<Provisao*> getProvisoes();
+        void equiparArma(Arma* arma);
+        Arma* getArma();
 
-		void adicionarReliquiaMagica(ReliquiaMagica* reliquia);
-		void removerReliquiaMagica(ReliquiaMagica* reliquia);
-		vector<ReliquiaMagica*> getReliquiasMagicas();
+        void adicionarProvisao(Provisao* provisao);
+        void removerProvisao(Provisao* provisao);
+        vector<Provisao*> getProvisoes();
 
-    protected:
-
-    private:
-		int max_energia;
-		int energia_atual;
-		int habilidade;
-		int resistencia;
-		int magia;
-		int sorte;
-		int moedas_de_ouro;
-		Armadura* armadura;
-		Arma* arma;
-		std::vector<Provisao*>* provisoes;
-		std::vector<ReliquiaMagica*>* reliquias_magicas;
+        void adicionarReliquiaMagica(ReliquiaMagica* reliquia);
+        void removerReliquiaMagica(ReliquiaMagica* reliquia);
+        vector<ReliquiaMagica*> getReliquiasMagicas();
 };
 
 #endif // PERSONAGEM_H
