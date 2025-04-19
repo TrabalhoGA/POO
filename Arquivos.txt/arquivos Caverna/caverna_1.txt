@@ -1,0 +1,14 @@
+=========================================
+     PASSO 1 - A Entrada da igreja
+=========================================
+
+Você chega a uma entrada escondida, atrás da lápide rachada de uma igreja abandonada.
+Inscrições antigas murmuram palavras em uma língua esquecida.
+
+Parece haver um mecanismo escondido por trás da lápide.
+
+O que deseja fazer?
+
+1 - Tentar resolver o enigma da inscrição.  
+2 - Forçar a entrada com sua força bruta (Teste de Habilidade).  
+

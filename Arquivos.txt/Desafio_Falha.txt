@@ -1,0 +1,19 @@
+=========================================
+        DESAFIO FALHOU!
+=========================================
+
+Você hesita por um segundo. Talvez tenha interpretado errado...
+Ou talvez o enigma fosse mais complexo do que parecia.
+
+ A tentativa falha.
+
+Você sofre as consequências do erro.
+
+ Você perde 2 pontos de ENERGIA.
+
+Mesmo ferido, você segue em frente.  
+Mas cada passo agora será mais difícil.
+
+Fique atento. Nem todos os desafios podem ser tentados duas vezes.
+
+Digite 1 para continuar.

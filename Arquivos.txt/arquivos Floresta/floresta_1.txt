@@ -1,0 +1,14 @@
+=========================================
+ PASSO 1 - O Demônio Enigmático
+=========================================
+
+Logo ao entrar na floresta, você é abordado por um fauno
+com sorriso misterioso e olhos dourados. Ele toca uma melodia
+hipnótica e propõe um enigma.
+
+"Responda corretamente, e o caminho se abrirá para você."
+
+O que deseja fazer?
+
+1 - Ouvir o enigma e tentar responder.   
+2 - Tentar intimidá-lo com sua arma.

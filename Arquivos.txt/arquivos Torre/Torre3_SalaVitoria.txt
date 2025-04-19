@@ -1,0 +1,23 @@
+=========================================
+     SALA LATERAL - SUCESSO!
+=========================================
+
+Você entra com cautela na sala lateral, o ambiente é abafado
+e repleto de inscrições demoníacas nas paredes.
+
+No centro da sala, repousando sobre um pedestal de pedra negra,
+há um amuleto pulsante envolto em chamas roxas.
+
+Você se aproxima e, ao tocá-lo, sente uma onda de energia sombria
+correr por seu corpo — mas curiosamente, não o machuca.
+
+Você encontrou o Amuleto Demoníaco!
+
+→ Este artefato antigo reduz pela metade todo o dano que você
+receber durante o combate final.
+
+Você guarda o amuleto e retorna silenciosamente ao corredor principal.
+
+Está pronto para enfrentar Sparda.
+
+Digite 1 para continuar.

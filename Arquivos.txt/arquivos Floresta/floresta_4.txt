@@ -1,0 +1,12 @@
+=========================================
+ PASSO 4 - O Troll da Floresta
+=========================================
+
+Um imenso troll bloqueia a trilha com um tronco caído.
+Ele olha para você com fome nos olhos e baba escorrendo da boca.
+
+O que deseja fazer?
+
+1 - Tentar passar despercebido (teste de SORTE).  
+2 - Enfrenta-lo.  
+

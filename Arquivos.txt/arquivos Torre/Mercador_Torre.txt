@@ -1,0 +1,26 @@
+=========================================
+      O MERCADOR MISTERIOSO
+=========================================
+
+"Finalmente, você chegou..." diz ele com uma voz rouca, quase divertida.  
+"Eu sabia que sobreviveria até aqui. E como todo bom herói, você merece uma última chance de se armar."
+
+O mercador misterioso ergue um pano, revelando três itens reluzentes
+entre almofadas de veludo e couro antigo.
+
+Você confere sua bolsa — quanto ouro ainda carrega?
+
+Itens disponíveis:
+
+1 - Elixir de Vida ............... 20 de ouro  
+   (Recupera totalmente sua ENERGIA atual.)
+
+2 - Armadura de Ferro ............ 40 de ouro  
+   (Aumenta sua ENERGIA máxima em +10 pontos)
+
+3 - Armadura Mágica .............. 40 de ouro  
+   (Aumenta sua SORTE e o dano causado por cajados mágicos)
+
+Digite "FIM" para encerrar as compras.
+
+=========================================

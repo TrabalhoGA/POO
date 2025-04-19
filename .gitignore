@@ -35,3 +35,6 @@
 *.vsidx
 *.opendb
 .vs/
+
+# Visual Studio Code settings
+.vscode/
