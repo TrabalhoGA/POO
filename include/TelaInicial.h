@@ -3,6 +3,7 @@
 #define TELAINICIAL_H
 
 #include "Jogo.h"
+#include "ArquivoManager.h"
 
 using namespace std;
 
