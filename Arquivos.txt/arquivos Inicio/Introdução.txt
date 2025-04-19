@@ -1,3 +1,4 @@
+<!-- proxima_tela: Arquivos.txt/arquivos Inicio/Mercado_inicial.txt -->
 =========================================
                INTRODUÇÃO
 =========================================
@@ -9,7 +10,7 @@ Durante anos, você perseguiu lendas, mapas e rumores sobre uma figura sombria q
 Dizem que Sparda planeja realizar um ritual proibido capaz de quebrar o véu entre os mundos e libertar horrores antigos sobre a terra.
 
 Sua missão é clara:
-Derrotar Malakar e impedir que ele conclua seu ritual.
+Derrotar Sparda e impedir que ele conclua seu ritual.
 
 Você está prestes a iniciar uma jornada onde cada decisão pode significar
 vida ou morte. Escolha com sabedoria, aventureiro.

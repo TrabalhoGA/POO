@@ -1,3 +1,5 @@
+<!-- proxima_tela_floresta: Arquivos.txt/arquivos Floresta/floresta_1.txt -->
+<!-- proxima_tela_caverna: Arquivos.txt/arquivos Caverna/caverna_1.txt -->
 =========================================
          A ENCRUZILHADA DO DESTINO
 =========================================
@@ -24,4 +26,4 @@ Qual caminho você escolhe?
 Digite o número correspondente:
 
 1 - Entrar na Floresta Mística  
-2 - Descer para a Caverna do inferno 
+2 - Descer para a Caverna do inferno

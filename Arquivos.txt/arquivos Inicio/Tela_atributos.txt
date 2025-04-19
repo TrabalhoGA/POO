@@ -1,3 +1,4 @@
+<!-- proxima_tela: Arquivos.txt/arquivos Inicio/Introdução.txt -->
 =========================================
        CRIAÇÃO DO PERSONAGEM
 =========================================
@@ -13,10 +14,3 @@ SORTE       - Pode ser usada em momentos críticos para alterar o destino.
 Você possui 12 pontos para distribuir como quiser entre os três atributos.
 
 Digite quantos pontos deseja em cada atributo (total de 12):
-
-HABILIDADE: _______
-ENERGIA:   _______
-SORTE:     _______
-
-
-Pressione Enter para continuar.

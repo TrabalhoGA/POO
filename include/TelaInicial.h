@@ -16,6 +16,7 @@ public:
 	void handleInput(int input) override;
 
 	void exibirCreditos();
+    void carregarJogo();
 
 private:
 	Jogo* jogo;

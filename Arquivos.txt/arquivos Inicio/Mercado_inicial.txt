@@ -1,3 +1,4 @@
+<!-- proxima_tela: Arquivos.txt/arquivos Inicio/EscolhaCaminho.txt -->
 =========================================
               MERCADO INICIAL
 =========================================

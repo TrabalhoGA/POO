@@ -13,8 +13,8 @@ Jogo* Jogo::getInstance() {
     return instance;
 }
 
-Jogo::Jogo() {
-    estadoAtual = nullptr;
+Jogo::Jogo() : estadoAtual(nullptr), currentStoryFile("") {
+    // Construtor
 }
 
 Jogo::~Jogo() {
@@ -38,4 +38,12 @@ void Jogo::mudarEstado(TelaEstado* novoEstado) {
         delete estadoAtual;
     }
     estadoAtual = novoEstado;
+}
+
+void Jogo::setCurrentStoryFile(const string& filename) {
+    currentStoryFile = filename;
+}
+
+string Jogo::getCurrentStoryFile() const {
+    return currentStoryFile;
 }

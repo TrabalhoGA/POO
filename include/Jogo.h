@@ -3,6 +3,7 @@
 #define JOGO_H
 
 #include "TelaEstado.h"
+#include <string>
 
 using namespace std;
 
@@ -17,6 +18,10 @@ public:
 	void exibirTela();
 	void handleInput(int input);
 	void mudarEstado(TelaEstado* novoEstado);
+	
+	// Métodos para gerenciar o arquivo da história atual
+	void setCurrentStoryFile(const string& filename);
+	string getCurrentStoryFile() const;
 
 private:
 	// Construtor privado (Singleton)
@@ -26,6 +31,9 @@ private:
 	static Jogo* instance;
 	
 	TelaEstado* estadoAtual;
+	
+	// Arquivo atual da história
+	string currentStoryFile;
 	
 	// Impede cópias do objeto (Singleton)
 	Jogo(const Jogo&) = delete;

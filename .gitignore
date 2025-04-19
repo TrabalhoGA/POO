@@ -35,6 +35,9 @@
 *.vsidx
 *.opendb
 .vs/
+POO/x64/Debug/
+x64/Debug/
+.pdb
 
 # Visual Studio Code settings
 .vscode/
