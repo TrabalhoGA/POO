@@ -187,27 +187,7 @@ void TelaPadrao::exibirTelaAtributos(string currentFile)
     cin.ignore();
     cin.get();
     
-    // Define o próximo arquivo a ser exibido baseado nos metadados
-    if (storyMetadata.count("proxima_tela") > 0) {
-        string proximoArquivo = storyMetadata["proxima_tela"];
-        
-        // Verificar se o arquivo existe antes de tentar acessá-lo
-        try {
-            // Tenta ler o próximo arquivo para verificar se ele existe
-            string testeConteudo = arquivoManager->lerArquivo(proximoArquivo);
-            
-            // Se chegou aqui, o arquivo existe e pode ser definido
-            jogo->setCurrentStoryFile(proximoArquivo);
-            exibirTela();
-        } catch (const exception& e) {
-            // Se ocorrer uma exceção, o arquivo provavelmente não existe
-            cout << "Erro ao acessar o próximo arquivo: " << e.what() << endl;
-            cout << "Retornando ao menu principal..." << endl;
-            jogo->mudarEstado(new TelaInicial(jogo));
-        }
-    } else {
-        cout << "Próxima tela não definida nos metadados." << endl;
-        cout << "Retornando ao menu principal..." << endl;
-        jogo->mudarEstado(new TelaInicial(jogo));
-    }
+    
+    jogo->setCurrentStoryFile("Arquivos.txt/arquivos Inicio/Introducao.txt");
+    return;
 }
