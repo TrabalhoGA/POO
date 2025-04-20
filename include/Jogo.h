@@ -4,6 +4,7 @@
 
 #include "TelaEstado.h"
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -22,6 +23,8 @@ public:
 	// Métodos para gerenciar o arquivo da história atual
 	void setCurrentStoryFile(const string& filename);
 	string getCurrentStoryFile() const;
+
+	void limparTela();
 
 private:
 	// Construtor privado (Singleton)

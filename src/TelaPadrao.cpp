@@ -22,6 +22,9 @@ TelaPadrao::~TelaPadrao()
 
 void TelaPadrao::exibirTela() 
 {
+    // Limpar terminal
+    jogo->limparTela();
+
     // Obter o arquivo atual a ser exibido
     string currentFile = jogo->getCurrentStoryFile();
     
@@ -187,7 +190,9 @@ void TelaPadrao::exibirTelaAtributos(string currentFile)
     cin.ignore();
     cin.get();
     
-    
     jogo->setCurrentStoryFile("Arquivos.txt/arquivos Inicio/Introducao.txt");
+    cin.ignore();
+    cin.get();
+
     return;
 }

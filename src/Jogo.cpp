@@ -47,3 +47,11 @@ void Jogo::setCurrentStoryFile(const string& filename) {
 string Jogo::getCurrentStoryFile() const {
     return currentStoryFile;
 }
+
+void Jogo::limparTela() {
+#ifdef _WIN32
+    system("cls");  // Windows
+#else
+    system("clear");  // Linux / macOS
+#endif
+}
