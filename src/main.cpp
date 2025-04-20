@@ -18,8 +18,5 @@ int main() {
 		jogo->exibirTela();
 	}
     
-
-    Personagem::releaseInstance();
-    
     return 0;
 }

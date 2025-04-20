@@ -13,7 +13,23 @@ Jogo* Jogo::getInstance() {
     return instance;
 }
 
-Jogo::Jogo() : estadoAtual(nullptr), currentStoryFile("") {
+// Método para liberar a instância
+void Jogo::releaseInstance(){
+    if (instance != nullptr) {
+        delete instance;
+        instance = nullptr;
+    }
+}
+
+// Método para resetar a instância
+void Jogo::resetInstance(){
+    if (instance != nullptr) {
+        delete instance;
+        instance = nullptr;
+    }
+}
+
+Jogo::Jogo() : estadoAtual(nullptr) {
     // Construtor
 }
 
@@ -40,12 +56,24 @@ void Jogo::mudarEstado(TelaEstado* novoEstado) {
     estadoAtual = novoEstado;
 }
 
-void Jogo::setCurrentStoryFile(const string& filename) {
-    currentStoryFile = filename;
+void Jogo::setDiretorioAtual(const string& diretorio) {
+    diretorioAtual = diretorio;
 }
 
-string Jogo::getCurrentStoryFile() const {
-    return currentStoryFile;
+string Jogo::getDiretorioAtual() const {
+    return diretorioAtual;
+}
+
+void Jogo::setFaseAtual(int fase){
+    faseAtual = fase;
+}
+
+int Jogo::getFaseAtual() const {
+    return faseAtual;
+}
+
+void Jogo::avancarFase(int incremento) {
+    setFaseAtual(faseAtual + incremento);
 }
 
 void Jogo::limparTela() {

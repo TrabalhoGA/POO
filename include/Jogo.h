@@ -16,13 +16,19 @@ public:
 	// Método estático para obter a instância única (Singleton)
 	static Jogo* getInstance();
 
+	static void resetInstance();
+	static void releaseInstance();
+
 	void exibirTela();
 	void handleInput(int input);
 	void mudarEstado(TelaEstado* novoEstado);
-	
-	// Métodos para gerenciar o arquivo da história atual
-	void setCurrentStoryFile(const string& filename);
-	string getCurrentStoryFile() const;
+
+	void setDiretorioAtual(const string& diretorio);
+	string getDiretorioAtual() const;
+
+	int getFaseAtual() const;
+	void setFaseAtual(int fase);
+	void avancarFase(int incremento = 1);
 
 	void limparTela();
 
@@ -34,9 +40,12 @@ private:
 	static Jogo* instance;
 	
 	TelaEstado* estadoAtual;
-	
-	// Arquivo atual da história
-	string currentStoryFile;
+
+	// Diretório atual
+	string diretorioAtual;
+
+	// Fase atual
+	int faseAtual;
 	
 	// Impede cópias do objeto (Singleton)
 	Jogo(const Jogo&) = delete;

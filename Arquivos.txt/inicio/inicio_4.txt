@@ -1,5 +1,3 @@
-<!-- proxima_tela_floresta: Arquivos.txt/arquivos Floresta/floresta_1.txt -->
-<!-- proxima_tela_caverna: Arquivos.txt/arquivos Caverna/caverna_1.txt -->
 =========================================
          A ENCRUZILHADA DO DESTINO
 =========================================

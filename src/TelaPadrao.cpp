@@ -1,11 +1,9 @@
 #include "../include/TelaPadrao.h"
 #include "../include/TelaInicial.h"
 #include "../include/Personagem.h"
+#include "../include/Arma.h"
 #include "../include/ArquivoManager.h"
 #include <iostream>
-#include <sstream>
-#include <string>
-#include <regex>
 #include <limits>
 
 using namespace std;
@@ -20,104 +18,47 @@ TelaPadrao::~TelaPadrao()
     // Destructor
 }
 
-void TelaPadrao::exibirTela() 
-{
-    // Limpar terminal
+void TelaPadrao::exibirTela() {
     jogo->limparTela();
+    
+    string diretorioAtual = jogo->getDiretorioAtual();
+    int faseAtual = jogo->getFaseAtual();
+    
+    // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
+    string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
 
-    // Obter o arquivo atual a ser exibido
-    string currentFile = jogo->getCurrentStoryFile();
-    
-    // Verifica se estamos na tela de atributos (o caminho completo deve conter "Tela_atributos.txt")
-    if (currentFile.find("Tela_atributos.txt") != string::npos) {
-        exibirTelaAtributos(currentFile);
-        return;
-    }
-    
-    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string conteudo = arquivoManager->lerArquivo(currentFile);
-    
-    // Analisar metadados do arquivo
-    parseFileMetadata(conteudo);
-    
-    // Exibir o conteúdo da história (sem os metadados)
-    cout << conteudo << endl;
-    
-    // Esperar pela entrada do usuário
-    int opcao;
-    cin >> opcao;
-    cin.ignore(); // Limpar buffer
-    handleInput(opcao);
-}
-
-void TelaPadrao::handleInput(int input) 
-{
-    string proximaTela;
-    
-    // Verifica se estamos na tela de escolha de caminho
-    if (jogo->getCurrentStoryFile() == "Arquivos.txt/arquivos Inicio/EscolhaCaminho.txt") {
-        switch (input) {
-            case 1: // Floresta
-                proximaTela = "proxima_tela_floresta";
-                break;
-            case 2: // Caverna
-                proximaTela = "proxima_tela_caverna";
-                break;
-            default:
-                cout << "Opção inválida." << endl;
-                exibirTela();
-                return;
-        }
-    } else {
-        // Para todas as outras telas, o input 1 avança para o próximo arquivo
-        if (input == 1) {
-            proximaTela = "proxima_tela";
-        } else {
-            cout << "Opção inválida." << endl;
-            exibirTela();
+    // Se estiver em uma página especial, como 'atributos' ou 'mercado':
+    if (diretorioAtual == "inicio"){
+        if (faseAtual == 1) {
+            exibirTelaAtributos(caminhoArquivo);
+            return;
+        } else if (faseAtual == 3) {
+            exibirTelaMercado(caminhoArquivo);
             return;
         }
     }
-    
-    // Busca o próximo arquivo nos metadados
-    if (storyMetadata.count(proximaTela) > 0) {
-        jogo->setCurrentStoryFile(storyMetadata[proximaTela]);
-        exibirTela();
-    } else {
-        cout << "Fim da história ou caminho não definido." << endl;
-        cout << "Retornando ao menu principal..." << endl;
-        jogo->setCurrentStoryFile("Arquivos.txt/Tela_menu.txt");
-        jogo->mudarEstado(new TelaInicial(jogo));
+
+    if (diretorioAtual == "caverna" || diretorioAtual == "floresta") {
+        if(faseAtual == 5){
+            jogo->setDiretorioAtual("torre");
+            jogo->setFaseAtual(1);
+            return;
+        }
     }
+
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
+    
+    cout << conteudo << endl;
+    
+    int opcao;
+    cin >> opcao;
+    cin.ignore();
+    
+    handleInput(opcao);
 }
 
-void TelaPadrao::parseFileMetadata(const string& fileContent)
-{
-    // Limpar metadados anteriores
-    storyMetadata.clear();
-    
-    // Procurar por metadados no formato <!-- CHAVE: VALOR -->
-    // Modificando o regex para capturar caminhos completos com espaços e caracteres especiais
-    regex metadataPattern("<!--\\s*([A-Za-z_]+):\\s*([^>]+?)\\s*-->");
-    
-    // Capturar todas as ocorrências
-    auto words_begin = sregex_iterator(fileContent.begin(), fileContent.end(), metadataPattern);
-    auto words_end = sregex_iterator();
-    
-    for (sregex_iterator i = words_begin; i != words_end; ++i) {
-        smatch match = *i;
-        string key = match[1];
-        string value = match[2];
-        // Remover espaços extras no início e fim do valor
-        value.erase(0, value.find_first_not_of(" \t\n\r\f\v"));
-        value.erase(value.find_last_not_of(" \t\n\r\f\v") + 1);
-        
-        cout << "Metadado encontrado - Chave: [" << key << "] Valor: [" << value << "]" << endl;
-        storyMetadata[key] = value;
-    }
-}
-
-void TelaPadrao::exibirTelaAtributos(string currentFile)
+void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
 {
     int pontosDisponiveis = 12;
     int habilidade = 0;
@@ -126,10 +67,7 @@ void TelaPadrao::exibirTelaAtributos(string currentFile)
     bool distribuicaoValida = false;
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string conteudo = arquivoManager->lerArquivo(currentFile);
-    
-    // Analisar metadados do arquivo para definir o próximo arquivo
-    parseFileMetadata(conteudo);
+    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
     
     // Exibir o conteúdo do arquivo de atributos
     cout << conteudo << endl;
@@ -170,17 +108,10 @@ void TelaPadrao::exibirTelaAtributos(string currentFile)
     }
         
     pontosRestantes -= energia;
-    cout << "Pontos restantes para Sorte: " << pontosRestantes << endl;
-    
+    cout << "Pontos restantes: " << pontosRestantes << endl;    
     // A sorte recebe automaticamente os pontos restantes
     sorte = pontosRestantes;
-    cout << "Sorte definida como: " << sorte << endl;
-    
-    // Mostrar resumo da distribuição
-    cout << "\nResumo da distribuição de pontos:" << endl;
-    cout << "Habilidade: " << habilidade << endl;
-    cout << "Energia: " << energia << endl;
-    cout << "Sorte: " << sorte << endl;
+    cout << "Sorte definida automaticamente como: " << sorte << endl;
 
     Personagem::getInstance()->setHabilidade(habilidade);
     Personagem::getInstance()->setEnergiaAtual(energia);
@@ -190,9 +121,190 @@ void TelaPadrao::exibirTelaAtributos(string currentFile)
     cin.ignore();
     cin.get();
     
-    jogo->setCurrentStoryFile("Arquivos.txt/arquivos Inicio/Introducao.txt");
-    cin.ignore();
-    cin.get();
+    // Avançar para a próxima fase
+    jogo->avancarFase();
 
     return;
+}
+
+void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
+{
+    Personagem* jogador = Personagem::getInstance();
+    int moedas = 50; // Começamos com 50 moedas
+    jogador->setMoedasDeOuro(moedas);
+    string entrada;
+    bool comprasFinalizadas = false;
+
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
+    
+    // Exibir o conteúdo do arquivo de mercado
+    cout << conteudo << endl;
+
+    // Limites para itens únicos
+    bool temEspada = false;
+    bool temVarinha = false;
+    bool temTocha = false;
+
+    while(!comprasFinalizadas) {
+        cout << "\nMoedas restantes: " << jogador->getMoedasDeOuro() << " ouro" << endl;
+
+        if (jogador->getMoedasDeOuro() <= 0) {
+            break;
+        }
+
+        cin >> entrada;
+        
+        if (entrada == "FIM" || entrada == "fim") {
+            comprasFinalizadas = true;
+            continue;
+        }
+        
+        int itemId = 0;
+        int quantidade = 0;
+        
+        try {
+            itemId = stoi(entrada);
+            cin >> quantidade;
+            
+            if (quantidade <= 0) {
+                cout << "Quantidade inválida. Deve ser maior que zero." << endl;
+                continue;
+            }
+        } catch (...) {
+            cout << "Entrada inválida. Digite o número do item seguido da quantidade." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        
+        // Verificar qual item foi selecionado e processar a compra
+        switch(itemId) {
+            case 1: // Espada de Ferro - 20 ouro
+                if (temEspada) {
+                    cout << "Você já comprou uma Espada de Ferro. Limite: 1" << endl;
+                } else if (quantidade > 1) {
+                    cout << "Você só pode comprar 1 Espada de Ferro." << endl;
+                } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
+                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos.", 0, 0, 5);
+                    jogador->equiparArma(espada);
+                    temEspada = true;
+                    cout << "Você comprou uma Espada de Ferro!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 2: // Varinha de Feitiços - 20 ouro
+                if (temVarinha) {
+                    cout << "Você já comprou uma Varinha de Feitiços. Limite: 1" << endl;
+                } else if (quantidade > 1) {
+                    cout << "Você só pode comprar 1 Varinha de Feitiços." << endl;
+                } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
+                    ReliquiaMagica* varinha = new ReliquiaMagica("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos.", 0);
+                    varinha->setBuffMagia(5); // Adiciona bônus de magia
+                    jogador->adicionarReliquiaMagica(varinha);
+                    temVarinha = true;
+                    cout << "Você comprou uma Varinha de Feitiços!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 3: // Corda Mágica - 5 ouro
+                if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
+                    for (int i = 0; i < quantidade; i++) {
+                        ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas.", 0);
+                        corda->setBuffSorte(2); // Pequeno bônus de sorte
+                        jogador->adicionarReliquiaMagica(corda);
+                    }
+                    cout << "Você comprou " << quantidade << " Corda(s) Mágica(s)!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 4: // Tocha Eterna - 5 ouro
+                if (temTocha) {
+                    cout << "Você já comprou uma Tocha Eterna. Limite: 1" << endl;
+                } else if (quantidade > 1) {
+                    cout << "Você só pode comprar 1 Tocha Eterna." << endl;
+                } else if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
+                    ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas.", 0);
+                    jogador->adicionarReliquiaMagica(tocha);
+                    temTocha = true;
+                    cout << "Você comprou uma Tocha Eterna!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 5: // Poção de Vida - 10 ouro
+                if (jogador->getMoedasDeOuro() >= 10 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 10 * quantidade);
+                    for (int i = 0; i < quantidade; i++) {
+                        Provisao* pocaoVida = new Provisao("Poção de Vida", "Recupera todo o seu vigor e disposição durante a aventura.", 0, jogador->getMaxEnergia());
+                        jogador->adicionarProvisao(pocaoVida);
+                    }
+                    cout << "Você comprou " << quantidade << " Poção(ões) de Vida!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 6: // Frasco de Energia - 5 ouro
+                if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
+                    for (int i = 0; i < quantidade; i++) {
+                        Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Recupera parte da sua energia.", 0, int(jogador->getMaxEnergia() / 2)); // Recupera metade da energia máxima
+                        jogador->adicionarProvisao(frascoEnergia);
+                    }
+                    cout << "Você comprou " << quantidade << " Frasco(s) de Energia!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            default:
+                cout << "Opção inválida. Escolha um número entre 1 e 6." << endl;
+                break;
+        }
+    }
+    
+    cout << "\nCompras finalizadas! Você tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
+    cout << "Pressione Enter para continuar sua jornada..." << endl;
+    cin.ignore();
+    cin.get();
+    
+    // Avançar para a próxima fase
+    jogo->avancarFase();
+}
+
+void TelaPadrao::handleInput(int input) {
+    string diretorioAtual = jogo->getDiretorioAtual();
+    int faseAtual = jogo->getFaseAtual();
+    
+    switch (input) {
+        case 1: 
+            if(diretorioAtual == "inicio" && faseAtual == 4) {
+                jogo->setDiretorioAtual("floresta");
+                jogo->setFaseAtual(1);
+                break;
+            }
+            jogo->avancarFase();
+            break;
+        case 2:
+            if(diretorioAtual == "inicio" && faseAtual == 4) {
+                jogo->setDiretorioAtual("caverna");
+                jogo->setFaseAtual(1);
+                break;
+            }
+            jogo->avancarFase();
+            break;
+        // Outras opcoes a serem implementadas
+    }
 }

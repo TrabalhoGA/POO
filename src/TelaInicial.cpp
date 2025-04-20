@@ -1,6 +1,7 @@
 #include "../include/TelaInicial.h"
 #include "../include/TelaPadrao.h"
 #include "../include/ArquivoManager.h"
+#include "../include/Personagem.h"
 #include <iostream>
 
 using namespace std;
@@ -34,11 +35,11 @@ void TelaInicial::handleInput(int input) {
     switch (input) {
         case 1: // Carregar jogo
             carregarJogo();
-            jogo->mudarEstado(new TelaPadrao(jogo)); 
             break;
         case 2: // Novo jogo
             // Define o arquivo inicial para um novo jogo
-            jogo->setCurrentStoryFile("Arquivos.txt/arquivos Inicio/Tela_atributos.txt");
+            jogo->setDiretorioAtual("inicio");
+            jogo->setFaseAtual(1);
             jogo->mudarEstado(new TelaPadrao(jogo));
             break;
         case 3: // Créditos
@@ -46,6 +47,8 @@ void TelaInicial::handleInput(int input) {
             break;
         case 4: // Sair
             cout << "Saindo do jogo...\n";
+            Personagem::releaseInstance();
+            Jogo::releaseInstance();
             exit(0);
             break;
         default:
@@ -74,5 +77,4 @@ void TelaInicial::carregarJogo() {
     // 4. Mudar o estado do jogo para a tela padrão
     // 5. Exibir tela padrão
     // 6. Retornar para a tela inicial se não houver save
-    jogo->setCurrentStoryFile("Arquivos.txt/arquivos Inicio/Introdução.txt");
 }

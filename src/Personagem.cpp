@@ -117,7 +117,12 @@ int Personagem::getMoedasDeOuro()
 
 void Personagem::equiparArmadura(Armadura* armadura)
 {
+    if(getArmadura() != nullptr) {
+        setResistencia(getResistencia() - getArmadura()->getBuffResistencia());
+        delete getArmadura();
+    }
     this->armadura = armadura;
+    setResistencia(getResistencia() + armadura->getBuffResistencia());
 }
 
 Armadura* Personagem::getArmadura()
@@ -127,7 +132,12 @@ Armadura* Personagem::getArmadura()
 
 void Personagem::equiparArma(Arma* arma)
 {
+    if(getArma() != nullptr) {
+        setHabilidade(getHabilidade() - getArma()->getBuffHabilidade());
+        delete getArma();
+    }
     this->arma = arma;
+    setHabilidade(getHabilidade() + arma->getBuffHabilidade());
 }
 
 Arma* Personagem::getArma()
@@ -160,6 +170,11 @@ void Personagem::adicionarReliquiaMagica(ReliquiaMagica* reliquia)
 {
     if (!reliquias_magicas) reliquias_magicas = new vector<ReliquiaMagica*>();
     reliquias_magicas->push_back(reliquia);
+    setMagia(getMagia() + reliquia->getBuffMagia());
+    setSorte(getSorte() + reliquia->getBuffSorte());
+    setResistencia(getResistencia() + reliquia->getBuffResistencia());
+    setHabilidade(getHabilidade() + reliquia->getBuffHabilidade());
+    setMaxEnergia(getMaxEnergia() + reliquia->getBuffEnergia());
 }
 
 void Personagem::removerReliquiaMagica(ReliquiaMagica* reliquia)
