@@ -36,18 +36,14 @@ void TelaPadrao::exibirTela() {
             exibirTelaMercado(caminhoArquivo);
             return;
         }
-    }
-
-    if (diretorioAtual == "caverna" || diretorioAtual == "floresta") {
-        if(faseAtual == 5){
-            jogo->setDiretorioAtual("torre");
-            jogo->setFaseAtual(1);
-            return;
-        }
+    } else if (diretorioAtual == "torre" && faseAtual == 2) {
+        exibirMercadorTorre(caminhoArquivo);
+        return;
     }
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
+    // Usar a nova função para ler apenas o conteúdo da história (ignorando a primeira linha)
+    string conteudo = arquivoManager->lerArquivoHistoria(caminhoArquivo);
     
     cout << conteudo << endl;
     
@@ -284,27 +280,157 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
     jogo->avancarFase();
 }
 
+void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
+{
+    Personagem* jogador = Personagem::getInstance();
+    string entrada;
+    bool comprasFinalizadas = false;
+
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
+    
+    // Exibir o conteúdo do arquivo do mercador da torre
+    cout << conteudo << endl;
+
+    while(!comprasFinalizadas) {
+        cout << "\nMoedas restantes: " << jogador->getMoedasDeOuro() << " ouro" << endl;
+        
+        cin >> entrada;
+        
+        if (entrada == "FIM" || entrada == "fim" || jogador->getMoedasDeOuro() <= 0) {
+            comprasFinalizadas = true;
+            continue;
+        }
+        
+        int itemId = 0;
+        int quantidade = 0;
+        
+        try {
+            itemId = stoi(entrada);
+            cin >> quantidade;
+            
+            if (quantidade <= 0) {
+                cout << "Quantidade inválida. Deve ser maior que zero." << endl;
+                continue;
+            }
+        } catch (...) {
+            cout << "Entrada inválida. Digite o número do item seguido da quantidade." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        
+        // Verificar qual item foi selecionado e processar a compra
+        switch(itemId) {
+            case 1: // Elixir de Vida - 20 ouro
+                if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
+                    for (int i = 0; i < quantidade; i++) {
+                        Provisao* elixirVida = new Provisao("Elixir de Vida", "Recupera totalmente sua ENERGIA atual.", 0, jogador->getMaxEnergia());
+                        jogador->adicionarProvisao(elixirVida);
+                    }
+                    cout << "Você comprou " << quantidade << " Elixir(es) de Vida!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 2: // Armadura de Ferro - 40 ouro
+                if (quantidade > 1) {
+                    cout << "Você só pode comprar 1 Armadura de Ferro." << endl;
+                } else if (jogador->getMoedasDeOuro() >= 40) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
+                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate.", 0, 10, 0);
+                    jogador->equiparArmadura(armaduraFerro);
+                    cout << "Você comprou uma Armadura de Ferro!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            case 3: // Amuleto Mágico - 40 ouro
+                if (quantidade > 1) {
+                    cout << "Você só pode comprar 1 Amuleto Mágico." << endl;
+                } else if (jogador->getMoedasDeOuro() >= 40) {
+                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
+                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +20 pontos.", 0);
+                    amuletoMagico->setBuffSorte(20);
+                    amuletoMagico->setBuffMagia(20);
+                    jogador->adicionarReliquiaMagica(amuletoMagico);
+                    cout << "Você comprou um Amuleto Mágico!" << endl;
+                } else {
+                    cout << "Moedas insuficientes para esta compra." << endl;
+                }
+                break;
+                
+            default:
+                cout << "Opção inválida. Escolha um número entre 1 e 3." << endl;
+                break;
+        }
+    }
+    
+    cout << "\nCompras finalizadas! Você tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
+    cout << "Pressione Enter para continuar sua jornada..." << endl;
+    cin.ignore();
+    cin.get();
+    
+    // Avançar para a próxima fase
+    jogo->avancarFase();
+}
+
 void TelaPadrao::handleInput(int input) {
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
     
-    switch (input) {
-        case 1: 
-            if(diretorioAtual == "inicio" && faseAtual == 4) {
-                jogo->setDiretorioAtual("floresta");
-                jogo->setFaseAtual(1);
-                break;
-            }
-            jogo->avancarFase();
-            break;
-        case 2:
-            if(diretorioAtual == "inicio" && faseAtual == 4) {
-                jogo->setDiretorioAtual("caverna");
-                jogo->setFaseAtual(1);
-                break;
-            }
-            jogo->avancarFase();
-            break;
-        // Outras opcoes a serem implementadas
+    // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
+    string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
+    
+    // Obter as opções de navegação da primeira linha do arquivo
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string opcoesNavegacao = arquivoManager->lerOpcoesHistoria(caminhoArquivo);
+    
+    // Analisar as opções de navegação no formato "1;0;2;"
+    vector<string> acoes;
+    size_t pos = 0;
+    string token;
+    while ((pos = opcoesNavegacao.find(';')) != string::npos) {
+        token = opcoesNavegacao.substr(0, pos);
+        acoes.push_back(token);
+        opcoesNavegacao.erase(0, pos + 1);
+    }
+    
+    // Verificar se a opção selecionada pelo usuário é válida
+    if (input > 0 && input <= acoes.size()) {
+        string acao = acoes[input-1];
+        
+        // Verificar se é uma mudança de diretório e fase (formato "diretorio:fase")
+        size_t separador = acao.find(':');
+        if (separador != string::npos) {
+            string novoDiretorio = acao.substr(0, separador);
+            int novaFase = stoi(acao.substr(separador + 1));
+            
+            // Mudança de diretório e fase
+            jogo->setDiretorioAtual(novoDiretorio);
+            jogo->setFaseAtual(novaFase);
+        } 
+        else if (acao == "0") {
+            // Fim de jogo (morte)
+            cout << "Você morreu. Fim de jogo." << endl;
+            cout << "Retornando para a tela inicial..." << endl;
+            jogo->mudarEstado(new TelaInicial(jogo));
+            return;
+        } else if (acao == "-1"){
+            cout << "Opcao inválida. Tente novamente." << endl;
+            return;
+        }
+        else {
+            // Avançar o número específico de fases
+            int incremento = stoi(acao);
+            jogo->setFaseAtual(faseAtual + incremento);
+        }
+    }
+    else {
+        // Se a opção não for válida, apenas avança uma fase (comportamento padrão)
+        jogo->avancarFase();
     }
 }

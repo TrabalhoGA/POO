@@ -16,10 +16,13 @@ Itens disponíveis:
    (Recupera totalmente sua ENERGIA atual.)
 
 2 - Armadura de Ferro ............ 40 de ouro  
-   (Aumenta sua ENERGIA máxima em +10 pontos)
+   (Aumenta sua RESISTENCIA máxima em +10 pontos)
 
-3 - Armadura Mágica .............. 40 de ouro  
-   (Aumenta sua SORTE e o dano causado por cajados mágicos)
+3 - Amuleto Mágico .............. 40 de ouro  
+   (Aumenta sua SORTE e sua MAGIA em +20 pontos)
+
+Digite o número do item que deseja comprar seguido da quantidade.
+Exemplo: 1 1 (Elixir de Vida, 1 unidade)
 
 Digite "FIM" para encerrar as compras.
 

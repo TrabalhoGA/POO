@@ -15,8 +15,9 @@ public:
 	void exibirTela() override;
 	void handleInput(int input) override;
 
-	void exibirTelaAtributos(string currentFile);
-	void exibirTelaMercado(string currentFile);
+	void exibirTelaAtributos(string caminhoArquivo);
+	void exibirTelaMercado(string caminhoArquivo);
+	void exibirMercadorTorre(string caminhoArquivo);
 
 private:
 	Jogo* jogo;
