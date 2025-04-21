@@ -1,10 +1,30 @@
 =========================================
-     PASSO 2 - O Rato Gigante
+      CATACUMBAS - ENIGMA DE ENTRADA
 =========================================
 
-Logo ao entrar na caverna, você é cercado por um rato enorme com olhos vermelhos e dentes afiados.
+Você se depara com uma imensa porta de pedra, selada há séculos.
 
-O que deseja fazer?
+No centro, há uma inscrição em língua antiga, que brilha
+com uma luz suave conforme você se aproxima.
 
-1 - Lutar contra eles com sua arma.  
-2 - Usar uma tocha para afugentá-los (se tiver). 
+Abaixo da inscrição, três símbolos e um espaço onde algo
+deve ser inserido — um mecanismo de seleção se revela.
+
+A inscrição diz:
+
+   "Três irmãos nasceram sob a luz da lua:
+    Um brilha na escuridão,
+    Um guia os perdidos,
+    Um se apaga quando o dia começa.
+
+    Qual deles guarda o caminho das sombras?"
+
+Você tem as seguintes opções para responder ao enigma:
+
+1 - A estrela   
+2 - A vela  
+
+Escolha com sabedoria. Um erro pode custar sua energia…
+
+// resposta Vela //
+

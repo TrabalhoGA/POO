@@ -1,10 +1,10 @@
 =========================================
              DEVIL WILL CRY
-     Uma aventura de escolhas épicas
+     Uma aventura de escolhas epicas
 =========================================
 
-Escolha uma opção:
+Escolha uma opcao:
 1 - Carregar jogo
 2 - Novo jogo
-3 - Mostrar créditos
-4 - Encerrar aplicação
+3 - Mostrar creditos
+4 - Encerrar aplicacao

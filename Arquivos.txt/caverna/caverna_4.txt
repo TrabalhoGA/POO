@@ -1,11 +1,11 @@
 =========================================
-     PASSO 4 - O Espectro do Anjo Caído
+     PASSO 3 - A Passarela Instável
 =========================================
 
-Um espírito envolto em mantos esfarrapados bloqueia seu caminho.
-Seus olhos brilham com uma luz azul e gélida.
+Você chega a uma ponte de madeira podre sobre um abismo escuro.
+Ela range sob o peso de cada passo.
 
 O que deseja fazer?
 
-1 - Enfrentá-lo.   
-2 - Tentar dialogar com o espectro.
+1 - Ler a placa que diz o caminho.   
+2 - Usar uma corda para se equilibrar (se tiver).

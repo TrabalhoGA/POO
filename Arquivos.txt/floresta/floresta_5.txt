@@ -1,20 +1,12 @@
 =========================================
- PASSO 5 - A Árvore Ancestral
+ PASSO 4 - O Troll da Floresta
 =========================================
 
-Você chega ao coração da floresta, onde uma imensa árvore de
-tronco retorcido e folhas brilhantes se ergue em meio ao silêncio.
+Um imenso troll bloqueia a trilha com um tronco caído.
+Ele olha para você com fome nos olhos e baba escorrendo da boca.
 
-Ela abre os olhos lentamente, revelando uma consciência antiga.
+O que deseja fazer?
 
-Sua voz ecoa suave em sua mente:
+1 - Tentar passar despercebido (teste de SORTE).  
+2 - Enfrenta-lo.  
 
-“Corajoso viajante... vejo pureza em teu coração.  
-Leve contigo o dom da natureza. Que ele te guie na hora mais sombria.”
-
-As folhas sagradas da árvore se movem por conta própria e,
-lentamente, moldam um **cajado mágico de madeira viva**,
-que flutua até suas mãos.
-
-1 - Pegar o cajado e seguir o caminho.
-2 - Ignorar o cajado e seguir em frente.

@@ -1,13 +1,14 @@
 =========================================
- PASSO 3 - O Pântano Mágico
+ PASSO 2 - A Emboscada dos Lobos
 =========================================
 
-O caminho leva a um pântano coberto por névoa roxa.  
-Águas turvas escondem formas estranhas sob a superfície.
+Enquanto avança pela trilha estreita, você ouve galhos se partindo
+e um rosnado baixo ecoando entre as árvores.
 
-Você percebe uma trilha de pedras parcialmente submersa.
+De repente, três lobos de pelos escuros surgem do mato, os olhos
+brilhando com fome. Eles cercam você rapidamente.
 
 O que deseja fazer?
 
-1 - Tentar atravessar pulando pelas pedras.  
-2 - Usar uma corda para se apoiar (se tiver).
+1 - Enfrentar os lobos com sua arma.   
+2 - Tentar assustá-los com uma tocha(se tiver).  

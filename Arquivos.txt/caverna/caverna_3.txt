@@ -1,12 +1,10 @@
 =========================================
-     PASSO 3 - A Passarela Instável
+     PASSO 2 - O Rato Gigante
 =========================================
 
-Você chega a uma ponte de madeira podre sobre um abismo escuro.
-Ela range sob o peso de cada passo.
+Logo ao entrar na caverna, você é cercado por um rato enorme com olhos vermelhos e dentes afiados.
 
 O que deseja fazer?
 
-1 - Atravessar com cuidado, testando as tábuas.  
-2 - Correr rapidamente por ela.  
-3 - Usar uma corda para se equilibrar (se tiver).
+1 - Lutar contra eles com sua arma.  
+2 - Usar uma tocha para afugentá-los (se tiver). 
