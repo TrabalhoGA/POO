@@ -3,6 +3,8 @@
 #define TELAINVENTARIO_H
 
 #include "Jogo.h"
+#include <vector>
+#include <string>
 
 using namespace std;
 
@@ -16,6 +18,9 @@ public:
 
 private:
 	Jogo* jogo;
+
+	void usarItem(int index);
+	/*void equiparItem(int index);*/
 };
 
 #endif // TELAINVENTARIO_H

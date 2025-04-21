@@ -3,6 +3,7 @@
 #include "../include/Personagem.h"
 #include "../include/Arma.h"
 #include "../include/ArquivoManager.h"
+#include "../include/TelaInventario.h"
 #include <iostream>
 #include <limits>
 
@@ -381,6 +382,21 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
 void TelaPadrao::handleInput(int input) {
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
+
+    // Se o input for 9, mudar para a tela de inventário
+    if (input == 9) {
+        // Salvar o estado atual antes de mudar para o inventário
+        jogo->mudarEstado(new TelaInventario(jogo));
+        return; // Evita continuar a execução após mudar de estado
+    }
+
+    // Verificar se o estado atual mudou antes de delegar o input
+    TelaEstado* estadoAtualAntes = jogo->getEstadoAtual();
+    if (estadoAtualAntes != this) {
+        estadoAtualAntes->handleInput(input);
+        return; // Evita continuar a execução após delegar o input
+    }
+
     
     // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
     string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";

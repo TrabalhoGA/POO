@@ -26,6 +26,9 @@ public:
 	void setDiretorioAtual(const string& diretorio);
 	string getDiretorioAtual() const;
 
+	TelaEstado* getEstadoAnterior() const;
+	TelaEstado* getEstadoAtual() const;
+
 	int getFaseAtual() const;
 	void setFaseAtual(int fase);
 	void avancarFase(int incremento = 1);
@@ -40,6 +43,7 @@ private:
 	static Jogo* instance;
 	
 	TelaEstado* estadoAtual;
+	TelaEstado* estadoAnterior;
 
 	// Diretório atual
 	string diretorioAtual;

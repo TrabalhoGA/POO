@@ -1,4 +1,6 @@
 #include "../include/Jogo.h"
+#include "../include/TelaInventario.h"
+
 
 using namespace std;
 
@@ -47,6 +49,7 @@ void Jogo::handleInput(int input) {
     if (estadoAtual) {
         estadoAtual->handleInput(input);
     }
+    
 }
 
 void Jogo::mudarEstado(TelaEstado* novoEstado) {
@@ -74,6 +77,14 @@ int Jogo::getFaseAtual() const {
 
 void Jogo::avancarFase(int incremento) {
     setFaseAtual(faseAtual + incremento);
+}
+
+TelaEstado* Jogo::getEstadoAtual() const {
+    return estadoAtual;
+}
+
+TelaEstado* Jogo::getEstadoAnterior() const {
+    return estadoAnterior;
 }
 
 void Jogo::limparTela() {
