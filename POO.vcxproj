@@ -132,7 +132,7 @@
     <ClCompile Include="src\ReliquiaMagica.cpp" />
     <ClCompile Include="src\TelaInicial.cpp" />
     <ClCompile Include="src\TelaPadrao.cpp" />
-    <ClCompile Include="TelaInventario.cpp" />
+    <ClCompile Include="src\TelaInventario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />

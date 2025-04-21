@@ -83,10 +83,6 @@ TelaEstado* Jogo::getEstadoAtual() const {
     return estadoAtual;
 }
 
-TelaEstado* Jogo::getEstadoAnterior() const {
-    return estadoAnterior;
-}
-
 void Jogo::limparTela() {
 #ifdef _WIN32
     system("cls");  // Windows

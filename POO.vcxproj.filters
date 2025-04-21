@@ -54,7 +54,7 @@
     <ClCompile Include="src\ArquivoManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TelaInventario.cpp">
+    <ClCompile Include="src\TelaInventario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

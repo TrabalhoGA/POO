@@ -34,10 +34,14 @@
 # Visual Studio settings
 *.vsidx
 *.opendb
+*.pdb
 .vs/
-POO/x64/Debug/
-x64/Debug/
-.pdb
+POO/
+x64/
+Debug/
+doxygen/
+bin/
+obj/
 
 # Visual Studio Code settings
 .vscode/

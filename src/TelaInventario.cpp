@@ -1,5 +1,6 @@
-#include "include/TelaInventario.h"
-#include "include/Personagem.h"
+#include "../include/TelaInventario.h"
+#include "../include/Personagem.h"
+#include "../include/TelaPadrao.h"
 #include <iostream>
 #include <iomanip>
 
@@ -45,33 +46,37 @@ void TelaInventario::exibirTela() {
     cout << "---------------------------------------" << endl;
     cout << "[ Usar Item ] = U" << endl;
     cout << "[ Voltar ao Jogo ] = S" << endl;
+
+    char opcao;
+    cin.clear(); // Limpa o estado do cin
+    cin >> opcao;
+    handleInput(opcao);
 }
 
 
-void TelaInventario::handleInput(int input) {
-    char opcao;
-    cin.clear(); // Limpa o estado do cin
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Remove caracteres residuais do buffer
-    cin >> opcao;
-
+void TelaInventario::handleInput(int opcao) {
     if (opcao == 'U' || opcao == 'u') {
+        // Verificar se o personagem possui itens
+		vector<Provisao*> provisoes = Personagem::getInstance()->getProvisoes();
+		if (provisoes.empty()) {
+			cout << "Você não possui itens para usar!" << endl;
+			cout << "Pressione Enter para voltar ao inventário..." << endl;
+			cin.ignore();
+			cin.get();
+			return;
+		}
+		// Exibir lista de itens e solicitar ao usuário que escolha um item
         int index;
         cout << "Digite o numero do item para usar: ";
         cin >> index;
         usarItem(index - 1);
     }
-    /*else if (opcao == 'E' || opcao == 'e') {
-        int index;
-        cout << "Digite o número do item para equipar: ";
-        cin >> index;
-        equiparItem(index - 1);
-    }*/
     else if (opcao == 'S' || opcao == 's') {
-        jogo->mudarEstado(jogo->getEstadoAnterior());
+		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padrão, mas futuramente retornará a tela de batalha
+		cout << "Voltando..." << endl;
     }
     else {
         cout << "Opção invalida!" << endl;
-		exibirTela();   
     }
 }
 
