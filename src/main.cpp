@@ -11,9 +11,6 @@ int main() {
 	// Inicializando a tela inicial
 	jogo->mudarEstado(new TelaInicial(jogo));
     
-    // Criando o personagem
-    Personagem* jogador = Personagem::getInstance();
-    
 	while(true){
 		jogo->exibirTela();
 	}

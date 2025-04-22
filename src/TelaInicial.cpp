@@ -72,16 +72,8 @@ void TelaInicial::exibirCreditos() {
     exibirTela();
 }
 
-// Novo método para carregar um jogo salvo
 void TelaInicial::carregarJogo() {
-
-    // 1. Ler arquivo de save
-    // 2. Setar os atributos e itens do personagem com base no arquivo
-	// 3. Definir o diretório atual e fase atual com base no arquivo
-    // 4. Mudar o estado do jogo para a tela padrão
-    // 5. Retornar para a main
-	// Se não houver arquivo de save, exibe uma mesnagem de erro, mantém o estado como TelaIncial e retorna para a main
-
+    // Instanciar o arquivo manager e ler o arquivo de save
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string save = arquivoManager->lerArquivo("save.txt");
     if (save.empty()) {

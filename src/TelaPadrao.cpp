@@ -62,7 +62,6 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
     int habilidade = 0;
     int energia = 0;
     int sorte = 0;
-    bool distribuicaoValida = false;
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
