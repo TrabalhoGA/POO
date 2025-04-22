@@ -34,6 +34,8 @@ public:
 
 	void limparTela();
 
+	void salvarJogo();
+
 private:
 	// Construtor privado (Singleton)
 	Jogo();

@@ -1,6 +1,7 @@
 #include "../include/Jogo.h"
 #include "../include/TelaInventario.h"
-
+#include "../include/Personagem.h"
+#include "../include/ArquivoManager.h"
 
 using namespace std;
 
@@ -89,4 +90,82 @@ void Jogo::limparTela() {
 #else
     system("clear");  // Linux / macOS
 #endif
+}
+
+void Jogo::salvarJogo() {
+	// Instanciar o personagem
+    Personagem* p = Personagem::getInstance();
+
+	// Obter o diretório atual e a fase atual
+    string diretorioFase = diretorioAtual + ":" + to_string(faseAtual);
+
+	// Obter os atributos do personagem
+    string personagemAtributos = to_string(p->getMaxEnergia()) + "," +
+        to_string(p->getEnergiaAtual()) + "," +
+        to_string(p->getHabilidade()) + "," +
+        to_string(p->getResistencia()) + "," +
+        to_string(p->getMagia()) + "," +
+        to_string(p->getSorte()) + "," +
+        to_string(p->getMoedasDeOuro());
+
+	// Obter a armadura do personagem
+    string armadura = "Nenhuma";
+    if (p->getArmadura() != nullptr) {
+        armadura = p->getArmadura()->getNome() + "," +
+            p->getArmadura()->getDescricao() + "," +
+            to_string(p->getArmadura()->getHabilidadeMinimaNecessaria()) + "," +
+            to_string(p->getArmadura()->getResistenciaMinimaNecessaria()) + "," +
+            to_string(p->getArmadura()->getBuffResistencia());
+    }
+
+	// Obter a arma do personagem
+    string arma = "Nenhuma";
+    if (p->getArma() != nullptr) {
+        arma = p->getArma()->getNome() + "," +
+            p->getArma()->getDescricao() + "," +
+            to_string(p->getArma()->getHabilidadeMinimaNecessaria()) + "," +
+            to_string(p->getArma()->getResistenciaMinimaNecessaria()) + "," +
+            to_string(p->getArma()->getBuffHabilidade());
+    }
+
+	// Obter as provisões do personagem
+    string provisoes;
+    if (!p->getProvisoes().empty()) {
+        for (size_t i = 0; i < p->getProvisoes().size(); i++) { 
+            Provisao* provisao = p->getProvisoes().at(i); 
+            provisoes += provisao->getNome() + "," +
+                        provisao->getDescricao() + "," +
+                        to_string(provisao->getMagiaMinimaNecessaria()) + "," +
+                        to_string(provisao->getBonusEnergia()) + ";";
+        }
+    }
+	else {
+		provisoes = "Nenhuma";
+	}
+
+	// Obter as relíquias mágicas do personagem
+    string reliquias;
+    if (!p->getReliquiasMagicas().empty()) {
+	    for (size_t i = 0; i < p->getReliquiasMagicas().size(); i++) {
+		    ReliquiaMagica* reliquia = p->getReliquiasMagicas().at(i);
+		    reliquias += reliquia->getNome() + "," +
+			    reliquia->getDescricao() + "," +
+			    to_string(reliquia->getMagiaMinimaNecessaria()) + "," +
+			    to_string(reliquia->getBuffMagia()) + ";";
+	    }
+    }
+    else {
+		reliquias = "Nenhuma";
+	}
+
+	// Juntar todas as informações em uma string
+	string dadosSalvar = diretorioFase + "\n" +
+		personagemAtributos + "\n" +
+        armadura + "\n" +
+		arma + "\n" +
+		provisoes + "\n" +
+		reliquias;
+
+	// Salvar os dados no arquivo
+	ArquivoManager::getInstance()->escreverArquivo("save.txt", dadosSalvar);
 }

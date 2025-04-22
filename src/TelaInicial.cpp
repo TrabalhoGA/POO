@@ -15,6 +15,9 @@ TelaInicial::~TelaInicial() {
 }
 
 void TelaInicial::exibirTela() {
+	// Limpar a tela
+	jogo->limparTela();
+
     // Iniciar a variável que armazena a opção do usuário
     int opcao;
 

@@ -21,6 +21,7 @@ TelaPadrao::~TelaPadrao()
 
 void TelaPadrao::exibirTela() {
     jogo->limparTela();
+	jogo->salvarJogo();
     
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
@@ -111,6 +112,7 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
     cout << "Sorte definida automaticamente como: " << sorte << endl;
 
     Personagem::getInstance()->setHabilidade(habilidade);
+    Personagem::getInstance()->setMaxEnergia(energia);
     Personagem::getInstance()->setEnergiaAtual(energia);
     Personagem::getInstance()->setSorte(sorte);
     cout << "Você está pronto para começar a aventura!" << endl;
@@ -184,7 +186,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Espada de Ferro." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos.", 0, 0, 5);
+                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos", 0, 0, 5);
                     jogador->equiparArma(espada);
                     temEspada = true;
                     cout << "Você comprou uma Espada de Ferro!" << endl;
@@ -200,7 +202,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Varinha de Feitiços." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    ReliquiaMagica* varinha = new ReliquiaMagica("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos.", 0);
+                    ReliquiaMagica* varinha = new ReliquiaMagica("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos", 0);
                     varinha->setBuffMagia(5); // Adiciona bônus de magia
                     jogador->adicionarReliquiaMagica(varinha);
                     temVarinha = true;
@@ -214,7 +216,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                 if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
                     for (int i = 0; i < quantidade; i++) {
-                        ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas.", 0);
+                        ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas", 0);
                         corda->setBuffSorte(2); // Pequeno bônus de sorte
                         jogador->adicionarReliquiaMagica(corda);
                     }
@@ -231,7 +233,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Tocha Eterna." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
-                    ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas.", 0);
+                    ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas", 0);
                     jogador->adicionarReliquiaMagica(tocha);
                     temTocha = true;
                     cout << "Você comprou uma Tocha Eterna!" << endl;
@@ -244,7 +246,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                 if (jogador->getMoedasDeOuro() >= 10 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 10 * quantidade);
                     for (int i = 0; i < quantidade; i++) {
-                        Provisao* pocaoVida = new Provisao("Poção de Vida", "Recupera todo o seu vigor e disposição durante a aventura.", 0, jogador->getMaxEnergia());
+                        Provisao* pocaoVida = new Provisao("Poção de Vida", "Recupera todo o seu vigor e disposição durante a aventura", 0, jogador->getMaxEnergia());
                         jogador->adicionarProvisao(pocaoVida);
                     }
                     cout << "Você comprou " << quantidade << " Poção(ões) de Vida!" << endl;
@@ -257,7 +259,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                 if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
                     for (int i = 0; i < quantidade; i++) {
-                        Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Recupera parte da sua energia.", 0, int(jogador->getMaxEnergia() / 2)); // Recupera metade da energia máxima
+                        Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Recupera parte da sua energia", 0, int(jogador->getMaxEnergia() / 2)); // Recupera metade da energia máxima
                         jogador->adicionarProvisao(frascoEnergia);
                     }
                     cout << "Você comprou " << quantidade << " Frasco(s) de Energia!" << endl;
@@ -327,7 +329,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                 if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
                     for (int i = 0; i < quantidade; i++) {
-                        Provisao* elixirVida = new Provisao("Elixir de Vida", "Recupera totalmente sua ENERGIA atual.", 0, jogador->getMaxEnergia());
+                        Provisao* elixirVida = new Provisao("Elixir de Vida", "Recupera totalmente sua ENERGIA atual", 0, jogador->getMaxEnergia());
                         jogador->adicionarProvisao(elixirVida);
                     }
                     cout << "Você comprou " << quantidade << " Elixir(es) de Vida!" << endl;
@@ -341,7 +343,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Armadura de Ferro." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate.", 0, 10, 0);
+                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 10, 0);
                     jogador->equiparArmadura(armaduraFerro);
                     cout << "Você comprou uma Armadura de Ferro!" << endl;
                 } else {
@@ -354,7 +356,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Amuleto Mágico." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +20 pontos.", 0);
+                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +20 pontos", 0);
                     amuletoMagico->setBuffSorte(20);
                     amuletoMagico->setBuffMagia(20);
                     jogador->adicionarReliquiaMagica(amuletoMagico);
