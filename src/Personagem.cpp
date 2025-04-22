@@ -6,10 +6,19 @@ using namespace std;
 // Inicialização da instância estática
 Personagem* Personagem::instance = nullptr;
 
-Personagem::Personagem(int e, int h, int r, int m, int s)
-    : max_energia(e), energia_atual(e), habilidade(h), resistencia(r), magia(m), sorte(s), moedas_de_ouro(0), armadura(nullptr), arma(nullptr), provisoes(nullptr), reliquias_magicas(nullptr)
+Personagem::Personagem()
 {
-    //ctor
+    max_energia = 0;
+    energia_atual = 0;
+    habilidade = 0;
+    resistencia = 0;
+    magia = 0;
+    sorte = 0;
+    moedas_de_ouro = 0;
+    armadura = nullptr;
+    arma = nullptr;
+    provisoes = nullptr;
+    reliquias_magicas = nullptr;
 }
 
 Personagem::~Personagem()
@@ -19,10 +28,10 @@ Personagem::~Personagem()
 }
 
 // Implementação do método Singleton para obter a instância
-Personagem* Personagem::getInstance(int e, int h, int r, int m, int s)
+Personagem* Personagem::getInstance()
 {
     if (instance == nullptr) {
-        instance = new Personagem(e, h, r, m, s);
+        instance = new Personagem();
     }
     return instance;
 }

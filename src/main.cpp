@@ -12,7 +12,7 @@ int main() {
 	jogo->mudarEstado(new TelaInicial(jogo));
     
     // Criando o personagem
-    Personagem* jogador = Personagem::getInstance(0, 0, 0, 0, 0);
+    Personagem* jogador = Personagem::getInstance();
     
 	while(true){
 		jogo->exibirTela();

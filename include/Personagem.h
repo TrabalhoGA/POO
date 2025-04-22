@@ -15,7 +15,7 @@ class Personagem
 {
     private:
         // Construtor privado (parte do padrão Singleton)
-        Personagem(int e, int h, int r, int m, int s);
+        Personagem();
         // Instância estática
         static Personagem* instance;
         
@@ -40,7 +40,7 @@ class Personagem
         virtual ~Personagem();
 
         // Método estático para acessar a instância única
-        static Personagem* getInstance(int e = 0, int h = 0, int r = 0, int m = 0, int s = 0);
+        static Personagem* getInstance();
         
         // Métodos para resetar ou liberar a instância
         static void resetInstance();

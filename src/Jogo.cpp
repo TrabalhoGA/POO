@@ -151,7 +151,11 @@ void Jogo::salvarJogo() {
 		    reliquias += reliquia->getNome() + "," +
 			    reliquia->getDescricao() + "," +
 			    to_string(reliquia->getMagiaMinimaNecessaria()) + "," +
-			    to_string(reliquia->getBuffMagia()) + ";";
+			    to_string(reliquia->getBuffEnergia()) + "," +
+                to_string(reliquia->getBuffHabilidade()) + "," +
+                to_string(reliquia->getBuffResistencia()) + "," +
+                to_string(reliquia->getBuffMagia()) + "," +
+                to_string(reliquia->getBuffSorte()) + ";";
 	    }
     }
     else {
