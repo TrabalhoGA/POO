@@ -88,6 +88,8 @@
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -133,6 +135,7 @@
     <ClCompile Include="src\TelaInicial.cpp" />
     <ClCompile Include="src\TelaPadrao.cpp" />
     <ClCompile Include="src\TelaInventario.cpp" />
+    <ClCompile Include="TelaBatalha.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />

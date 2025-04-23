@@ -1,9 +1,11 @@
 #include "../include/TelaPadrao.h"
 #include "../include/TelaInicial.h"
+#include "../include/TelaBatalha.h"
 #include "../include/Personagem.h"
 #include "../include/Arma.h"
 #include "../include/ArquivoManager.h"
 #include "../include/TelaInventario.h"
+#include "../include/Monstro.h"
 #include <iostream>
 #include <limits>
 
@@ -21,13 +23,19 @@ TelaPadrao::~TelaPadrao()
 
 void TelaPadrao::exibirTela() {
     jogo->limparTela();
-	jogo->salvarJogo();
-    
+    jogo->salvarJogo();
+
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
     
     // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
     string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
+    
+    // Verificar se o diretório atual é uma batalha
+    if (diretorioAtual == "batalha") {
+    verificarEBatalhar();
+    }
+    
 
     // Se estiver em uma página especial, como 'atributos' ou 'mercado':
     if (diretorioAtual == "inicio"){
@@ -444,4 +452,54 @@ void TelaPadrao::handleInput(int input) {
 		// Futuramente, apenas fará um "return;"
         jogo->avancarFase();
     }
+}
+void TelaPadrao::verificarEBatalhar() {
+    string diretorioAtual = jogo->getDiretorioAtual();
+    int faseAtual = jogo->getFaseAtual();
+
+	cout << "Verificando batalha no diretório: " << diretorioAtual << ", Fase: " << faseAtual << endl;
+    
+        // Identificar qual batalha está sendo chamada com base na fase atual
+        switch (faseAtual) {
+        case 1: {
+            cout << "Iniciando batalha 1..." << endl;
+            Monstro* monstro = new Monstro("Rato Gigante", 12, 8, 5);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "Arquivos.txt/caverna/caverna_4", "Arquivos.txt/batalha/batalha_1.txt"));
+            break;
+        }
+        case 2: {
+            Monstro* monstro = new Monstro("Guerreiro Orc", 15, 10, 7);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_2.txt"));
+            break;
+        }
+        case 3: {
+            Monstro* monstro = new Monstro("Mago das Trevas", 10, 12, 4);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_3.txt"));
+            break;
+        }
+        case 4: {
+            Monstro* monstro = new Monstro("Dragão Vermelho", 20, 15, 10);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_4.txt"));
+            break;
+        }
+        case 5: {
+            Monstro* monstro = new Monstro("Gigante de Pedra", 25, 10, 12);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_5.txt"));
+            break;
+        }
+        case 6: {
+            Monstro* monstro = new Monstro("Lich Arcano", 18, 14, 8);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_6.txt"));
+            break;
+        }
+        case 7: {
+            Monstro* monstro = new Monstro("Senhor das Trevas", 30, 20, 15);
+            jogo->mudarEstado(new TelaBatalha(jogo, monstro, "proximo_diretorio", "Arquivos.txt/batalha/batalha_7.txt"));
+            break;
+        }
+        default:
+            cout << "Fase de batalha desconhecida: " << faseAtual << endl;
+            break;
+        }
+    
 }

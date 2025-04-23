@@ -18,6 +18,7 @@ public:
 	void exibirTelaAtributos(string caminhoArquivo);
 	void exibirTelaMercado(string caminhoArquivo);
 	void exibirMercadorTorre(string caminhoArquivo);
+	void verificarEBatalhar();
 
 private:
 	Jogo* jogo;

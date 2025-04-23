@@ -55,9 +55,15 @@ void Jogo::handleInput(int input) {
 
 void Jogo::mudarEstado(TelaEstado* novoEstado) {
     if (estadoAtual) {
-        delete estadoAtual;
+        delete estadoAtual; // Libera a memória do estado atual
     }
-    estadoAtual = novoEstado;
+    estadoAtual = novoEstado; // Define o novo estado
+    if (estadoAtual) {
+        estadoAtual->exibirTela(); // Exibe a tela do novo estado
+    }
+    else {
+        cout << "Erro: estadoAtual é nulo após mudarEstado." << endl;
+    }
 }
 
 void Jogo::setDiretorioAtual(const string& diretorio) {

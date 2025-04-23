@@ -57,6 +57,9 @@
     <ClCompile Include="src\TelaInventario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TelaBatalha.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Armadura.h">
