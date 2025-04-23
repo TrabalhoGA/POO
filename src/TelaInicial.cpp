@@ -34,7 +34,7 @@ void TelaInicial::exibirTela() {
     handleInput(opcao);
 }
 
-void TelaInicial::handleInput(int input) {
+void TelaInicial::handleInput(unsigned int input) {
     switch (input) {
         case 1: // Carregar jogo
             carregarJogo();

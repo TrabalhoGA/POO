@@ -382,7 +382,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
     jogo->avancarFase();
 }
 
-void TelaPadrao::handleInput(int input) {
+void TelaPadrao::handleInput(unsigned int input) {
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
 

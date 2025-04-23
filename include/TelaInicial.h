@@ -13,7 +13,7 @@ public:
 	~TelaInicial();
 
 	void exibirTela() override;
-	void handleInput(int input) override;
+	void handleInput(unsigned int input) override;
 
 	void exibirCreditos();
     void carregarJogo();

@@ -12,7 +12,7 @@ public:
 	~TelaBatalha();
 
 	void exibirTela() override;
-	void handleInput(int input) override;
+	void handleInput(unsigned int input) override;
 
 private:
 	Jogo* jogo;

@@ -13,7 +13,7 @@ public:
 	~TelaPadrao();
 
 	void exibirTela() override;
-	void handleInput(int input) override;
+	void handleInput(unsigned int input) override;
 
 	void exibirTelaAtributos(string caminhoArquivo);
 	void exibirTelaMercado(string caminhoArquivo);
