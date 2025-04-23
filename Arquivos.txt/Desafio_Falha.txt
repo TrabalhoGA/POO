@@ -16,4 +16,4 @@ Mas cada passo agora será mais difícil.
 
 Fique atento. Nem todos os desafios podem ser tentados duas vezes.
 
-Digite 1 para continuar.
+Digite Enter para continuar.

@@ -19,8 +19,20 @@ public:
 	void exibirTelaMercado(string caminhoArquivo);
 	void exibirMercadorTorre(string caminhoArquivo);
 
+	bool isTelaEnigma() const;
+	void setTelaEnigma(bool isEnigma);
+
+	bool isTelaTesteSorte() const;
+	void setTelaTesteSorte(bool isTesteSorte);
+
+	bool isTelaBatalha() const;
+	void setTelaBatalha(bool isBatalha);
+
 private:
 	Jogo* jogo;
+	bool isEnigma;
+	bool isTesteSorte;
+	bool isBatalha;
 };
 
 #endif // TELAPADRAO_H
