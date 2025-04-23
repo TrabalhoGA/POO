@@ -20,7 +20,7 @@ void TelaInventario::exibirTela() {
     // Obter o personagem principal
     Personagem* jogador = Personagem::getInstance();
 
-    // Exibir cabeçalho
+    // Exibir cabeï¿½alho
     cout << "=======================================" << endl;
     cout << "           INVENTARIO DO AVENTUREIRO   " << endl;
     cout << "=======================================" << endl;
@@ -54,29 +54,29 @@ void TelaInventario::exibirTela() {
 }
 
 
-void TelaInventario::handleInput(int opcao) {
+void TelaInventario::handleInput(unsigned int opcao) {
     if (opcao == 'U' || opcao == 'u') {
         // Verificar se o personagem possui itens
 		vector<Provisao*> provisoes = Personagem::getInstance()->getProvisoes();
 		if (provisoes.empty()) {
-			cout << "Você não possui itens para usar!" << endl;
-			cout << "Pressione Enter para voltar ao inventário..." << endl;
+			cout << "Vocï¿½ nï¿½o possui itens para usar!" << endl;
+			cout << "Pressione Enter para voltar ao inventï¿½rio..." << endl;
 			cin.ignore();
 			cin.get();
 			return;
 		}
-		// Exibir lista de itens e solicitar ao usuário que escolha um item
+		// Exibir lista de itens e solicitar ao usuï¿½rio que escolha um item
         int index;
         cout << "Digite o numero do item para usar: ";
         cin >> index;
         usarItem(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
-		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padrão, mas futuramente retornará a tela de batalha
+		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padrï¿½o, mas futuramente retornarï¿½ a tela de batalha
 		cout << "Voltando..." << endl;
     }
     else {
-        cout << "Opção invalida!" << endl;
+        cout << "Opï¿½ï¿½o invalida!" << endl;
     }
 }
 
@@ -91,9 +91,9 @@ void TelaInventario::usarItem(int index) {
         // Aplicar o efeito de cura
         jogador->setEnergiaAtual(jogador->getEnergiaAtual() + item->getBonusEnergia());
 
-        // Remover o item do inventário após o uso
+        // Remover o item do inventï¿½rio apï¿½s o uso
         jogador->removerProvisao(item);
-        delete item; // Liberar memória do item usado
+        delete item; // Liberar memï¿½ria do item usado
     }
     else {
         cout << "Item invalido!" << endl;
@@ -107,6 +107,6 @@ void TelaInventario::usarItem(int index) {
         jogador->equiparItem(index);
     }
     else {
-        cout << "Item inválido!" << endl;
+        cout << "Item invï¿½lido!" << endl;
     }
 }*/

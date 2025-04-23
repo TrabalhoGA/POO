@@ -15,7 +15,7 @@ public:
 	~TelaBatalha();
 
 	void exibirTela() override;
-	void handleInput(int input) override;
+	void handleInput(unsigned int input) override;
 	
 	void atacar();
 	void defender();

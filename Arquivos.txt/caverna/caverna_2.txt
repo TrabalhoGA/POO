@@ -1,4 +1,4 @@
-0;1;-1;
+0;1;
 =========================================
       CATACUMBAS - ENIGMA DE ENTRADA
 =========================================
@@ -26,6 +26,3 @@ Você tem as seguintes opções para responder ao enigma:
 2 - A vela  
 
 Escolha com sabedoria. Um erro pode custar sua energia…
-
-// resposta Vela //
-

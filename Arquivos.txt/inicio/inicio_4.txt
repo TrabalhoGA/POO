@@ -1,4 +1,4 @@
-floresta:1;caverna:1;-1;
+floresta:1;caverna:1;
 =========================================
          A ENCRUZILHADA DO DESTINO
 =========================================
