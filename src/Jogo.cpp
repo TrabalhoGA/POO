@@ -32,7 +32,7 @@ void Jogo::resetInstance(){
     }
 }
 
-Jogo::Jogo() : estadoAtual(nullptr) {
+Jogo::Jogo() : estadoAtual(nullptr), sair(false) {
     // Construtor
 }
 
@@ -171,4 +171,12 @@ void Jogo::salvarJogo() {
 
 	// Salvar os dados no arquivo
 	ArquivoManager::getInstance()->escreverArquivo("save.txt", dadosSalvar);
+}
+
+bool Jogo::sairJogo() {
+    return sair;
+}
+
+void Jogo::setSairJogo(bool s) {
+    sair = s;
 }

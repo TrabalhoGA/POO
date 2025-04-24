@@ -36,6 +36,9 @@ public:
 
 	void salvarJogo();
 
+	bool sairJogo();
+	void setSairJogo(bool s);
+
 private:
 	// Construtor privado (Singleton)
 	Jogo();
@@ -50,6 +53,9 @@ private:
 
 	// Fase atual
 	int faseAtual;
+
+	// Verificacao de saída
+	bool sair;
 	
 	// Impede cópias do objeto (Singleton)
 	Jogo(const Jogo&) = delete;

@@ -50,9 +50,7 @@ void TelaInicial::handleInput(unsigned int input) {
             break;
         case 4: // Sair
             cout << "Saindo do jogo...\n";
-            Personagem::releaseInstance();
-            Jogo::releaseInstance();
-            exit(0);
+            jogo->setSairJogo(true);
             break;
         default:
             cout << "Opção inválida. Tente novamente.\n";
@@ -74,8 +72,8 @@ void TelaInicial::carregarJogo() {
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string save = arquivoManager->lerArquivo("save.txt");
     if (save.empty()) {
-        cout << "Nenhum jogo salvo encontrado! Pressione Enter para voltar ao menu inicial.\n";
-        cin.get(); // Remover o cin.ignore() antes do cin.get()
+        cout << "Nenhum jogo salvo encontrado! Pressione Enter para continuar.\n";
+        cin.get(); 
         return;
     }
 
