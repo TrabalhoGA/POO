@@ -63,13 +63,10 @@ void TelaInicial::handleInput(unsigned int input) {
 void TelaInicial::exibirCreditos() {
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Tela_creditos.txt");
-    
+    jogo->limparTela();
     cout << conteudo << endl;
-    cin.ignore();
     cin.get();
-    
-    // Exibir a tela inicial novamente
-    exibirTela();
+    return; 
 }
 
 void TelaInicial::carregarJogo() {
@@ -78,8 +75,7 @@ void TelaInicial::carregarJogo() {
     string save = arquivoManager->lerArquivo("save.txt");
     if (save.empty()) {
         cout << "Nenhum jogo salvo encontrado! Pressione Enter para voltar ao menu inicial.\n";
-        cin.ignore();
-        cin.get();
+        cin.get(); // Remover o cin.ignore() antes do cin.get()
         return;
     }
 

@@ -51,6 +51,12 @@ void TelaPadrao::exibirTela() {
     string conteudo = arquivoManager->lerArquivoHistoria(caminhoArquivo);
     
     cout << conteudo << endl;
+
+    if (diretorioAtual == "batalha") {
+        cin.get(); // Espera o usuário pressionar Enter antes de continuar
+        jogo->mudarEstado(new TelaBatalha(jogo));
+        return;
+    }
     
     int opcao;
     cin >> opcao;

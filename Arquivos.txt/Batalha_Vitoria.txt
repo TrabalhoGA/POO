@@ -15,5 +15,5 @@ Você sai da batalha cansado, mas vitorioso.
 
 Continue sua jornada com honra.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.
 

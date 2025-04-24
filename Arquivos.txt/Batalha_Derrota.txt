@@ -12,4 +12,4 @@ Você cai no chão, sentindo a energia escapar do seu corpo.
 Você foi derrotado nesta batalha.
  
 
-Digite 1 para voltar ao menu.
+Digite ENTER para voltar ao menu.

@@ -4,6 +4,7 @@
 
 #include "Jogo.h"
 #include "Monstro.h"
+#include "Personagem.h"
 #include "ArquivoManager.h"
 #include <string>
 
@@ -11,24 +12,27 @@ using namespace std;
 
 class TelaBatalha : public TelaEstado {
 public:
-	TelaBatalha(Jogo* jogo, Monstro* monstro, const string& diretorioDestino, const string& diretorioBatalhaAtual);
+	TelaBatalha(Jogo* jogo);
 	~TelaBatalha();
 
 	void exibirTela() override;
 	void handleInput(unsigned int input) override;
+
+	void inicializarMonstro();
 	
 	void atacar();
 	void defender();
 	void acessarInventario();
-	void tentarFugir();
+	bool tentarFugir();
 	void acaoMonstro();
 	void finalizarBatalha();
 
 private:
 	Jogo* jogo;
+	Personagem* jogador;
 	Monstro* monstro;
 	string diretorioDestino;
-	string diretorioBatalhaAtual;
+	int faseDestino;
 
 	bool fugaFalhou;
 };

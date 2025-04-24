@@ -48,27 +48,28 @@ void TelaInventario::exibirTela() {
     cout << "[ Voltar ao Jogo ] = S" << endl;
 
     char opcao;
-    cin.clear(); // Limpa o estado do cin
+    cin.clear(); 
     cin >> opcao;
+    cin.ignore();
     handleInput(opcao);
 }
-
 
 void TelaInventario::handleInput(unsigned int opcao) {
     if (opcao == 'U' || opcao == 'u') {
         // Verificar se o personagem possui itens
 		vector<Provisao*> provisoes = Personagem::getInstance()->getProvisoes();
 		if (provisoes.empty()) {
-			cout << "Voc� n�o possui itens para usar!" << endl;
-			cout << "Pressione Enter para voltar ao invent�rio..." << endl;
-			cin.ignore();
-			cin.get();
+			cout << "Voce nao possui itens para usar!" << endl;
+			cout << "Pressione Enter para voltar ao inventário..." << endl;
+			cin.get(); // Remover o cin.ignore() antes
 			return;
 		}
-		// Exibir lista de itens e solicitar ao usu�rio que escolha um item
+		
+        // Exibir lista de itens e solicitar ao usu�rio que escolha um item
         int index;
         cout << "Digite o numero do item para usar: ";
         cin >> index;
+        cin.ignore(); // Adicionar esta linha para limpar o buffer
         usarItem(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
