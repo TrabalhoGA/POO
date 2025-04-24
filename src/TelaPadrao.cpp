@@ -15,7 +15,6 @@ TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo)
 {
     isEnigma = false;
     isTesteSorte = false;
-    isBatalha = false;
 }
 
 TelaPadrao::~TelaPadrao() 
@@ -526,12 +525,4 @@ bool TelaPadrao::isTelaTesteSorte() const {
 
 void TelaPadrao::setTelaTesteSorte(bool isTesteSorte) {
     this->isTesteSorte = isTesteSorte;
-}
-
-bool TelaPadrao::isTelaBatalha() const {
-    return isBatalha;
-}
-
-void TelaPadrao::setTelaBatalha(bool isBatalha) {
-    this->isBatalha = isBatalha;
 }

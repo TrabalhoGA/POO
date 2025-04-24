@@ -166,6 +166,7 @@ void TelaBatalha::acaoMonstro() {
 
         if (jogador->getEnergiaAtual() <= 0) {
             cout << "Voce foi derrotado pelo " << monstro->getNome() << "!" << endl;
+            finalizarBatalha();
         }
     }
     else {

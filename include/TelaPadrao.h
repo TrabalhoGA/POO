@@ -25,15 +25,11 @@ public:
 
 	bool isTelaTesteSorte() const;
 	void setTelaTesteSorte(bool isTesteSorte);
-
-	bool isTelaBatalha() const;
-	void setTelaBatalha(bool isBatalha);
-
+	
 private:
 	Jogo* jogo;
 	bool isEnigma;
 	bool isTesteSorte;
-	bool isBatalha;
 };
 
 #endif // TELAPADRAO_H
