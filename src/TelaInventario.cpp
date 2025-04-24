@@ -20,7 +20,7 @@ void TelaInventario::exibirTela() {
     // Obter o personagem principal
     Personagem* jogador = Personagem::getInstance();
 
-    // Exibir cabe�alho
+    // Exibir cabecalho
     cout << "=======================================" << endl;
     cout << "           INVENTARIO DO AVENTUREIRO   " << endl;
     cout << "=======================================" << endl;
@@ -72,11 +72,11 @@ void TelaInventario::handleInput(unsigned int opcao) {
         usarItem(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
-		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padr�o, mas futuramente retornar� a tela de batalha
+		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padrao, mas futuramente retornara a tela de batalha
 		cout << "Voltando..." << endl;
     }
     else {
-        cout << "Op��o invalida!" << endl;
+        cout << "Opcao invalida!" << endl;
     }
 }
 
@@ -91,22 +91,11 @@ void TelaInventario::usarItem(int index) {
         // Aplicar o efeito de cura
         jogador->setEnergiaAtual(jogador->getEnergiaAtual() + item->getBonusEnergia());
 
-        // Remover o item do invent�rio ap�s o uso
+        // Remover o item do inventario apos o uso
         jogador->removerProvisao(item);
-        delete item; // Liberar mem�ria do item usado
+        delete item; // Liberar memoria do item usado
     }
     else {
         cout << "Item invalido!" << endl;
     }
 }
-
-/*void TelaInventario::equiparItem(int index) {
-    
-    Personagem* jogador = Personagem::getInstance();
-    if (index >= 0 && index < jogador->getInventario().size()) {
-        jogador->equiparItem(index);
-    }
-    else {
-        cout << "Item inv�lido!" << endl;
-    }
-}*/

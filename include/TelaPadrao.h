@@ -18,14 +18,13 @@ public:
 	void exibirTelaAtributos(string caminhoArquivo);
 	void exibirTelaMercado(string caminhoArquivo);
 	void exibirMercadorTorre(string caminhoArquivo);
-	void verificarEBatalhar();
 
 	bool isTelaEnigma() const;
 	void setTelaEnigma(bool isEnigma);
 
 	bool isTelaTesteSorte() const;
 	void setTelaTesteSorte(bool isTesteSorte);
-	
+
 private:
 	Jogo* jogo;
 	bool isEnigma;

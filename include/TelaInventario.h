@@ -20,7 +20,6 @@ private:
 	Jogo* jogo;
 
 	void usarItem(int index);
-	/*void equiparItem(int index);*/
 };
 
 #endif // TELAINVENTARIO_H
