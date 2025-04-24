@@ -192,7 +192,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Espada de Ferro." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos", 0, 0, 5);
+                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos", 0, 0, 8);
                     jogador->equiparArma(espada);
                     temEspada = true;
                     cout << "Você comprou uma Espada de Ferro!" << endl;

@@ -32,15 +32,15 @@ void TelaInventario::exibirTela() {
     cout << "    |         LISTA DE ITENS              |" << endl;
     cout << "---------------------------------------" << endl;
 
-    // Obter lista de itens
-    vector<Provisao*> itens = jogador->getProvisoes();
+    // Obter lista de provisoes
+    vector<Provisao*> provisoes = jogador->getProvisoes();
 
     cout << "Arma equipada: " << (jogador->getArma() ? jogador->getArma()->getNome() : "Nenhuma") << endl;
     cout << "Armadura equipada: " << (jogador->getArmadura() ? jogador->getArmadura()->getNome() : "Nenhuma") << endl;
 
-    // Exibir itens
-    for (size_t i = 0; i < itens.size(); ++i) {
-        cout << (i + 1) << " - " << itens[i]->getNome() << endl;
+    // Exibir provisoes
+    for (size_t i = 0; i < provisoes.size(); ++i) {
+        cout << (i + 1) << " - " << provisoes[i]->getNome() << endl;
     }
 
     cout << "---------------------------------------" << endl;
@@ -70,33 +70,23 @@ void TelaInventario::handleInput(unsigned int opcao) {
         cout << "Digite o numero do item para usar: ";
         cin >> index;
         cin.ignore(); // Adicionar esta linha para limpar o buffer
-        usarItem(index - 1);
+        usarProvisao(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
 		jogo->mudarEstado(new TelaBatalha(jogo)); // Voltar para a tela de batalha
 		cout << "Voltando..." << endl;
     }
-    else {
-        cout << "Opcao invalida!" << endl;
-    }
 }
 
-void TelaInventario::usarItem(int index) {
+void TelaInventario::usarProvisao(int index) {
     Personagem* jogador = Personagem::getInstance();
     vector<Provisao*> provisoes = jogador->getProvisoes(); 
 
     if (index >= 0 && index < static_cast<int>(provisoes.size())) {
-        Provisao* item = provisoes[index];
-        cout << "Usando o item: " << item->getNome() << endl;
-
+        Provisao* provisao = provisoes[index];
         // Aplicar o efeito de cura
-        jogador->setEnergiaAtual(jogador->getEnergiaAtual() + item->getBonusEnergia());
+        jogador->usarProvisao(provisao);
 
-        // Remover o item do inventario apos o uso
-        jogador->removerProvisao(item);
-        delete item; // Liberar memoria do item usado
-    }
-    else {
-        cout << "Item invalido!" << endl;
+        delete provisao; // Liberar memoria da provisao
     }
 }

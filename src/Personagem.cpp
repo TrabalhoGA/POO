@@ -169,6 +169,17 @@ void Personagem::removerProvisao(Provisao* provisao)
     }
 }
 
+void Personagem::usarProvisao(Provisao* provisao)
+{
+    if (!provisoes) return;
+    auto it = find(provisoes->begin(), provisoes->end(), provisao);
+    if (it != provisoes->end()) {
+        energia_atual += provisao->getBonusEnergia();
+        if (energia_atual > max_energia) energia_atual = max_energia;
+        provisoes->erase(it);
+    }
+}
+
 vector<Provisao*> Personagem::getProvisoes()
 {
     if (!provisoes) return vector<Provisao*>();

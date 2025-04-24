@@ -75,6 +75,7 @@ class Personagem
 
         void adicionarProvisao(Provisao* provisao);
         void removerProvisao(Provisao* provisao);
+        void usarProvisao(Provisao* provisao);
         vector<Provisao*> getProvisoes();
 
         void adicionarReliquiaMagica(ReliquiaMagica* reliquia);

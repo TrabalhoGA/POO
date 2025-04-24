@@ -10,7 +10,7 @@
 
 using namespace std;
 
-TelaBatalha::TelaBatalha(Jogo* jogo): jogo(jogo) {
+TelaBatalha::TelaBatalha(Jogo* jogo): jogo(jogo){
     srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de numeros aleatorios
     jogador = Personagem::getInstance(); // Obtém a instância do jogador
     inicializarMonstro(); // Inicializa o monstro
@@ -99,9 +99,6 @@ void TelaBatalha::atacar() {
 
     int dano = habilidadeJogador - resistenciaMonstro;
     if (dano < 0) dano = 0;
-
-    // Para debug:
-    dano = 9999; // Dano máximo para teste (remover depois)
 
     monstro->setEnergia(monstro->getEnergia() - dano);
 
@@ -277,6 +274,23 @@ void TelaBatalha::inicializarMonstro() {
     
     // Parte do destino
     string destinoParte = configMonstro.substr(separadorPrincipal + 1);
+
+    // Processar o destino
+    size_t separadorDestino = destinoParte.find(':');
+    if (separadorDestino == string::npos) {
+        cerr << "Erro: Formato do destino inválido!" << endl;
+        exit(1);
+    }
+    
+    // Extrair o diretório e a fase de destino
+    this->diretorioDestino = destinoParte.substr(0, separadorDestino);
+    this->faseDestino = stoi(destinoParte.substr(separadorDestino + 1));
+
+    // Se o monstro já estiver inicializado, não faça nada
+    if (Monstro::getInstance()->getNome() != "") {
+        this->monstro = Monstro::getInstance();
+        return;
+    }
     
     // Processar a configuração do monstro
     size_t separadorMonstro = configMonstroParte.find(':');
@@ -313,15 +327,4 @@ void TelaBatalha::inicializarMonstro() {
     
     // Criar o monstro usando o padrão Singleton
     this->monstro = Monstro::getInstance(nomeMonstro, energiaMonstro, habilidadeMonstro, resistenciaMonstro);
-    
-    // Processar o destino
-    size_t separadorDestino = destinoParte.find(':');
-    if (separadorDestino == string::npos) {
-        cerr << "Erro: Formato do destino inválido!" << endl;
-        exit(1);
-    }
-    
-    // Extrair o diretório e a fase de destino
-    this->diretorioDestino = destinoParte.substr(0, separadorDestino);
-    this->faseDestino = stoi(destinoParte.substr(separadorDestino + 1));
 }

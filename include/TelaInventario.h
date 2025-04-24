@@ -19,7 +19,7 @@ public:
 private:
 	Jogo* jogo;
 
-	void usarItem(int index);
+	void usarProvisao(int index);
 };
 
 #endif // TELAINVENTARIO_H
