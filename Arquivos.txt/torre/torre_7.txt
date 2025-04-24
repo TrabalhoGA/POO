@@ -1,4 +1,4 @@
-1;
+
 =========================================
         VITÓRIA SOBRE SPARDA!
 =========================================
@@ -28,4 +28,4 @@ Parabéns, aventureiro.
 
 =========================================
 
-Digite 1 para ir aos créditos.
+Digite 1 para voltar ao menu.
