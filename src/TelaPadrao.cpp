@@ -13,6 +13,7 @@ TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo)
 {
     isEnigma = false;
     isTesteSorte = false;
+	possuiTocha = false;
 }
 
 TelaPadrao::~TelaPadrao() 
@@ -242,6 +243,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas", 0);
                     jogador->adicionarReliquiaMagica(tocha);
                     temTocha = true;
+					possuiTocha = true; // Atualiza o status de possuir a tocha
                     cout << "Você comprou uma Tocha Eterna!" << endl;
                 } else {
                     cout << "Moedas insuficientes para esta compra." << endl;
@@ -427,6 +429,10 @@ void TelaPadrao::handleInput(unsigned int input) {
             jogo->setFaseAtual(faseAtual + 1);
             return;
         }
+		else if (acao == "t") { // Verifica se a próxima fase é um teste de tocha
+            acaoTocha(possuiTocha);
+            return;
+        }
         else {
             // Avançar o número específico de fases
             int incremento = stoi(acao);
@@ -466,4 +472,26 @@ bool TelaPadrao::isTelaTesteSorte() const {
 
 void TelaPadrao::setTelaTesteSorte(bool isTesteSorte) {
     this->isTesteSorte = isTesteSorte;
+}
+
+void TelaPadrao::acaoTocha(bool possuiTocha) {
+    if (possuiTocha) {
+        // Jogador possui a tocha, avança a fase e exibe mensagem de vitória
+        jogo->avancarFase();
+        ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Tocha_Vitoria.txt");
+
+        // Exibe o conteúdo do arquivo de vitória
+        jogo->limparTela();
+        cout << conteudo << endl;
+        cin.ignore();
+        cin.get(); 
+    }
+    else {
+        // Jogador não possui a tocha, exibe mensagem informando a ausência do item
+        cout << "Você não possui uma tocha no inventário!" << endl;
+        cout << "Pressione Enter para continuar..." << endl;
+        cin.ignore();
+        cin.get();
+    }
 }

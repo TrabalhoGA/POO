@@ -25,10 +25,13 @@ public:
 	bool isTelaTesteSorte() const;
 	void setTelaTesteSorte(bool isTesteSorte);
 
+	void acaoTocha(bool possuiTocha);
+
 private:
 	Jogo* jogo;
 	bool isEnigma;
 	bool isTesteSorte;
+	bool possuiTocha;
 };
 
 #endif // TELAPADRAO_H
