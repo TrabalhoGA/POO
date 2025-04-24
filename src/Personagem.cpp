@@ -203,6 +203,13 @@ void Personagem::removerReliquiaMagica(ReliquiaMagica* reliquia)
     auto it = find(reliquias_magicas->begin(), reliquias_magicas->end(), reliquia);
     if (it != reliquias_magicas->end()) {
         reliquias_magicas->erase(it);
+
+		// Atualiza os atributos do personagem
+		setMagia(getMagia() - reliquia->getBuffMagia());
+		setSorte(getSorte() - reliquia->getBuffSorte());
+		setResistencia(getResistencia() - reliquia->getBuffResistencia());
+		setHabilidade(getHabilidade() - reliquia->getBuffHabilidade());
+		setMaxEnergia(getMaxEnergia() - reliquia->getBuffEnergia());
     }
 }
 

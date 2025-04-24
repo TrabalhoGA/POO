@@ -479,6 +479,9 @@ void TelaPadrao::setTelaEnigma(bool isEnigma) {
 void TelaPadrao::testarSorte(int avancoFase) {
     Personagem* jogador = Personagem::getInstance();
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string conteudo;
+    string diretorioAtual = jogo->getDiretorioAtual();
+    int faseAtual = jogo->getFaseAtual();
     int sorte = jogador->getSorte()*2;
     int resultado = rand() % 100 + 1; // Gera um número aleatório entre 1 e 100
     jogo->limparTela();
@@ -486,16 +489,31 @@ void TelaPadrao::testarSorte(int avancoFase) {
     if (resultado <= sorte) {
         // Jogador teve sucesso
         jogo->avancarFase(avancoFase);
-        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Vitoria.txt");
-        // Exibe o conteúdo do arquivo de vitória
-        cout << conteudo << endl;
+        if (jogo->getDiretorioAtual() == "torre") {
+			// Se o jogador avançou para a fase da torre, exibe o conteúdo do arquivo de sucesso
+			conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + "_sucesso.txt");
+            if (faseAtual == 5) {
+				// Dar amuleto mágico ao jogador
+				ReliquiaMagica* amuleto = new ReliquiaMagica("Amuleto Demoniaco", "Duplica todo o dano que você causar", 0);
+				amuleto->setBuffHabilidade(jogador->getHabilidade()); // Ao equipar, o amuleto duplica a habilidade do jogador
+				jogador->adicionarReliquiaMagica(amuleto);
+            }
+        }
+        else {
+            conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Vitoria.txt");
+        }
     } else {
         // Jogador perde -2 de energia
         jogador->setEnergiaAtual(jogador->getEnergiaAtual() - 2);
-        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
-        // Exibe o conteúdo do arquivo de falha
-        cout << conteudo << endl;
+		if (jogo->getDiretorioAtual() == "torre") {
+			// Se o jogador falhou na fase da torre, exibe o conteúdo do arquivo de falha
+			conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + "_falha.txt");
+		}
+		else {
+			conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
+		}
     }
+	cout << conteudo << endl;
     cin.get(); // Espera o usuário pressionar Enter antes de continuar
     jogo->limparTela();
     if (jogador->getEnergiaAtual() <= 0) {

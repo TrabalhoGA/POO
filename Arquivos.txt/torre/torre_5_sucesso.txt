@@ -13,11 +13,11 @@ correr por seu corpo — mas curiosamente, não o machuca.
 
 Você encontrou o Amuleto Demoníaco!
 
-→ Este artefato antigo reduz pela metade todo o dano que você
-receber durante o combate final.
+→ Este artefato antigo duplica todo o dano que você 
+causar durante o combate final.
 
 Você guarda o amuleto e retorna silenciosamente ao corredor principal.
 
 Está pronto para enfrentar Sparda.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.

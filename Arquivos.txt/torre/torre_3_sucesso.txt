@@ -15,4 +15,4 @@ escalando a escadaria que leva ao próximo andar da torre.
 
 Sua astúcia salvou sua energia para desafios ainda maiores.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.
