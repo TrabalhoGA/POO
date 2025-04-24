@@ -26,12 +26,14 @@ public:
 	void setTelaTesteSorte(bool isTesteSorte);
 
 	void acaoTocha(bool possuiTocha);
+	void acaoCorda(bool possuiCorda);
 
 private:
 	Jogo* jogo;
 	bool isEnigma;
 	bool isTesteSorte;
 	bool possuiTocha;
+	bool possuiCorda;
 };
 
 #endif // TELAPADRAO_H

@@ -14,6 +14,7 @@ TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo)
     isEnigma = false;
     isTesteSorte = false;
 	possuiTocha = false;
+    possuiCorda = false;
 }
 
 TelaPadrao::~TelaPadrao() 
@@ -226,6 +227,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                         ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas", 0);
                         corda->setBuffSorte(2); // Pequeno bônus de sorte
                         jogador->adicionarReliquiaMagica(corda);
+						possuiCorda = true; // Atualiza o status de possuir a corda
                     }
                     cout << "Você comprou " << quantidade << " Corda(s) Mágica(s)!" << endl;
                 } else {
@@ -429,8 +431,12 @@ void TelaPadrao::handleInput(unsigned int input) {
             jogo->setFaseAtual(faseAtual + 1);
             return;
         }
-		else if (acao == "t") { // Verifica se a próxima fase é um teste de tocha
+        else if (acao == "t") { // Verifica se a próxima fase é um teste de tocha
             acaoTocha(possuiTocha);
+            return;
+        }
+        else if (acao == "c") { // Verifica se a próxima fase é um teste de corda
+            acaoCorda(possuiCorda);
             return;
         }
         else {
@@ -490,6 +496,27 @@ void TelaPadrao::acaoTocha(bool possuiTocha) {
     else {
         // Jogador não possui a tocha, exibe mensagem informando a ausência do item
         cout << "Você não possui uma tocha no inventário!" << endl;
+        cout << "Pressione Enter para continuar..." << endl;
+        cin.ignore();
+        cin.get();
+    }
+}
+void TelaPadrao::acaoCorda(bool possuiCorda) {
+    if (possuiCorda) {
+        // Jogador possui a corda, avança a fase e exibe mensagem de vitória
+        jogo->avancarFase(2);
+        ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Corda_Vitoria.txt");
+
+        // Exibe o conteúdo do arquivo de vitória
+        jogo->limparTela();
+        cout << conteudo << endl;
+        cin.ignore();
+        cin.get();
+    }
+    else {
+        // Jogador não possui a tocha, exibe mensagem informando a ausência do item
+        cout << "Você não possui uma corda no inventário!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.ignore();
         cin.get();

@@ -1,6 +1,6 @@
-batalha:3
-4,4,13,0,0,3,30
+caverna:6
+6,6,12,0,0,4,0
 Nenhuma
 Espada de Ferro,Aumenta sua chance de sucesso em combates físicos,0,0,8
-Nenhuma
-Nenhuma
+Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,6;Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,6;
+Corda Mágica,Útil para atravessar lugares perigosos ou escapar de armadilhas,0,0,0,0,0,2;Tocha Eterna,Ilumina locais escuros e pode afugentar criaturas,0,0,0,0,0,0;
