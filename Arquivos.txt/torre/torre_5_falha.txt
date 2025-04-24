@@ -12,7 +12,7 @@ antes que consiga rolar para fora do alcance.
 
 Você escapa por pouco, mas sai ferido.
 
-Você perde 4 pontos de ENERGIA.
+Você perde 2 pontos de ENERGIA.
 
 A sala não guarda mais nada além de ruínas e veneno.
 
@@ -21,4 +21,4 @@ tensos e o coração acelerado.
 
 Agora, só resta enfrentar Sparda.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.
