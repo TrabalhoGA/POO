@@ -4,8 +4,6 @@
 #include "../include/Personagem.h"
 #include "../include/Arma.h"
 #include "../include/ArquivoManager.h"
-#include "../include/TelaInventario.h"
-#include "../include/Monstro.h"
 #include <iostream>
 #include <limits>
 

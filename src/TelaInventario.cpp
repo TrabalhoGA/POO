@@ -1,6 +1,6 @@
 #include "../include/TelaInventario.h"
 #include "../include/Personagem.h"
-#include "../include/TelaPadrao.h"
+#include "../include/TelaBatalha.h"
 #include <iostream>
 #include <iomanip>
 
@@ -45,7 +45,7 @@ void TelaInventario::exibirTela() {
 
     cout << "---------------------------------------" << endl;
     cout << "[ Usar Item ] = U" << endl;
-    cout << "[ Voltar ao Jogo ] = S" << endl;
+    cout << "[ Voltar a Batalha ] = S" << endl;
 
     char opcao;
     cin.clear(); 
@@ -65,7 +65,7 @@ void TelaInventario::handleInput(unsigned int opcao) {
 			return;
 		}
 		
-        // Exibir lista de itens e solicitar ao usu�rio que escolha um item
+        // Exibir lista de itens e solicitar ao usuurio que escolha um item
         int index;
         cout << "Digite o numero do item para usar: ";
         cin >> index;
@@ -73,7 +73,7 @@ void TelaInventario::handleInput(unsigned int opcao) {
         usarItem(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
-		jogo->mudarEstado(new TelaPadrao(jogo)); // Retorna para a tela padrao, mas futuramente retornara a tela de batalha
+		jogo->mudarEstado(new TelaBatalha(jogo)); // Voltar para a tela de batalha
 		cout << "Voltando..." << endl;
     }
     else {

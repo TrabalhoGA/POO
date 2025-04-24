@@ -50,7 +50,6 @@ void Jogo::handleInput(int input) {
     if (estadoAtual) {
         estadoAtual->handleInput(input);
     }
-    
 }
 
 void Jogo::mudarEstado(TelaEstado* novoEstado) {

@@ -33,8 +33,6 @@ private:
 	Monstro* monstro;
 	string diretorioDestino;
 	int faseDestino;
-
-	bool fugaFalhou;
 };
 
 #endif // TELABATALHA_H

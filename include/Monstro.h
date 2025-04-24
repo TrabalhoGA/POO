@@ -8,9 +8,24 @@ using namespace std;
 
 class Monstro
 {
-public:
+private:
+	static Monstro* instance;
+	string nome;
+	int energia;
+	int habilidade;
+	int resistencia;
+	
+	// Construtor privado para impedir instanciação direta
 	Monstro(string n, int e, int h, int r);
+
+public:
 	virtual ~Monstro();
+	
+	// Método para obter a instância única
+	static Monstro* getInstance(string n = "", int e = 0, int h = 0, int r = 0);
+	
+	// Método para liberar a instância
+	static void releaseInstance();
 
 	void setNome(string n);
 	string getNome();
@@ -23,14 +38,6 @@ public:
 
 	void setResistencia(int r);
 	int getResistencia();
-
-protected:
-
-private:
-	string nome;
-	int energia;
-	int habilidade;
-	int resistencia;
 };
 
 #endif // MONSTRO_H

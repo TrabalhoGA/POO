@@ -10,7 +10,7 @@
 
 using namespace std;
 
-TelaBatalha::TelaBatalha(Jogo* jogo): jogo(jogo), fugaFalhou(false) {
+TelaBatalha::TelaBatalha(Jogo* jogo): jogo(jogo) {
     srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de numeros aleatorios
     jogador = Personagem::getInstance(); // Obtém a instância do jogador
     inicializarMonstro(); // Inicializa o monstro
@@ -67,7 +67,7 @@ void TelaBatalha::handleInput(unsigned int input) {
         break;
     case 2:
         acessarInventario();
-        break;
+        return; // Retorna para a tela de batalha após acessar o inventário
     case 3:
         defender();
         break;
@@ -130,13 +130,6 @@ void TelaBatalha::acessarInventario() {
 bool TelaBatalha::tentarFugir() {
     // Limpar a tela
     jogo->limparTela();
-    // Verificar se a fuga ja falhou anteriormente
-    if (fugaFalhou) {
-        cout << "Voce ja tentou fugir e falhou! Nao pode mais tentar fugir desta batalha." << endl;
-        cout << "Pressione Enter para continuar..." << endl;
-        cin.get();
-        return false;
-    }
 
     Personagem* jogador = Personagem::getInstance();
 
@@ -156,6 +149,10 @@ bool TelaBatalha::tentarFugir() {
         cout << "Voce conseguiu fugir da batalha!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
+        
+        // Liberar a instância do monstro quando o jogador foge com sucesso
+        Monstro::releaseInstance();
+        
         jogo->setDiretorioAtual(diretorioDestino);
         jogo->setFaseAtual(faseDestino);
         jogo->mudarEstado(new TelaPadrao(jogo));
@@ -165,10 +162,10 @@ bool TelaBatalha::tentarFugir() {
         cout << "Voce falhou em fugir!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
-        fugaFalhou = true; // Marcar que a fuga falhou
         return false;
     }
 }
+
 void TelaBatalha::acaoMonstro() {
     jogo->limparTela();
 
@@ -231,6 +228,9 @@ void TelaBatalha::finalizarBatalha() {
         cout << "\nPressione Enter para continuar..." << endl;
         cin.get();
 
+        // Liberar a instância do monstro
+        Monstro::releaseInstance();
+
         // Atualizar o estado do jogo
         jogo->setDiretorioAtual(diretorioDestino);
         jogo->setFaseAtual(faseDestino);
@@ -240,6 +240,10 @@ void TelaBatalha::finalizarBatalha() {
         string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Batalha_Derrota.txt");
         cout << conteudo << endl;
         cin.get();
+
+        // Liberar a instância do monstro
+        Monstro::releaseInstance();
+
         jogo->mudarEstado(new TelaInicial(jogo));
         return;
     }
@@ -307,8 +311,8 @@ void TelaBatalha::inicializarMonstro() {
     int habilidadeMonstro = stoi(dadosArray[2]);
     int resistenciaMonstro = stoi(dadosArray[3]);
     
-    // Criar o monstro
-    this->monstro = new Monstro(nomeMonstro, energiaMonstro, habilidadeMonstro, resistenciaMonstro);
+    // Criar o monstro usando o padrão Singleton
+    this->monstro = Monstro::getInstance(nomeMonstro, energiaMonstro, habilidadeMonstro, resistenciaMonstro);
     
     // Processar o destino
     size_t separadorDestino = destinoParte.find(':');
