@@ -113,7 +113,7 @@ void TelaBatalha::atacar() {
 
 void TelaBatalha::defender() {
     Personagem* jogador = Personagem::getInstance();
-    jogador->setResistencia(jogador->getResistencia() + 5);
+    jogador->setResistencia(jogador->getResistencia() + 2);
     jogo->limparTela();
     cout << "Voce se defendeu! Sua resistencia aumentou temporariamente." << endl;
     cout << "Pressione Enter para continuar..." << endl;
@@ -127,6 +127,19 @@ void TelaBatalha::acessarInventario() {
 bool TelaBatalha::tentarFugir() {
     // Limpar a tela
     jogo->limparTela();
+
+	if (jogo->getDiretorioAtual() == "batalha" && jogo->getFaseAtual() == 7) {
+		cout << "Voce nao pode fugir desta batalha!" << endl;
+		cout << "Pressione Enter para continuar..." << endl;
+		cin.get();
+		return false;
+	}
+	else if (jogo->getDiretorioAtual() == "batalha" && jogo->getFaseAtual() == 3) {
+		cout << "Os lobos te cercaram, voce nao pode fugir desta batalha!" << endl;
+		cout << "Pressione Enter para continuar..." << endl;
+		cin.get();
+		return false;
+	}
 
     Personagem* jogador = Personagem::getInstance();
 
@@ -190,7 +203,7 @@ void TelaBatalha::acaoMonstro() {
         }
     }
     else {
-        monstro->setResistencia(monstro->getResistencia() + 3);
+        monstro->setResistencia(monstro->getResistencia() + 1);
         cout << monstro->getNome() << " se defendeu! Sua resistencia aumentou temporariamente." << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
@@ -202,26 +215,35 @@ void TelaBatalha::finalizarBatalha() {
 
     Personagem* jogador = Personagem::getInstance();
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+        
 
     if (monstro->getEnergia() <= 0) {
-        // Monstro derrotado: Drop de itens
-        int ouroDropado = rand() % 50 + 10; // Ouro aleatorio entre 10 e 50
-
-        // Criar o frasco de energia (pocao de vida)
-        Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Restaura 20 pontos de energia", 0, 20);
-
-        // Adicionar itens ao jogador
-        jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() + ouroDropado);
-        jogador->adicionarProvisao(frascoEnergia);
-
+       
         string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Batalha_Vitoria.txt");
         cout << conteudo << endl;
         cin.get();
+        
+        // Monstro derrotado: Drop de itens
+        int ouroDropado = rand() % 50 + 10; // Ouro aleatorio entre 10 e 50
+
+        // Adicionar itens ao jogador
+        jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() + ouroDropado);
+        
+        // Determinar se o jogador receberá um item (66% de chance)
+        int chanceDrop = rand() % 100; // Gera um número entre 0 e 99
+        if (chanceDrop < 66) { // 66% de chance
+            Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Recupera parte da sua energia", 0, int(jogador->getMaxEnergia() / 2));
+            jogador->adicionarProvisao(frascoEnergia);
+
+            // Mensagem de drop do item
+            cout << "Você recebeu uma " << frascoEnergia->getNome() << "!" << endl;
+        }
+
 
         // Mensagens de drop
-        jogo->limparTela();
+  
         cout << "Voce recebeu " << ouroDropado << " moedas de ouro!" << endl;
-        cout << "Voce recebeu um " << frascoEnergia->getNome() << "!" << endl;
+       
         cout << "\nPressione Enter para continuar..." << endl;
         cin.get();
 

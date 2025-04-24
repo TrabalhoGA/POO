@@ -26,6 +26,8 @@ void TelaPadrao::exibirTela() {
     jogo->limparTela();
     jogo->salvarJogo();
 
+    Personagem* jogador = Personagem::getInstance();
+    
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
     
@@ -41,9 +43,23 @@ void TelaPadrao::exibirTela() {
             exibirTelaMercado(caminhoArquivo);
             return;
         }
-    } else if (diretorioAtual == "torre" && faseAtual == 2) {
-        exibirMercadorTorre(caminhoArquivo);
-        return;
+    } else if (diretorioAtual == "torre") {
+        if (faseAtual == 2) {
+            exibirMercadorTorre(caminhoArquivo);
+            return;
+        }
+        else if (faseAtual == 6) {
+			jogo->mudarEstado(new TelaInicial(jogo));
+        }
+    }
+    else if (diretorioAtual == "caverna" && faseAtual == 7) {
+        Arma* espadaDante = new Arma("Espada de Dante", "Forjada com o sangue do filho de Sparda.", 0, 0, 16);
+        jogador->equiparArma(espadaDante);
+    }
+    else if (diretorioAtual == "floresta" && faseAtual == 6) {
+        jogador->setMagia(16);
+        Arma* cajadoAncestral = new Arma("Cajado Ancestral", "Feito com os galhos da arvore sagrada.", 0, 0,jogador->getMagia());
+        jogador->equiparArma(cajadoAncestral);
     }
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
@@ -119,10 +135,14 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
     sorte = pontosRestantes;
     cout << "Sorte definida automaticamente como: " << sorte << endl;
 
-    Personagem::getInstance()->setHabilidade(habilidade);
-    Personagem::getInstance()->setMaxEnergia(energia);
-    Personagem::getInstance()->setEnergiaAtual(energia);
-    Personagem::getInstance()->setSorte(sorte);
+	int habilidadeFinal = habilidade + 6;
+	int energiaFinal = energia + 12;
+	int sorteFinal = sorte + 6;
+
+    Personagem::getInstance()->setHabilidade(habilidadeFinal);
+    Personagem::getInstance()->setMaxEnergia(energiaFinal);
+    Personagem::getInstance()->setEnergiaAtual(energiaFinal);
+    Personagem::getInstance()->setSorte(sorteFinal);
     cout << "Você está pronto para começar a aventura!" << endl;
     cout << "Pressione Enter para continuar..." << endl;
     cin.ignore();
@@ -210,9 +230,9 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Varinha de Feitiços." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    ReliquiaMagica* varinha = new ReliquiaMagica("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos", 0);
-                    varinha->setBuffMagia(5); // Adiciona bônus de magia
-                    jogador->adicionarReliquiaMagica(varinha);
+					jogador->setMagia(8);
+                    Arma* varinha = new Arma("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos", 0,0, jogador->getMagia());
+					jogador->equiparArma(varinha);
                     temVarinha = true;
                     cout << "Você comprou uma Varinha de Feitiços!" << endl;
                 } else {
@@ -225,7 +245,6 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
                     for (int i = 0; i < quantidade; i++) {
                         ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas", 0);
-                        corda->setBuffSorte(2); // Pequeno bônus de sorte
                         jogador->adicionarReliquiaMagica(corda);
 						possuiCorda = true; // Atualiza o status de possuir a corda
                     }
@@ -245,7 +264,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                     ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas", 0);
                     jogador->adicionarReliquiaMagica(tocha);
                     temTocha = true;
-					possuiTocha = true; // Atualiza o status de possuir a tocha
+					possuiTocha = true;
                     cout << "Você comprou uma Tocha Eterna!" << endl;
                 } else {
                     cout << "Moedas insuficientes para esta compra." << endl;
@@ -353,7 +372,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Armadura de Ferro." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 10, 0);
+                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 0, 7);
                     jogador->equiparArmadura(armaduraFerro);
                     cout << "Você comprou uma Armadura de Ferro!" << endl;
                 } else {
@@ -367,8 +386,8 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
                     ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +20 pontos", 0);
-                    amuletoMagico->setBuffSorte(20);
-                    amuletoMagico->setBuffMagia(20);
+                    amuletoMagico->setBuffSorte(10);
+                    amuletoMagico->setBuffMagia(10);
                     jogador->adicionarReliquiaMagica(amuletoMagico);
                     cout << "Você comprou um Amuleto Mágico!" << endl;
                 } else {

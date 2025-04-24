@@ -1,6 +1,6 @@
-caverna:6
-6,6,12,0,0,4,0
+torre:6
+18,16,42,20,0,8,59
+Armadura de Ferro,Aumenta sua RESISTÊNCIA em combate,0,0,10
+Espada de Dante,Forjada com o sangue do filho de Sparda.,0,0,16
+Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,18;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;
 Nenhuma
-Espada de Ferro,Aumenta sua chance de sucesso em combates físicos,0,0,8
-Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,6;Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,6;
-Corda Mágica,Útil para atravessar lugares perigosos ou escapar de armadilhas,0,0,0,0,0,2;Tocha Eterna,Ilumina locais escuros e pode afugentar criaturas,0,0,0,0,0,0;
