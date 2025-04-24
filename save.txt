@@ -1,0 +1,6 @@
+caverna:4
+4,4,10,0,0,3,33
+Nenhuma
+Espada de Ferro,Aumenta sua chance de sucesso em combates físicos,0,0,5
+Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,4;Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,4;Frasco de Energia,Recupera parte da sua energia,0,2;Frasco de Energia,Recupera parte da sua energia,0,2;Frasco de Energia,Restaura 20 pontos de energia,0,20;
+Nenhuma

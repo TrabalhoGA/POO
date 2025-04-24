@@ -1,3 +1,4 @@
+torre:1;
 =========================================
      PASSO 5 - A Espada de Dante
 =========================================
@@ -7,5 +8,5 @@ Ela emana uma energia pura e poderosa.
 
 O que deseja fazer?
 
-1 - Pegar a Espada.
-2 - Ignorar e seguir o caminho.
+1 - Pegar a Espada e continuar o caminho.
+

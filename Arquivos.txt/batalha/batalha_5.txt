@@ -1,3 +1,5 @@
-
+m:Cerberus,50,10,7;torre:4;
 Tres cabecas, um corpo colossal. Cerberus guarda a torre com furia.  
 Cada uma de suas bocas late e cospe fogo em sua direcao.
+
+Pressione ENTER para continuar...
