@@ -1,8 +1,8 @@
-#include "C:/Users/user/source/repos/POO/include/TelaBatalha.h"   // Só funcionou assim
-#include "C:/Users/user/source/repos/POO/include/TelaInventario.h"
-#include "C:/Users/user/source/repos/POO/include/TelaPadrao.h"
-#include "C:/Users/user/source/repos/POO/include/ArquivoManager.h"
-#include "C:/Users/user/source/repos/POO/include/Personagem.h"
+#include "../include/TelaBatalha.h"
+#include "../include/TelaInventario.h"
+#include "../include/TelaPadrao.h"
+#include "../include/ArquivoManager.h"
+#include "../include/Personagem.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -11,7 +11,7 @@ using namespace std;
 
 TelaBatalha::TelaBatalha(Jogo* jogo, Monstro* monstro, const string& diretorioDestino, const string& diretorioBatalhaAtual)
     : jogo(jogo), monstro(monstro), diretorioDestino(diretorioDestino), diretorioBatalhaAtual(diretorioBatalhaAtual), fugaFalhou(false) {
-    srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de números aleatórios
+    srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de numeros aleatorios
 }
 
 
@@ -41,18 +41,22 @@ void TelaBatalha::exibirTela() {
     cout << endl;
     cout << "------------------------" << endl;
     cout << endl;
-    cout << "Escolha sua ação:" << endl;
+    cout << "Escolha sua acao:" << endl;
     cout << endl;
     cout << "[1] Atacar" << endl;
-    cout << "[2] Inventário" << endl;
+    cout << "[2] Inventario" << endl;
     cout << "[3] Defender" << endl;
     cout << "[4] Fugir" << endl;
     cout << endl;
     cout << "========================" << endl;
-    cout << "Digite o número da opção desejada: ";
+    cout << "Digite o numero da opcao desejada: ";
+
+    int opcao;
+    cin >> opcao;
+    handleInput(opcao);
 }
 
-void TelaBatalha::handleInput(int input) {
+void TelaBatalha::handleInput(unsigned int input) {
     
     Personagem* jogador = Personagem::getInstance();
 
@@ -70,7 +74,7 @@ void TelaBatalha::handleInput(int input) {
         tentarFugir();
         break;
     default:
-        cout << "Opção inválida!" << endl;
+        cout << "Opcao invalida!" << endl;
         break;
     }
 
@@ -86,18 +90,18 @@ void TelaBatalha::atacar() {
     Personagem* jogador = Personagem::getInstance();
 
     int habilidadeJogador = jogador->getHabilidade();
-    int bonusArma = jogador->getArma() ? jogador->getArma()->getBuffHabilidade() : 0;
+    // removi o bonus arma, pois jÃ¡ Ã© somado quando equipamos ela
     int resistenciaMonstro = monstro->getResistencia();
 
-    int dano = (habilidadeJogador + bonusArma) - resistenciaMonstro;
+    int dano = habilidadeJogador - resistenciaMonstro;
     if (dano < 0) dano = 0;
 
     monstro->setEnergia(monstro->getEnergia() - dano);
 
-    cout << "Você atacou o " << monstro->getNome() << " causando " << dano << " de dano!" << endl;
+    cout << "Voce atacou o " << monstro->getNome() << " causando " << dano << " de dano!" << endl;
 
     if (monstro->getEnergia() <= 0) {
-        cout << "Você derrotou o " << monstro->getNome() << "!" << endl;
+        cout << "Voce derrotou o " << monstro->getNome() << "!" << endl;
     }
 }
 
@@ -105,7 +109,7 @@ void TelaBatalha::defender() {
     Personagem* jogador = Personagem::getInstance();
     jogador->setResistencia(jogador->getResistencia() + 5);
 
-    cout << "Você se defendeu! Sua resistência aumentou temporariamente." << endl;
+    cout << "Voce se defendeu! Sua resistencia aumentou temporariamente." << endl;
 }
 
 void TelaBatalha::acessarInventario() {
@@ -113,9 +117,9 @@ void TelaBatalha::acessarInventario() {
 }
 
 void TelaBatalha::tentarFugir() {
-    // Verificar se a fuga já falhou anteriormente
+    // Verificar se a fuga ja falhou anteriormente
     if (fugaFalhou) {
-        cout << "Você já tentou fugir e falhou! Não pode mais tentar fugir desta batalha." << endl;
+        cout << "Voce ja tentou fugir e falhou! Nao pode mais tentar fugir desta batalha." << endl;
         return;
     }
 
@@ -126,20 +130,20 @@ void TelaBatalha::tentarFugir() {
     // Calcular a chance de fuga com base na SORTE
     int chanceFuga = sorteJogador * 2;
     if (chanceFuga > 90) {
-        chanceFuga = 90; // Limita a chance máxima de fuga a 90%
+        chanceFuga = 90; // Limita a chance mï¿½xima de fuga a 90%
     }
 
-    // Gerar um número aleatório entre 0 e 99
+    // Gerar um nï¿½mero aleatï¿½rio entre 0 e 99
     int chance = rand() % 100;
 
     // Verificar se o jogador conseguiu fugir
     if (chance < chanceFuga) {
-        cout << "Você conseguiu fugir da batalha!" << endl;
+        cout << "Voce conseguiu fugir da batalha!" << endl;
         jogo->setDiretorioAtual(diretorioDestino);
         jogo->mudarEstado(new TelaPadrao(jogo));
     }
     else {
-        cout << "Você falhou em fugir!" << endl;
+        cout << "Voce falhou em fugir!" << endl;
         fugaFalhou = true; // Marcar que a fuga falhou
     }
 }
@@ -153,20 +157,20 @@ void TelaBatalha::acaoMonstro() {
         int resistenciaJogador = jogador->getResistencia();
         int bonusArmadura = jogador->getArmadura() ? jogador->getArmadura()->getBuffResistencia() : 0;
 
-        int dano = habilidadeMonstro - (resistenciaJogador + bonusArmadura);
+        int dano = habilidadeMonstro - resistenciaJogador; // removi tambem o bonus da armadura
         if (dano < 0) dano = 0;
 
         jogador->setEnergiaAtual(jogador->getEnergiaAtual() - dano);
 
-        cout << monstro->getNome() << " atacou você causando " << dano << " de dano!" << endl;
+        cout << monstro->getNome() << " atacou voce causando " << dano << " de dano!" << endl;
 
         if (jogador->getEnergiaAtual() <= 0) {
-            cout << "Você foi derrotado pelo " << monstro->getNome() << "!" << endl;
+            cout << "Voce foi derrotado pelo " << monstro->getNome() << "!" << endl;
         }
     }
     else {
         monstro->setResistencia(monstro->getResistencia() + 3);
-        cout << monstro->getNome() << " se defendeu! Sua resistência aumentou temporariamente." << endl;
+        cout << monstro->getNome() << " se defendeu! Sua resistencia aumentou temporariamente." << endl;
     }
 }
 
@@ -176,9 +180,9 @@ void TelaBatalha::finalizarBatalha() {
 
     if (monstro->getEnergia() <= 0) {
         // Monstro derrotado: Drop de itens
-        int ouroDropado = rand() % 50 + 10; // Ouro aleatório entre 10 e 50
+        int ouroDropado = rand() % 50 + 10; // Ouro aleatorio entre 10 e 50
 
-        // Criar o frasco de energia (poção de vida)
+        // Criar o frasco de energia (pocao de vida)
         Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Restaura 20 pontos de energia", 0, 20);
 
         // Adicionar itens ao jogador
@@ -186,9 +190,9 @@ void TelaBatalha::finalizarBatalha() {
         jogador->adicionarProvisao(frascoEnergia);
 
         // Mensagens de drop
-        cout << "Você derrotou o " << monstro->getNome() << "!" << endl;
-        cout << "Você recebeu " << ouroDropado << " moedas de ouro!" << endl;
-        cout << "Você recebeu um " << frascoEnergia->getNome() << "!" << endl;
+        cout << "Voce derrotou o " << monstro->getNome() << "!" << endl;
+        cout << "Voce recebeu " << ouroDropado << " moedas de ouro!" << endl;
+        cout << "Voce recebeu um " << frascoEnergia->getNome() << "!" << endl;
 
         // Atualizar o estado do jogo
         jogo->setDiretorioAtual(diretorioDestino);

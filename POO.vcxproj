@@ -135,7 +135,7 @@
     <ClCompile Include="src\TelaInicial.cpp" />
     <ClCompile Include="src\TelaPadrao.cpp" />
     <ClCompile Include="src\TelaInventario.cpp" />
-    <ClCompile Include="TelaBatalha.cpp" />
+    <ClCompile Include="src\TelaBatalha.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Arma.h" />
