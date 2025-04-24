@@ -1,3 +1,5 @@
-
+m:Anjo Caido,30,8,5;caverna:7;
 Das alturas, um Anjo Caido desce com asas negras e olhar vazio.  
 Ele carrega a dor da queda e uma espada sedenta por sangue.
+
+Digite ENTER para continuar...

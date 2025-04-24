@@ -1,3 +1,5 @@
-
+m:Grupo de Lobos,30,3,5;floresta:4;
 Uivos ecoam ao redor. Um Grupo de Lobos circula voce lentamente.  
 Eles atacam em sincronia, olhos famintos e dentes afiados.
+
+Pressione ENTER para continuar...

@@ -12,4 +12,4 @@ hipnótica e propõe um enigma.
 O que deseja fazer?
 
 1 - Ouvir o enigma e tentar responder.   
-2 - Tentar intimidá-lo com sua arma.
+2 - Tentar intimidá-lo com sua arma. (Teste de sorte)

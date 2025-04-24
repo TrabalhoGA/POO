@@ -1,3 +1,4 @@
+torre:1;
 =========================================
  PASSO 5 - A Árvore Ancestral
 =========================================
@@ -17,4 +18,3 @@ lentamente, moldam um **cajado mágico de madeira viva**,
 que flutua até suas mãos.
 
 1 - Pegar o cajado e seguir o caminho.
-2 - Ignorar o cajado e seguir em frente.

@@ -1,3 +1,4 @@
+batalha:6;1;
 =========================================
      - A SALA DOS ESPELHOS
 =========================================
@@ -23,6 +24,6 @@ Talvez destruí-los encerre a magia que mantém a sombra viva.
 O que deseja fazer?
 
 1 - Lutar contra a Sombra do Herói em combate direto.  
-2 - Tentar destruir os espelhos usando sua besta (caso possua).
+2 - Tentar destruir os espelhos usando pedras do chão. (Teste de sorte)
 
 Escolha com sabedoria — seu reflexo sabe tudo o que você sabe.

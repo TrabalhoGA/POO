@@ -1,3 +1,4 @@
+batalha:2;1;
 =========================================
      PASSO 4 - O Espectro do Anjo Caído
 =========================================
@@ -8,4 +9,4 @@ Seus olhos brilham com uma luz azul e gélida.
 O que deseja fazer?
 
 1 - Enfrentá-lo.   
-2 - Tentar dialogar com o espectro.
+2 - Tentar dialogar com o espectro. (Teste de sorte)
