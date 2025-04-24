@@ -12,7 +12,6 @@ using namespace std;
 TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo) 
 {
     isEnigma = false;
-    isTesteSorte = false;
 	possuiTocha = false;
     possuiCorda = false;
 }
@@ -421,6 +420,11 @@ void TelaPadrao::handleInput(unsigned int input) {
         if (separador != string::npos) {
             string novoDiretorio = acao.substr(0, separador);
             int novaFase = stoi(acao.substr(separador + 1));
+
+            if (novoDiretorio == "s") {
+                testarSorte(novaFase);
+                return;
+            }
             
             // Mudança de diretório e fase
             jogo->setDiretorioAtual(novoDiretorio);
@@ -472,12 +476,36 @@ void TelaPadrao::setTelaEnigma(bool isEnigma) {
     this->isEnigma = isEnigma;
 }
 
-bool TelaPadrao::isTelaTesteSorte() const {
-    return isTesteSorte;
-}
+void TelaPadrao::testarSorte(int avancoFase) {
+    Personagem* jogador = Personagem::getInstance();
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    int sorte = jogador->getSorte()*2;
+    int resultado = rand() % 100 + 1; // Gera um número aleatório entre 1 e 100
+    jogo->limparTela();
 
-void TelaPadrao::setTelaTesteSorte(bool isTesteSorte) {
-    this->isTesteSorte = isTesteSorte;
+    if (resultado <= sorte) {
+        // Jogador teve sucesso
+        jogo->avancarFase(avancoFase);
+        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Vitoria.txt");
+        // Exibe o conteúdo do arquivo de vitória
+        cout << conteudo << endl;
+    } else {
+        // Jogador perde -2 de energia
+        jogador->setEnergiaAtual(jogador->getEnergiaAtual() - 2);
+        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
+        // Exibe o conteúdo do arquivo de falha
+        cout << conteudo << endl;
+    }
+    cin.get(); // Espera o usuário pressionar Enter antes de continuar
+    jogo->limparTela();
+    if (jogador->getEnergiaAtual() <= 0) {
+        // Jogador perdeu toda a energia, exibe mensagem de derrota
+        cout << "Voce nao tem mais energia! Fim de jogo!" << endl;
+        cout << "Pressione Enter para voltar a tela inicial..." << endl;
+        cin.get(); // Espera o usuário pressionar Enter antes de continuar
+        jogo->mudarEstado(new TelaInicial(jogo)); // Retorna para a tela inicial
+        return;
+    }
 }
 
 void TelaPadrao::acaoTocha(bool possuiTocha) {

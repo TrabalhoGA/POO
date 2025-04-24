@@ -11,4 +11,4 @@ Perda: -2 de ENERGIA
 
 Levante-se e siga em frente — nem todo azar dura para sempre.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.

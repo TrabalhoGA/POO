@@ -22,8 +22,7 @@ public:
 	bool isTelaEnigma() const;
 	void setTelaEnigma(bool isEnigma);
 
-	bool isTelaTesteSorte() const;
-	void setTelaTesteSorte(bool isTesteSorte);
+	void testarSorte(int avancoFase);
 
 	void acaoTocha(bool possuiTocha);
 	void acaoCorda(bool possuiCorda);
@@ -31,7 +30,6 @@ public:
 private:
 	Jogo* jogo;
 	bool isEnigma;
-	bool isTesteSorte;
 	bool possuiTocha;
 	bool possuiCorda;
 };
