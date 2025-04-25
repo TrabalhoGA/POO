@@ -382,7 +382,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Armadura de Ferro." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 0, 7);
+                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 0, 5);
                     jogador->equiparArmadura(armaduraFerro);
                     cout << "Você comprou uma Armadura de Ferro!" << endl;
                 } else {
@@ -395,9 +395,9 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
                     cout << "Você só pode comprar 1 Amuleto Mágico." << endl;
                 } else if (jogador->getMoedasDeOuro() >= 40) {
                     jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +20 pontos", 0);
-                    amuletoMagico->setBuffSorte(10);
-                    amuletoMagico->setBuffMagia(10);
+                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +15 pontos", 0);
+                    amuletoMagico->setBuffSorte(15);
+                    amuletoMagico->setBuffMagia(15);
                     jogador->adicionarReliquiaMagica(amuletoMagico);
                     cout << "Você comprou um Amuleto Mágico!" << endl;
                 } else {
