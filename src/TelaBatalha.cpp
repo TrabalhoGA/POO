@@ -326,20 +326,38 @@ void TelaBatalha::inicializarMonstro() {
     // Extrair os dados do monstro
     string dadosMonstro = configMonstroParte.substr(separadorMonstro + 1);
     
+    // Contar número de vírgulas para determinar o tamanho do vetor
+    int contVirgulas = 0;
+    for (size_t i = 0; i < dadosMonstro.length(); i++) {
+        if (dadosMonstro[i] == ',') {
+            contVirgulas++;
+        }
+    }
+    
+    // Alocar memória dinamicamente para o vetor de dados
+    int tamanhoVetor = contVirgulas + 1;
+    string* dadosArray = new string[tamanhoVetor];
+    
     // Separar os dados do monstro por vírgulas
-    vector<string> dadosArray;
     size_t pos = 0;
     string token;
-    while ((pos = dadosMonstro.find(',')) != string::npos) {
+    int index = 0;
+    
+    while ((pos = dadosMonstro.find(',')) != string::npos && index < tamanhoVetor) {
         token = dadosMonstro.substr(0, pos);
-        dadosArray.push_back(token);
+        dadosArray[index++] = token;
         dadosMonstro.erase(0, pos + 1);
     }
-    dadosArray.push_back(dadosMonstro); // Adicionar o último valor
+    
+    // Adicionar o último valor
+    if (index < tamanhoVetor) {
+        dadosArray[index] = dadosMonstro;
+    }
     
     // Verificar se temos todos os dados necessários (nome, energia, habilidade, resistência)
-    if (dadosArray.size() < 4) {
+    if (tamanhoVetor < 4) {
         cerr << "Erro: Dados do monstro incompletos!" << endl;
+        delete[] dadosArray; // Liberar a memória antes de sair
         exit(1);
     }
     
@@ -348,6 +366,9 @@ void TelaBatalha::inicializarMonstro() {
     int energiaMonstro = stoi(dadosArray[1]);
     int habilidadeMonstro = stoi(dadosArray[2]);
     int resistenciaMonstro = stoi(dadosArray[3]);
+    
+    // Liberar a memória alocada
+    delete[] dadosArray;
     
     // Criar o monstro usando o padrão Singleton
     this->monstro = Monstro::getInstance(nomeMonstro, energiaMonstro, habilidadeMonstro, resistenciaMonstro);

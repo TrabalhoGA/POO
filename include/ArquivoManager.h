@@ -17,7 +17,12 @@ public:
     string lerArquivoHistoria(const string& caminho);
     string lerOpcoesHistoria(const string& caminho);
     void escreverArquivo(const string& caminho, const string& conteudo);
-    vector<string> listarArquivos(const string& prefixo);
+    
+    // Modificado para retornar um ponteiro para vector
+    vector<string>* listarArquivos(const string& prefixo);
+    
+    // Método para liberar a memoria do vector alocado
+    void liberarListaArquivos(vector<string>* vetor);
     
 private:
     ArquivoManager();
