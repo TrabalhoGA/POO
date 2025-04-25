@@ -14,6 +14,7 @@ TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo)
     isEnigma = false;
 	possuiTocha = false;
     possuiCorda = false;
+    testeSorteFalhou = false;
 }
 
 TelaPadrao::~TelaPadrao() 
@@ -441,6 +442,13 @@ void TelaPadrao::handleInput(unsigned int input) {
             int novaFase = stoi(acao.substr(separador + 1));
 
             if (novoDiretorio == "s") {
+                if (testeSorteFalhou) {
+                    // Não é possível testar a sorte novamente se já falhou
+                    cout << "Você já falhou no teste de sorte. Não pode tentar novamente." << endl;
+                    cout << "Pressione Enter para continuar..." << endl;
+                    cin.get();
+                    return;
+                }
                 testarSorte(novaFase);
                 return;
             }
@@ -523,7 +531,11 @@ void TelaPadrao::testarSorte(int avancoFase) {
         }
     } else {
         // Jogador perde -2 de energia
-        jogador->setEnergiaAtual(jogador->getEnergiaAtual() - 2);
+        testeSorteFalhou = true;
+        if (jogador->getEnergiaAtual() > 2) {
+            jogador->setEnergiaAtual(jogador->getEnergiaAtual() - 2);
+        }
+        
 		if (jogo->getDiretorioAtual() == "torre") {
 			// Se o jogador falhou na fase da torre, exibe o conteúdo do arquivo de falha
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + "_falha.txt");
@@ -538,14 +550,6 @@ void TelaPadrao::testarSorte(int avancoFase) {
 	cout << conteudo << endl;
     cin.get(); // Espera o usuário pressionar Enter antes de continuar
     jogo->limparTela();
-    if (jogador->getEnergiaAtual() <= 0) {
-        // Jogador perdeu toda a energia, exibe mensagem de derrota
-        cout << "Voce nao tem mais energia! Fim de jogo!" << endl;
-        cout << "Pressione Enter para voltar a tela inicial..." << endl;
-        cin.get(); // Espera o usuário pressionar Enter antes de continuar
-        jogo->mudarEstado(new TelaInicial(jogo)); // Retorna para a tela inicial
-        return;
-    }
 }
 
 void TelaPadrao::acaoTocha(bool possuiTocha) {
@@ -579,14 +583,12 @@ void TelaPadrao::acaoCorda(bool possuiCorda) {
         // Exibe o conteúdo do arquivo de vitória
         jogo->limparTela();
         cout << conteudo << endl;
-        cin.ignore();
         cin.get();
     }
     else {
         // Jogador não possui a tocha, exibe mensagem informando a ausência do item
         cout << "Você não possui uma corda no inventário!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
-        cin.ignore();
         cin.get();
     }
 }

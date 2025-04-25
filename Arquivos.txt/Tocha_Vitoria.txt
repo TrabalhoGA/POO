@@ -16,4 +16,4 @@ Sua tocha foi sua maior arma neste momento.
 
 Você sai ileso do confronto, pronto para seguir adiante.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.

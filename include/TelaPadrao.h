@@ -30,6 +30,7 @@ public:
 private:
 	Jogo* jogo;
 	bool isEnigma;
+	bool testeSorteFalhou;
 	bool possuiTocha;
 	bool possuiCorda;
 };
