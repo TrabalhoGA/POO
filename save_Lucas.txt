@@ -1,6 +1,0 @@
-caverna:4
-18,18,28,0,0,6,44
-Nenhuma
-Espada de Ferro,Aumenta sua chance de sucesso em combates físicos,0,0,8
-Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;
-Nenhuma

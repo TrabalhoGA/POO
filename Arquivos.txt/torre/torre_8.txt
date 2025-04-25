@@ -13,7 +13,7 @@ rompeu ata mesmo sua ultima resistencia.
 
 Voce cai de joelhos, o corpo marcado, a visao escurecendo…
 
-SPARDA: "Tolo… achou que poderia me deter?"
+SPARDA: "Tolo... achou que poderia me deter?"
 
 Com um gesto final, Sparda o consome em trevas eternas.
 
@@ -21,7 +21,7 @@ O mundo mergulha no caos.
 
 O mal venceu desta vez…
 
- GAME OVER 
+	GAME OVER 
 
 =========================================
 
