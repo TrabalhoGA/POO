@@ -14,6 +14,9 @@ TelaBatalha::TelaBatalha(Jogo* jogo): jogo(jogo){
     srand(static_cast<unsigned>(time(0))); // Inicializa o gerador de numeros aleatorios
     jogador = Personagem::getInstance(); // Obtém a instância do jogador
     inicializarMonstro(); // Inicializa o monstro
+
+	jogadorDefendendo = false; // Inicializa o estado de defesa do jogador
+	monstroDefendendo = false; // Inicializa o estado de defesa do monstro
 }
 
 TelaBatalha::~TelaBatalha() {}
@@ -100,6 +103,10 @@ void TelaBatalha::atacar() {
     int dano = habilidadeJogador - resistenciaMonstro;
     if (dano < 0) dano = 0;
 
+    if (monstroDefendendo == true) {
+        dano = static_cast<int>(dano * 2.0 / 3.0); // Reduz para dois terços
+    }
+
     monstro->setEnergia(monstro->getEnergia() - dano);
 
     jogo->limparTela();
@@ -112,8 +119,8 @@ void TelaBatalha::atacar() {
 }
 
 void TelaBatalha::defender() {
-    Personagem* jogador = Personagem::getInstance();
-    jogador->setResistencia(jogador->getResistencia() + 2);
+	jogadorDefendendo = true; // O jogador está se defendendo
+
     jogo->limparTela();
     cout << "Voce se defendeu! Sua resistencia aumentou temporariamente." << endl;
     cout << "Pressione Enter para continuar..." << endl;
@@ -191,6 +198,11 @@ void TelaBatalha::acaoMonstro() {
         int dano = habilidadeMonstro - resistenciaJogador; // removi tambem o bonus da armadura
         if (dano < 0) dano = 0;
 
+        // Reduz o dano se o jogador estiver defendendo
+        if (jogadorDefendendo == true) {
+            dano = static_cast<int>(dano * 2.0 / 3.0); // Reduz para dois terços
+        }
+
         jogador->setEnergiaAtual(jogador->getEnergiaAtual() - dano);
 
         cout << monstro->getNome() << " atacou voce causando " << dano << " de dano!" << endl;
@@ -203,7 +215,7 @@ void TelaBatalha::acaoMonstro() {
         }
     }
     else {
-        monstro->setResistencia(monstro->getResistencia() + 1);
+		monstroDefendendo = true; // O monstro está se defendendo
         cout << monstro->getNome() << " se defendeu! Sua resistencia aumentou temporariamente." << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
