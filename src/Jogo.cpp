@@ -59,6 +59,14 @@ void Jogo::mudarEstado(TelaEstado* novoEstado) {
     estadoAtual = novoEstado; // Define o novo estado
 }
 
+void Jogo::setNomeSave(const string& nome) {
+    nomeSave = nome;
+}
+
+string Jogo::getNomeSave() const {
+    return nomeSave;
+}
+
 void Jogo::setDiretorioAtual(const string& diretorio) {
     diretorioAtual = diretorio;
 }
@@ -170,11 +178,11 @@ void Jogo::salvarJogo() {
 		reliquias;
 
 	// Salvar os dados no arquivo
-	ArquivoManager::getInstance()->escreverArquivo("save.txt", dadosSalvar);
+	ArquivoManager::getInstance()->escreverArquivo(getNomeSave(), dadosSalvar);
 }
 
 void Jogo::excluirSave() {
-    remove("save.txt");
+    remove(getNomeSave().c_str());
 }
 
 bool Jogo::sairJogo() {

@@ -4,6 +4,7 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
     string lerArquivoHistoria(const string& caminho);
     string lerOpcoesHistoria(const string& caminho);
     void escreverArquivo(const string& caminho, const string& conteudo);
+    vector<string> listarArquivos(const string& prefixo);
     
 private:
     ArquivoManager();

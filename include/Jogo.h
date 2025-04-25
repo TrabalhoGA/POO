@@ -28,6 +28,9 @@ public:
 
 	TelaEstado* getEstadoAtual() const;
 
+	void setNomeSave(const string& nome);
+	string getNomeSave() const;
+
 	int getFaseAtual() const;
 	void setFaseAtual(int fase);
 	void avancarFase(int incremento = 1);
@@ -48,6 +51,9 @@ private:
 	static Jogo* instance;
 	
 	TelaEstado* estadoAtual;
+
+	// Nome do arquivo de save
+	string nomeSave;
 
 	// Diretório atual
 	string diretorioAtual;

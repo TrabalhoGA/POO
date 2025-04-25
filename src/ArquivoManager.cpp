@@ -1,6 +1,17 @@
 #include "../include/ArquivoManager.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <dirent.h>
+    #include <sys/stat.h>
+#endif
 
 using namespace std;
 
@@ -89,4 +100,50 @@ void ArquivoManager::escreverArquivo(const string& caminho, const string& conteu
             return;
         }
     }
+}
+
+vector<string> ArquivoManager::listarArquivos(const string& prefixo) {
+    vector<string> arquivos;
+    
+#ifdef _WIN32
+    // Implementação para Windows
+    WIN32_FIND_DATAA findFileData; // Usando a versão ANSI da estrutura
+    string searchPattern = "*.*";
+    HANDLE hFind = FindFirstFileA(searchPattern.c_str(), &findFileData);
+    
+    if (hFind != INVALID_HANDLE_VALUE) {
+        do {
+            // Verificar se é um arquivo (não diretório)
+            if (!(findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+                string nomeArquivo = findFileData.cFileName; // cFileName já é char[] na versão ANSI
+                // Verificar se o arquivo começa com o prefixo especificado
+                if (nomeArquivo.find(prefixo) == 0) {
+                    arquivos.push_back(nomeArquivo);
+                }
+            }
+        } while (FindNextFileA(hFind, &findFileData) != 0);
+        FindClose(hFind);
+    }
+#else
+    // Implementação para sistemas Unix/Linux
+    DIR* dir = opendir(".");
+    if (dir != NULL) {
+        struct dirent* entrada;
+        while ((entrada = readdir(dir)) != NULL) {
+            string nomeArquivo = entrada->d_name;
+            
+            // Verificar se é um arquivo regular
+            struct stat st;
+            if (stat(nomeArquivo.c_str(), &st) == 0 && S_ISREG(st.st_mode)) {
+                // Verificar se o arquivo começa com o prefixo especificado
+                if (nomeArquivo.find(prefixo) == 0) {
+                    arquivos.push_back(nomeArquivo);
+                }
+            }
+        }
+        closedir(dir);
+    }
+#endif
+
+    return arquivos;
 }

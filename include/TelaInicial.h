@@ -17,7 +17,8 @@ public:
 
 	void exibirCreditos();
     void carregarJogo();
-
+	void novoJogo();
+	void escolherSave();
 private:
 	Jogo* jogo;
 };

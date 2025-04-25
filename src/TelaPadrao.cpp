@@ -76,7 +76,7 @@ void TelaPadrao::exibirTela() {
             cin.get();
             jogo->excluirSave();
 			jogo->mudarEstado(new TelaInicial(jogo));
-            // Corrigindo o putback para inserir caracteres individualmente
+            // Seleciona a opcao 3 da tela inicial (creditos)
             cin.putback('\n');
             cin.putback('3');
             return;
@@ -553,7 +553,10 @@ void TelaPadrao::testarSorte(int avancoFase) {
             if (faseAtual == 5) {
                 jogo->avancarFase(avancoFase);
             }
-		}
+		} else if (jogo->getDiretorioAtual() == "floresta" && faseAtual == 4) {
+            // Se o jogador falhou na fase da floresta 4, avança mesmo assim
+            jogo->avancarFase(avancoFase);
+        }
 		else {
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
 		}

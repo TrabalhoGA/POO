@@ -3,6 +3,7 @@
 #include "../include/ArquivoManager.h"
 #include "../include/Personagem.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -37,13 +38,10 @@ void TelaInicial::exibirTela() {
 void TelaInicial::handleInput(unsigned int input) {
     switch (input) {
         case 1: // Carregar jogo
-            carregarJogo();
+            escolherSave();
             break;
         case 2: // Novo jogo
-            // Define o arquivo inicial para um novo jogo
-            jogo->setDiretorioAtual("inicio");
-            jogo->setFaseAtual(1);
-            jogo->mudarEstado(new TelaPadrao(jogo));
+            novoJogo();
             break;
         case 3: // Créditos
             exibirCreditos();
@@ -53,7 +51,7 @@ void TelaInicial::handleInput(unsigned int input) {
             jogo->setSairJogo(true);
             break;
         default:
-            cout << "Opção inválida. Tente novamente.\n";
+            cout << "Opcao inválida. Tente novamente.\n";
             break;
     }
 }
@@ -70,7 +68,7 @@ void TelaInicial::exibirCreditos() {
 void TelaInicial::carregarJogo() {
     // Instanciar o arquivo manager e ler o arquivo de save
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string save = arquivoManager->lerArquivo("save.txt");
+    string save = arquivoManager->lerArquivo(jogo->getNomeSave());
     if (save.empty()) {
         cout << "Nenhum jogo salvo encontrado! Pressione Enter para continuar.\n";
         cin.get(); 
@@ -265,4 +263,89 @@ void TelaInicial::carregarJogo() {
     cin.get();
     
     return;
+}
+
+void TelaInicial::novoJogo() {
+    // Limpar a tela
+    jogo->limparTela();
+
+    // Obter o nome do personagem
+    string nome;
+    cout << "Bem-vindo ao novo jogo!\n";
+    cout << "Por favor, digite o nome do seu personagem (sem espacos ou caracteres especiais):\n";
+    cout << "Nome: ";
+    cin >> nome;
+    cin.ignore(); // Limpar o buffer de entrada
+
+    // Substituir espaços por underscores, se houver
+    // (não deve haver espaços, mas é uma precaução)
+    for (char& c : nome) {
+        if (c == ' ') {
+            c = '_';
+        }
+    }
+
+    // Remover caracteres especiais
+    nome.erase(remove_if(nome.begin(), nome.end(), [](char c) {
+        return !isalnum(c) && c != '_';
+    }), nome.end());
+
+    jogo->setNomeSave("save_" + nome + ".txt");
+    jogo->setDiretorioAtual("inicio");
+    jogo->setFaseAtual(1);
+    jogo->mudarEstado(new TelaPadrao(jogo));
+}
+
+void TelaInicial::escolherSave(){
+    jogo->limparTela();
+    // Obter todos os arquivos que comecem com "save_" no diretório atual
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    vector<string> saves = arquivoManager->listarArquivos("save_");
+    
+    // Verificar se existem saves disponíveis
+    if (saves.empty()) {
+        cout << "Nenhum arquivo de save encontrado!" << endl;
+        cout << "Pressione Enter para voltar ao menu principal..." << endl;
+        cin.get();
+        return;
+    }
+
+    // Exibir a lista de saves disponíveis
+    cout << "    Saves disponíveis:" << endl;
+    cout << "----------------------------" << endl;
+    
+    for (int i = 0; i < saves.size(); i++) {
+        // Extrair apenas o nome do personagem removendo "save_" e ".txt"
+        string nome = saves[i];
+        nome = nome.substr(5); // Remove "save_" (5 caracteres)
+        nome = nome.substr(0, nome.length() - 4); // Remove ".txt" (4 caracteres)
+        cout << i + 1 << ". " << nome << endl;
+    }
+    
+    cout << endl << "0. Voltar ao menu principal" << endl;
+    cout << "----------------------------" << endl;
+    cout << "Escolha um save (1-" << saves.size() << ") ou 0 para voltar: ";
+    
+    // Obter a escolha do usuário
+    int escolha;
+    cin >> escolha;
+    cin.ignore(); // Limpar o buffer de entrada
+    
+    // Verificar a escolha
+    if (escolha == 0) {
+        // Voltar ao menu principal
+        return;
+    }
+    else if (escolha >= 1 && escolha <= saves.size()) {
+        // Definir o nome do arquivo de save selecionado
+        jogo->setNomeSave(saves[escolha - 1]);
+    }
+    else {
+        // Escolha inválida
+        cout << "Escolha inválida!" << endl;
+        cout << "Pressione Enter para tentar novamente..." << endl;
+        cin.get();
+        escolherSave(); // Chamar a função novamente para tentar de novo
+    }
+    carregarJogo();
 }
