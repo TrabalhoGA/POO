@@ -10,4 +10,4 @@ Sua corda foi sua maior aliada neste momento.
 
 Você sai ileso do desafio, pronto para seguir adiante.
 
-Digite 1 para continuar.
+Digite ENTER para continuar.
