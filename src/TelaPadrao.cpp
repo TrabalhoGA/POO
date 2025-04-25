@@ -413,7 +413,6 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
     
     cout << "\nCompras finalizadas! Você tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
     cout << "Pressione Enter para continuar sua jornada..." << endl;
-    cin.ignore();
     cin.get();
     
     // Avançar para a próxima fase
@@ -431,22 +430,22 @@ void TelaPadrao::handleInput(unsigned int input) {
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string opcoesNavegacao = arquivoManager->lerOpcoesHistoria(caminhoArquivo);
     
-    // Analisar as opções de navegação
-    vector<string> acoes;
+    // Analisar as opções de navegação - Alocação dinâmica do vetor
+    vector<string>* acoes = new vector<string>();
     size_t pos = 0;
     string token;
     while ((pos = opcoesNavegacao.find(';')) != string::npos) {
         token = opcoesNavegacao.substr(0, pos);
-        acoes.push_back(token);
+        acoes->push_back(token);
         opcoesNavegacao.erase(0, pos + 1);
     }
     
     // Verificar se a opção selecionada pelo usuário é válida
-    if (input > 0 && input <= acoes.size()) {
-        string acao = acoes[input-1];
+    if (input > 0 && input <= acoes->size()) {
+        string acao = (*acoes)[input-1];
         
         // Verificar se é uma mudança de diretório e fase (formato "diretorio:fase")
-        size_t separador = acao.find(':');
+        size_t separador = acao.find(':'); 
         if (separador != string::npos) {
             string novoDiretorio = acao.substr(0, separador);
             int novaFase = stoi(acao.substr(separador + 1));
@@ -457,9 +456,11 @@ void TelaPadrao::handleInput(unsigned int input) {
                     cout << "Você já falhou no teste de sorte. Não pode tentar novamente." << endl;
                     cout << "Pressione Enter para continuar..." << endl;
                     cin.get();
+                    delete acoes; // Liberar memória alocada
                     return;
                 }
                 testarSorte(novaFase);
+                delete acoes; // Liberar memória alocada
                 return;
             }
             
@@ -470,14 +471,17 @@ void TelaPadrao::handleInput(unsigned int input) {
         else if (acao == "e"){ // Verifica se a próxima fase é um enigma
             setTelaEnigma(true); 
             jogo->setFaseAtual(faseAtual + 1);
+            delete acoes; // Liberar memória alocada
             return;
         }
         else if (acao == "t") { // Verifica se a próxima fase é um teste de tocha
             acaoTocha(possuiTocha);
+            delete acoes; // Liberar memória alocada
             return;
         }
         else if (acao == "c") { // Verifica se a próxima fase é um teste de corda
             acaoCorda(possuiCorda);
+            delete acoes; // Liberar memória alocada
             return;
         }
         else {
@@ -494,6 +498,7 @@ void TelaPadrao::handleInput(unsigned int input) {
                 if (!incremento) {
                     jogo->excluirSave(); // Excluir o save se o jogador falhar no enigma
                     jogo->mudarEstado(new TelaInicial(jogo));
+                    delete acoes; // Liberar memória alocada
                     return; 
                 }
                 setTelaEnigma(false); // Resetar o estado de tela de enigma
@@ -508,8 +513,11 @@ void TelaPadrao::handleInput(unsigned int input) {
         }
     }
     else {
+        delete acoes; // Liberar memória alocada
         return; // Opção inválida, não faz nada
     }
+
+    delete acoes; // Liberar memória alocada
 }
 
 bool TelaPadrao::isTelaEnigma() const {

@@ -17,14 +17,44 @@ Personagem::Personagem()
     moedas_de_ouro = 0;
     armadura = nullptr;
     arma = nullptr;
-    provisoes = nullptr;
-    reliquias_magicas = nullptr;
+    
+    // Alocação dinâmica dos vetores
+    provisoes = new vector<Provisao*>();
+    reliquias_magicas = new vector<ReliquiaMagica*>();
 }
 
 Personagem::~Personagem()
 {
-    if (provisoes) delete provisoes;
-    if (reliquias_magicas) delete reliquias_magicas;
+    if (provisoes) {
+        // Liberar cada provisão individualmente
+        for (Provisao* p : *provisoes) {
+            delete p;
+        }
+        provisoes->clear();
+        delete provisoes;
+        provisoes = nullptr;
+    }
+    
+    if (reliquias_magicas) {
+        // Liberar cada relíquia individualmente
+        for (ReliquiaMagica* r : *reliquias_magicas) {
+            delete r;
+        }
+        reliquias_magicas->clear();
+        delete reliquias_magicas;
+        reliquias_magicas = nullptr;
+    }
+    
+    // Liberar arma e armadura se existirem
+    if (arma) {
+        delete arma;
+        arma = nullptr;
+    }
+    
+    if (armadura) {
+        delete armadura;
+        armadura = nullptr;
+    }
 }
 
 // Implementação do método Singleton para obter a instância
@@ -209,7 +239,10 @@ void Personagem::usarProvisao(Provisao* provisao)
 
 vector<Provisao*> Personagem::getProvisoes()
 {
-    if (!provisoes) return vector<Provisao*>();
+    if (!provisoes) {
+        // Se o vetor ainda não foi alocado, alocar agora
+        provisoes = new vector<Provisao*>();
+    }
     return *provisoes;
 }
 
@@ -242,6 +275,9 @@ void Personagem::removerReliquiaMagica(ReliquiaMagica* reliquia)
 
 vector<ReliquiaMagica*> Personagem::getReliquiasMagicas()
 {
-    if (!reliquias_magicas) return vector<ReliquiaMagica*>();
+    if (!reliquias_magicas) {
+        // Se o vetor ainda não foi alocado, alocar agora
+        reliquias_magicas = new vector<ReliquiaMagica*>();
+    }
     return *reliquias_magicas;
 }

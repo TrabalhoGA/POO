@@ -76,18 +76,18 @@ void TelaInicial::carregarJogo() {
     }
 
     // Dividir o conteúdo do arquivo por linhas
-    vector<string> linhas;
+    vector<string>* linhas = new vector<string>();
     size_t pos = 0;
     string linha;
     while ((pos = save.find("\n")) != string::npos) {
         linha = save.substr(0, pos);
-        linhas.push_back(linha);
+        linhas->push_back(linha);
         save.erase(0, pos + 1);
     }
-    linhas.push_back(save); // Adiciona a última linha
+    linhas->push_back(save); // Adiciona a última linha
     
     // Definir diretório atual e fase atual com base na primeira linha do arquivo
-    string diretorioFase = linhas[0];
+    string diretorioFase = (*linhas)[0];
     size_t separador = diretorioFase.find(":");
     if (separador != string::npos) {
         string diretorio = diretorioFase.substr(0, separador);
@@ -98,164 +98,190 @@ void TelaInicial::carregarJogo() {
     }
     
     // Setar os atributos e itens do personagem com base na segunda linha do arquivo
-    if (linhas.size() > 1) {
-        string atributos = linhas[1];
-        vector<string> atributosArray;
+    if (linhas->size() > 1) {
+        string atributos = (*linhas)[1];
+        vector<string>* atributosArray = new vector<string>();
         
         // Dividir a string de atributos por vírgulas
         size_t pos_attr = 0;
         string attr;
         while ((pos_attr = atributos.find(",")) != string::npos) {
             attr = atributos.substr(0, pos_attr);
-            atributosArray.push_back(attr);
+            atributosArray->push_back(attr);
             atributos.erase(0, pos_attr + 1);
         }
-        atributosArray.push_back(atributos);
+        atributosArray->push_back(atributos);
         
         // Criar ou obter a instância do personagem
         Personagem* p = Personagem::getInstance();
-        p->setMaxEnergia(stoi(atributosArray[0]));
-        p->setEnergiaAtual(stoi(atributosArray[1])); 
-        p->setHabilidade(stoi(atributosArray[2]));
-        p->setResistencia(stoi(atributosArray[3]));
-        p->setMagia(stoi(atributosArray[4]));
-        p->setSorte(stoi(atributosArray[5]));
-        p->setMoedasDeOuro(stoi(atributosArray[6]));
+        p->setMaxEnergia(stoi((*atributosArray)[0]));
+        p->setEnergiaAtual(stoi((*atributosArray)[1])); 
+        p->setHabilidade(stoi((*atributosArray)[2]));
+        p->setResistencia(stoi((*atributosArray)[3]));
+        p->setMagia(stoi((*atributosArray)[4]));
+        p->setSorte(stoi((*atributosArray)[5]));
+        p->setMoedasDeOuro(stoi((*atributosArray)[6]));
         
         // Processar armadura com base na terceira linha do arquivo
-        if (linhas.size() > 2 && linhas[2] != "Nenhuma") {
-            vector<string> armaduraInfo;
-            string armaduraStr = linhas[2];
+        if (linhas->size() > 2 && (*linhas)[2] != "Nenhuma") {
+            vector<string>* armaduraInfo = new vector<string>();
+            string armaduraStr = (*linhas)[2];
             
             // Dividir a string de armadura por vírgulas
             pos_attr = 0;
             while ((pos_attr = armaduraStr.find(",")) != string::npos) {
                 attr = armaduraStr.substr(0, pos_attr);
-                armaduraInfo.push_back(attr);
+                armaduraInfo->push_back(attr);
                 armaduraStr.erase(0, pos_attr + 1);
             }
-            armaduraInfo.push_back(armaduraStr);
+            armaduraInfo->push_back(armaduraStr);
             
-            if (armaduraInfo.size() >= 5) {
+            if (armaduraInfo->size() >= 5) {
                 Armadura* armadura = new Armadura(
-                    armaduraInfo[0], // nome
-                    armaduraInfo[1], // descrição
-                    stoi(armaduraInfo[2]), // habilidade mínima
-                    stoi(armaduraInfo[3]), // resistência mínima
-                    stoi(armaduraInfo[4])  // buff resistência
+                    (*armaduraInfo)[0], // nome
+                    (*armaduraInfo)[1], // descrição
+                    stoi((*armaduraInfo)[2]), // habilidade mínima
+                    stoi((*armaduraInfo)[3]), // resistência mínima
+                    stoi((*armaduraInfo)[4])  // buff resistência
                 );
                 p->equiparArmadura(armadura);
             }
+            
+            // Liberar memória do vetor
+            delete armaduraInfo;
         }
         
         // Processar arma com base na quarta linha do arquivo
-        if (linhas.size() > 3 && linhas[3] != "Nenhuma") {
-            vector<string> armaInfo;
-            string armaStr = linhas[3];
+        if (linhas->size() > 3 && (*linhas)[3] != "Nenhuma") {
+            vector<string>* armaInfo = new vector<string>();
+            string armaStr = (*linhas)[3];
             
             // Dividir a string de arma por vírgulas
             pos_attr = 0;
             while ((pos_attr = armaStr.find(",")) != string::npos) {
                 attr = armaStr.substr(0, pos_attr);
-                armaInfo.push_back(attr);
+                armaInfo->push_back(attr);
                 armaStr.erase(0, pos_attr + 1);
             }
-            armaInfo.push_back(armaStr);
+            armaInfo->push_back(armaStr);
             
-            if (armaInfo.size() >= 5) {
+            if (armaInfo->size() >= 5) {
                 Arma* arma = new Arma(
-                    armaInfo[0], // nome
-                    armaInfo[1], // descrição
-                    stoi(armaInfo[2]), // habilidade mínima
-                    stoi(armaInfo[3]), // resistência mínima
-                    stoi(armaInfo[4])  // buff habilidade
+                    (*armaInfo)[0], // nome
+                    (*armaInfo)[1], // descrição
+                    stoi((*armaInfo)[2]), // habilidade mínima
+                    stoi((*armaInfo)[3]), // resistência mínima
+                    stoi((*armaInfo)[4])  // buff habilidade
                 );
                 p->equiparArma(arma);
             }
+            
+            // Liberar memória do vetor
+            delete armaInfo;
         }
         
         // Processar provisões com base na quinta linha do arquivo
-        if (linhas.size() > 4 && linhas[4] != "Nenhuma") {
-            string provisoesStr = linhas[4];
-            vector<string> provisoesArray;
+        if (linhas->size() > 4 && (*linhas)[4] != "Nenhuma") {
+            string provisoesStr = (*linhas)[4];
+            vector<string>* provisoesArray = new vector<string>();
             
             // Dividir a string de provisões por ponto e vírgula (cada provisão)
             size_t pos_prov = 0;
             string provisao;
             while ((pos_prov = provisoesStr.find(";")) != string::npos) {
                 provisao = provisoesStr.substr(0, pos_prov);
-                provisoesArray.push_back(provisao);
+                provisoesArray->push_back(provisao);
                 provisoesStr.erase(0, pos_prov + 1);
             }
             
             // Processar cada provisão
-            for (string provStr : provisoesArray) {
-                vector<string> provInfo;
+            for (int i = 0; i < provisoesArray->size(); i++) {
+                string provStr = (*provisoesArray)[i];
+                vector<string>* provInfo = new vector<string>();
                 
                 // Dividir a string de provisão por vírgulas
                 pos_attr = 0;
                 while ((pos_attr = provStr.find(",")) != string::npos) {
                     attr = provStr.substr(0, pos_attr);
-                    provInfo.push_back(attr);
+                    provInfo->push_back(attr);
                     provStr.erase(0, pos_attr + 1);
                 }
-                provInfo.push_back(provStr);
+                provInfo->push_back(provStr);
                 
-                if (provInfo.size() >= 4) {
+                if (provInfo->size() >= 4) {
                     Provisao* prov = new Provisao(
-                        provInfo[0], // nome
-                        provInfo[1], // descrição
-                        stoi(provInfo[2]), // magia mínima
-                        stoi(provInfo[3])  // bonus energia
+                        (*provInfo)[0], // nome
+                        (*provInfo)[1], // descrição
+                        stoi((*provInfo)[2]), // magia mínima
+                        stoi((*provInfo)[3])  // bonus energia
                     );
                     p->adicionarProvisao(prov);
                 }
+                
+                // Liberar memória do vetor
+                delete provInfo;
             }
+            
+            // Liberar memória do vetor
+            delete provisoesArray;
         }
         
         // Processar relíquias mágicas com base na sexta linha do arquivo
-        if (linhas.size() > 5 && linhas[5] != "Nenhuma") {
-            string reliquiasStr = linhas[5];
-            vector<string> reliquiasArray;
+        if (linhas->size() > 5 && (*linhas)[5] != "Nenhuma") {
+            string reliquiasStr = (*linhas)[5];
+            vector<string>* reliquiasArray = new vector<string>();
             
             // Dividir a string de relíquias por ponto e vírgula (cada relíquia)
             size_t pos_rel = 0;
             string reliquia;
             while ((pos_rel = reliquiasStr.find(";")) != string::npos) {
                 reliquia = reliquiasStr.substr(0, pos_rel);
-                reliquiasArray.push_back(reliquia);
+                reliquiasArray->push_back(reliquia);
                 reliquiasStr.erase(0, pos_rel + 1);
             }
             
             // Processar cada relíquia
-            for (string relStr : reliquiasArray) {
-                vector<string> relInfo;
+            for (int i = 0; i < reliquiasArray->size(); i++) {
+                string relStr = (*reliquiasArray)[i];
+                vector<string>* relInfo = new vector<string>();
                 
                 // Dividir a string de relíquia por vírgulas
                 pos_attr = 0;
                 while ((pos_attr = relStr.find(",")) != string::npos) {
                     attr = relStr.substr(0, pos_attr);
-                    relInfo.push_back(attr);
+                    relInfo->push_back(attr);
                     relStr.erase(0, pos_attr + 1);
                 }
-                relInfo.push_back(relStr);
+                relInfo->push_back(relStr);
                 
-                if (relInfo.size() >= 4) {
+                if (relInfo->size() >= 4) {
                     ReliquiaMagica* rel = new ReliquiaMagica(
-                        relInfo[0], // nome
-                        relInfo[1], // descrição
-                        stoi(relInfo[2]) // magia mínima
+                        (*relInfo)[0], // nome
+                        (*relInfo)[1], // descrição
+                        stoi((*relInfo)[2]) // magia mínima
                     );
-                    rel->setBuffEnergia(stoi(relInfo[3])); // buff energia
-                    rel->setBuffHabilidade(stoi(relInfo[4])); // buff habilidade
-                    rel->setBuffResistencia(stoi(relInfo[5])); // buff resistência
-                    rel->setBuffMagia(stoi(relInfo[6])); // buff magia
-                    rel->setBuffSorte(stoi(relInfo[7])); // buff sorte
+                    rel->setBuffEnergia(stoi((*relInfo)[3])); // buff energia
+                    rel->setBuffHabilidade(stoi((*relInfo)[4])); // buff habilidade
+                    rel->setBuffResistencia(stoi((*relInfo)[5])); // buff resistência
+                    rel->setBuffMagia(stoi((*relInfo)[6])); // buff magia
+                    rel->setBuffSorte(stoi((*relInfo)[7])); // buff sorte
                     p->adicionarReliquiaMagica(rel);
                 }
+                
+                // Liberar memória do vetor
+                delete relInfo;
             }
+            
+            // Liberar memória do vetor
+            delete reliquiasArray;
         }
+        
+        // Liberar memória do vetor
+        delete atributosArray;
     }
+    
+    // Liberar memória do vetor
+    delete linhas;
 
     // Mudar o estado do jogo para a tela padrão
     jogo->mudarEstado(new TelaPadrao(jogo));
@@ -300,13 +326,14 @@ void TelaInicial::escolherSave(){
     jogo->limparTela();
     // Obter todos os arquivos que comecem com "save_" no diretório atual
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    vector<string> saves = arquivoManager->listarArquivos("save_");
+    vector<string>* saves = arquivoManager->listarArquivos("save_");
     
     // Verificar se existem saves disponíveis
-    if (saves.empty()) {
+    if (saves->empty()) {
         cout << "Nenhum arquivo de save encontrado!" << endl;
         cout << "Pressione Enter para voltar ao menu principal..." << endl;
         cin.get();
+        arquivoManager->liberarListaArquivos(saves); // Liberar a memória alocada para o vector
         return;
     }
 
@@ -314,9 +341,9 @@ void TelaInicial::escolherSave(){
     cout << "    Saves disponíveis:" << endl;
     cout << "----------------------------" << endl;
     
-    for (int i = 0; i < saves.size(); i++) {
+    for (int i = 0; i < saves->size(); i++) {
         // Extrair apenas o nome do personagem removendo "save_" e ".txt"
-        string nome = saves[i];
+        string nome = (*saves)[i];
         nome = nome.substr(5); // Remove "save_" (5 caracteres)
         nome = nome.substr(0, nome.length() - 4); // Remove ".txt" (4 caracteres)
         cout << i + 1 << ". " << nome << endl;
@@ -324,7 +351,7 @@ void TelaInicial::escolherSave(){
     
     cout << endl << "0. Voltar ao menu principal" << endl;
     cout << "----------------------------" << endl;
-    cout << "Escolha um save (1-" << saves.size() << ") ou 0 para voltar: ";
+    cout << "Escolha um save (1-" << saves->size() << ") ou 0 para voltar: ";
     
     // Obter a escolha do usuário
     int escolha;
@@ -334,18 +361,22 @@ void TelaInicial::escolherSave(){
     // Verificar a escolha
     if (escolha == 0) {
         // Voltar ao menu principal
+        arquivoManager->liberarListaArquivos(saves); // Liberar a memória alocada para o vector
         return;
     }
-    else if (escolha >= 1 && escolha <= saves.size()) {
+    else if (escolha >= 1 && escolha <= saves->size()) {
         // Definir o nome do arquivo de save selecionado
-        jogo->setNomeSave(saves[escolha - 1]);
+        jogo->setNomeSave((*saves)[escolha - 1]);
+        arquivoManager->liberarListaArquivos(saves); // Liberar a memória alocada para o vector
     }
     else {
         // Escolha inválida
         cout << "Escolha inválida!" << endl;
         cout << "Pressione Enter para tentar novamente..." << endl;
         cin.get();
+        arquivoManager->liberarListaArquivos(saves); // Liberar a memória alocada para o vector
         escolherSave(); // Chamar a função novamente para tentar de novo
+        return;
     }
     carregarJogo();
 }
