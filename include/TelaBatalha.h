@@ -33,6 +33,9 @@ private:
 	Monstro* monstro;
 	string diretorioDestino;
 	int faseDestino;
+
+	bool jogadorDefendendo;
+	bool monstroDefendendo;
 };
 
 #endif // TELABATALHA_H
