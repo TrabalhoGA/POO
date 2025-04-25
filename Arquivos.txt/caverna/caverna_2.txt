@@ -6,12 +6,12 @@
 Voce se depara com uma imensa porta de pedra, selada ha seculos.
 
 No centro, ha uma inscricao em lingua antiga, que brilha
-com uma luz suave conforme você se aproxima.
+com uma luz suave conforme voce se aproxima.
 
-Abaixo da inscricao, tres simbolos e um espaço onde algo
-deve ser inserido — um mecanismo de seleção se revela.
+Abaixo da inscricao, tres simbolos e um espaco onde algo
+deve ser inserido — um mecanismo de selecao se revela.
 
-A inscrição diz:
+A inscricao diz:
 
    "Tres irmaos nasceram sob a luz da lua:
     Um brilha na escuridao,
@@ -20,7 +20,7 @@ A inscrição diz:
 
     Qual deles guarda o caminho das sombras?"
 
-Você tem as seguintes opções para responder ao enigma:
+Voce tem as seguintes opcoes para responder ao enigma:
 
 1 - A estrela   
 2 - A vela  

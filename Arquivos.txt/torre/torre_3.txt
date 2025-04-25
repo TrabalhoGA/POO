@@ -3,13 +3,13 @@ batalha:5;s:1;
       O GUARDIAO DA ENTRADA
 =========================================
 
-Voce empurra com esforço as portas pesadas da Torre de Sparda.
+Voce empurra com esforco as portas pesadas da Torre de Sparda.
 O ar e denso, carregado de poeira antiga e magia.
 
 Logo ao atravessar o salao principal, um rosnado ecoa pelo ambiente.
 
 Diante de voce, acorrentado em frente a escadaria, esta um
-imenso cao de tres cabeças — o temido Cerberus.
+imenso cao de tres cabecas — o temido Cerberus.
 
 As tres bocas babam e rosnam de forma independente, e seus olhos
 brilham com furia.

@@ -1,5 +1,5 @@
 =========================================
-              MERCADO INICIAL
+            MERCADO INICIAL
 =========================================
 
 Antes de partir rumo a Torre de Sparda, voce visita uma velha tenda
@@ -14,7 +14,7 @@ Itens disponiveis:
    (Aumenta sua chance de sucesso em combates fisicos)
    Limite: 1
 
-2 - Varinha de Feitiços .......... 20 ouro
+2 - Varinha de Feiticos .......... 20 ouro
    (Pode ser usada em situacoes magicas e contra inimigos arcanos)
    Limite: 1
 
@@ -31,13 +31,13 @@ Itens disponiveis:
 6 - Frasco de Energia ................. 5 ouro
    (Recupera parte da sua energia)
 
-Você tem 50 OURO.
+Voce tem 50 OURO.
 
 Digite o numero do item que deseja comprar seguido da quantidade.
 Exemplo: 1 1 (Espada de Ferro, 1 unidade)
 
 Digite "FIM" para encerrar as compras.
 
-Itens comprados serao levados com você durante toda a aventura.
+Itens comprados serao levados com voce durante toda a aventura.
 
 =========================================

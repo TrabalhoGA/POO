@@ -1,6 +1,6 @@
 batalha:6;s:1;
 =========================================
-     - A SALA DOS ESPELHOS
+         A SALA DOS ESPELHOS
 =========================================
 
 Voce sobe as escadas e entra em um corredor estreito, iluminado
@@ -13,9 +13,9 @@ Subitamente, um dos espelhos brilha intensamente e revela algo
 terrivel: uma versao distorcida de si mesmo.
 
 Olhos negros, sorriso maligno, aura corrompida…  
-Sparda usou seu poder para criar uma **versão sombria do seu coracao**.
+Sparda usou seu poder para criar uma **versao sombria do seu coracao**.
 
-Voce esta diante da Sombra do Herói.
+Voce esta diante da Sombra do Heroi.
 
 Mas entao, você percebe algo…  
 Todos os espelhos vibram com a mesma energia maligna.

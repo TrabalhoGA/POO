@@ -1,18 +1,18 @@
 1;
 =========================================
-               INTRODUÇÃO
+               INTRODUCAO
 =========================================
 
 Voce e um aventureiro solitario, conhecido apenas por feitos corajosos e por sobreviver a perigos que muitos sequer ousam imaginar.
 
 Durante anos, voce perseguiu lendas, mapas e rumores sobre uma figura sombria que habita o topo da Montanha Negra: o demonio Sparda.
 
-Dizem que Sparda planeja realizar um ritual proibido capaz de quebrar o véu entre os mundos e libertar horrores antigos sobre a terra.
+Dizem que Sparda planeja realizar um ritual proibido capaz de quebrar o veu entre os mundos e libertar horrores antigos sobre a terra.
 
 Sua missao e clara:
 Derrotar Sparda e impedir que ele conclua seu ritual.
 
-Voce está prestes a iniciar uma jornada onde cada decisao pode significar
+Voce esta prestes a iniciar uma jornada onde cada decisao pode significar
 vida ou morte. Escolha com sabedoria, aventureiro.
 
 Digite 1 para continuar...

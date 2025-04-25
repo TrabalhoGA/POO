@@ -2,7 +2,7 @@
      SALA DOS ESPELHOS - FALHA
 =========================================
 
-Voce pega uma pedra do chao e a arremessa com toda a força, tentando acertar um dos espelhos.
+Voce pega uma pedra do chao e a arremessa com toda a forca, tentando acertar um dos espelhos.
 Mas, no impulso, seu pe escorrega nos cacos espalhados pelo chao.
 
 Desequilibrado, voce cai e acaba se cortando nos estilhacos afiados.
@@ -11,6 +11,6 @@ A dor e imediata, e o sangue mancha o piso frio da sala.
 A Sombra do Heroi observa em silencio, quase se divertindo com seu tropeco.
 
 Voce perdeu 2 pontos de Energia.
-O fracasso pesa em seus ombros, e as feridas servirão de lembrete para ser mais cuidadoso.
+O fracasso pesa em seus ombros, e as feridas servirao de lembrete para ser mais cuidadoso.
 
 Digite ENTER para continuar.

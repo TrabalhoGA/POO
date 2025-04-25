@@ -3,10 +3,10 @@ e;s:2;
      PASSO 1 - A Entrada da igreja
 =========================================
 
-Voce chega a uma entrada escondida, atras da lápide rachada de uma igreja abandonada.
-Inscrições antigas murmuram palavras em uma lingua esquecida.
+Voce chega a uma entrada escondida, atras da lapide rachada de uma igreja abandonada.
+Inscricoes antigas murmuram palavras em uma lingua esquecida.
 
-Parece haver um mecanismo escondido por tras da lápide.
+Parece haver um mecanismo escondido por tras da lapide.
 
 O que deseja fazer?
 

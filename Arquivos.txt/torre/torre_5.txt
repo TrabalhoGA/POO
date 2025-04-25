@@ -20,10 +20,10 @@ Voce respira fundo. Esta sera sua escolha final.
 O que deseja fazer?
 
 1 - Entrar direto na sala do trono e enfrentar Sparda.  
-   → Rota mais segura, sem surpresas. 
+   -> Rota mais segura, sem surpresas. 
 
 2 - Explorar a sala lateral antes do confronto.  
-   → Pode encontrar um item poderoso… ou cair em uma armadilha.  
+   -> Pode encontrar um item poderoso… ou cair em uma armadilha.  
    (Teste de Sorte)
 
 Seu destino esta em suas maos. Escolha com sabedoria.

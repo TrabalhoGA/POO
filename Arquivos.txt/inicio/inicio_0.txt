@@ -3,7 +3,7 @@
        CRIACAO DO PERSONAGEM
 =========================================
 
-Antes de começar sua jornada ate a Torre de Sparda, voce deve definir os atributos do seu personagem.
+Antes de comecar sua jornada ate a Torre de Sparda, voce deve definir os atributos do seu personagem.
 
 Voce tem uma quantidade limitada de pontos para distribuir entre os seguintes atributos:
 

@@ -2,21 +2,21 @@
      SALA LATERAL - SUCESSO!
 =========================================
 
-Você entra com cautela na sala lateral, o ambiente é abafado
-e repleto de inscrições demoníacas nas paredes.
+Voce entra com cautela na sala lateral, o ambiente e abafado
+e repleto de inscricoes demoníacas nas paredes.
 
 No centro da sala, repousando sobre um pedestal de pedra negra,
-há um amuleto pulsante envolto em chamas roxas.
+ha um amuleto pulsante envolto em chamas roxas.
 
-Você se aproxima e, ao tocá-lo, sente uma onda de energia sombria
-correr por seu corpo — mas curiosamente, não o machuca.
+Voce se aproxima e, ao toca-lo, sente uma onda de energia sombria
+correr por seu corpo — mas curiosamente, nao o machuca.
 
-Você encontrou o Amuleto de Vergil!
+Voce encontrou o Amuleto de Vergil!
 
-→ Este artefato antigo aumenta muito o seu dano ao demônio Sparda.
+-> Este artefato antigo aumenta muito o seu dano ao demônio Sparda.
 
-Você guarda o amuleto e retorna silenciosamente ao corredor principal.
+Voce guarda o amuleto e retorna silenciosamente ao corredor principal.
 
-Está pronto para enfrentar Sparda.
+Esta pronto para enfrentar Sparda.
 
 Digite ENTER para continuar.

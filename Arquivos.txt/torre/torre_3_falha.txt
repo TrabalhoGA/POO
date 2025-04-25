@@ -3,14 +3,14 @@
 =========================================
 
 Você tenta se esgueirar pelas sombras, mas pisa em um caco de
-vidro antigo, perdendo 2 pontos de energia — o som ecoa pelo salão como um trovão.
+vidro antigo, perdendo 2 pontos de energia — o som ecoa pelo salao como um trovao.
 
-As três cabeças do Cérberus se voltam instantaneamente em sua direção,
-rosnando em uníssono.
+As tres cabecas do Cérberus se voltam instantaneamente em sua direcao,
+rosnando em unissono.
 
 Em um segundo, a criatura salta na sua frente, bloqueando o caminho.
 
-Não há mais escapatória. Você terá que enfrentá-lo em combate direto!
+Não ha mais escapatoria. Voce tera que enfrenta-lo em combate direto!
 
 Prepare-se para lutar!
 

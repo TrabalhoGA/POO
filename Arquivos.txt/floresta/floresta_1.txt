@@ -1,13 +1,13 @@
 e;s:2;
 =========================================
- PASSO 1 - O Demonio Enigmático
+ PASSO 1 - O Demonio Enigmatico
 =========================================
 
 Logo ao entrar na floresta, voce e abordado por um fauno
 com sorriso misterioso e olhos dourados. Ele toca uma melodia
 hipnotica e propoe um enigma.
 
-"Responda corretamente, e o caminho se abrira para você."
+"Responda corretamente, e o caminho se abrira para voce."
 
 O que deseja fazer?
 

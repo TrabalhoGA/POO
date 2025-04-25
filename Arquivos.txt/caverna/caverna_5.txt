@@ -3,23 +3,23 @@
         CATACUMBAS - PONTE INSTAVEL
 =========================================
 
-Você chega a um grande abismo, cortando o caminho em meio as
+Voce chega a um grande abismo, cortando o caminho em meio as
 catacumbas silenciosas. A unica travessia visivel e uma ponte
 de pedras antigas, coberta de musgo e claramente instavel.
 
-Uma placa enferrujada está presa ao início da ponte:
+Uma placa enferrujada esta presa ao inicio da ponte:
 
- “A ponte sente o peso da dúvida.  
+"A ponte sente o peso da duvida.  
 Apenas aquele que escolhe com sabedoria  
-atravessa sem ruir.”
+atravessa sem ruir."
 
 Logo abaixo, ha duas pedras com simbolos gravados:
 
 1 - Uma Ancora  
 2 - Uma pena  
 
-Você percebe um mecanismo mágico ligado à base da ponte,
-e entende que precisa ativá-lo com a escolha correta.
+Voce percebe um mecanismo magico ligado a base da ponte,
+e entende que precisa ativa-lo com a escolha correta.
 
  Qual simbolo representa a *decisao certa* para atravessar com seguranca?
 
