@@ -1,0 +1,17 @@
+1;2;
+=========================================
+       CRIACAO DO PERSONAGEM
+=========================================
+
+Antes de começar sua jornada ate a Torre de Sparda, voce deve definir os atributos do seu personagem.
+
+Voce tem uma quantidade limitada de pontos para distribuir entre os seguintes atributos:
+
+HABILIDADE  - Representa sua destreza em combate e com armas.
+ENERGIA     - Indica sua vitalidade e resistencia fisica.
+SORTE       - Pode ser usada em momentos criticos para alterar o destino.
+
+Voce possui 12 pontos para distribuir como quiser entre os tres atributos.
+
+1 - Escolher atributos
+2 - Carregar aleatoriamente

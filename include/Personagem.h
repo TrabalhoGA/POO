@@ -46,6 +46,8 @@ class Personagem
         static void resetInstance();
         static void releaseInstance();
 
+        void carregarAtributosAleatoriamente();
+
         void setMaxEnergia(int e);
         int getMaxEnergia();
 

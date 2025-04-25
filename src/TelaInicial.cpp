@@ -292,7 +292,7 @@ void TelaInicial::novoJogo() {
 
     jogo->setNomeSave("save_" + nome + ".txt");
     jogo->setDiretorioAtual("inicio");
-    jogo->setFaseAtual(1);
+    jogo->setFaseAtual(0);
     jogo->mudarEstado(new TelaPadrao(jogo));
 }
 

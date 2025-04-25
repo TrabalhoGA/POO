@@ -54,6 +54,33 @@ void Personagem::releaseInstance()
     }
 }
 
+#include <ctime>
+void Personagem::carregarAtributosAleatoriamente()
+{
+    // Inicializa o gerador de números aleatórios
+    srand(static_cast<unsigned int>(time(0)));
+    // O Personagem possui 12 pontos para distribuir entre os atributos
+    int pontos_disponiveis = 12;
+    int atributos[3] = {0, 0, 0}; // Habilidade, Energia, Sorte
+    int i = 0;
+    while (pontos_disponiveis > 0) {
+        int pontos = rand() % (pontos_disponiveis + 1);
+        atributos[i] += pontos;
+        pontos_disponiveis -= pontos;
+        i = (i + 1) % 3; // Rotaciona entre os atributos
+    }
+    habilidade = atributos[0];
+    max_energia = atributos[1];
+    energia_atual = atributos[1];
+    sorte = atributos[2];
+    cout << "Atributos do personagem carregados aleatoriamente:" << endl;
+    cout << "Habilidade: " << habilidade << endl;
+    cout << "Energia: " << max_energia << endl;
+    cout << "Sorte: " << sorte << endl;
+    cout << "Pressione ENTER para continuar..." << endl;
+    cin.get();
+}
+
 void Personagem::setMaxEnergia(int e)
 {
     max_energia = e;

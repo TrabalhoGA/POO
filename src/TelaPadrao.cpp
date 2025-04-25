@@ -15,6 +15,7 @@ TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo)
 	possuiTocha = false;
     possuiCorda = false;
     testeSorteFalhou = false;
+    srand(static_cast<unsigned int>(time(0))); // Inicializa o gerador de números aleatórios
 }
 
 TelaPadrao::~TelaPadrao() 
@@ -497,6 +498,11 @@ void TelaPadrao::handleInput(unsigned int input) {
                 }
                 setTelaEnigma(false); // Resetar o estado de tela de enigma
             }
+
+            if (jogo->getDiretorioAtual()=="inicio" && faseAtual == 0 && incremento == 2) {
+                Personagem::getInstance()->carregarAtributosAleatoriamente();
+            }
+    
             jogo->setFaseAtual(faseAtual + incremento);
             testeSorteFalhou = false; // Resetar o estado de teste de sorte falhou
         }
