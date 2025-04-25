@@ -8,11 +8,11 @@ e os golpes de Sparda quase o derrubaram mais de uma vez.
 
 Mas você resistiu. Você lutou com tudo.
 
-Em um último momento de fúria, Sparda canaliza seu poder
-em uma explosão de energia negra — mas você se antecipa,
+Em um ultimo momento de furia, Sparda canaliza seu poder
+em uma explosao de energia negra — mas você se antecipa,
 desviando e cravando sua arma em seu coração corrompido.
 
-O Demônio solta um grito inumano antes de se dissolver em cinzas.
+O Demonio solta um grito inumano antes de se dissolver em cinzas.
 
 O trono rui. A escuridão se dissipa.
 
@@ -20,11 +20,11 @@ A luz volta a atravessar os vitrais da torre.
 
 Você venceu.
 
-O reino está salvo, graças à sua coragem e determinação.
+O reino esta salvo, graças à sua coragem e determinacao.
 
-Parabéns, aventureiro.
+Parabens, aventureiro.
 
- FIM DO JOGO — VITÓRIA!
+ FIM DO JOGO — VITORIA!
 
 =========================================
 

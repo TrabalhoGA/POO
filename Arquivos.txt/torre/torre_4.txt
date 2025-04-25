@@ -3,27 +3,27 @@ batalha:6;s:1;
      - A SALA DOS ESPELHOS
 =========================================
 
-Você sobe as escadas e entra em um corredor estreito, iluminado
+Voce sobe as escadas e entra em um corredor estreito, iluminado
 por uma luz azulada e fria. No final, chega a uma sala ampla e silenciosa,
-revestida por espelhos em todas as paredes — chão e teto incluídos.
+revestida por espelhos em todas as paredes — chao e teto incluidos.
 
-Você olha ao redor, mas seu reflexo não aparece em nenhum deles.
+Voce olha ao redor, mas seu reflexo nao aparece em nenhum deles.
 
 Subitamente, um dos espelhos brilha intensamente e revela algo
-terrível: uma versão distorcida de si mesmo.
+terrivel: uma versao distorcida de si mesmo.
 
 Olhos negros, sorriso maligno, aura corrompida…  
-Sparda usou seu poder para criar uma **versão sombria do seu coração**.
+Sparda usou seu poder para criar uma **versão sombria do seu coracao**.
 
-Você está diante da Sombra do Herói.
+Voce esta diante da Sombra do Herói.
 
-Mas então, você percebe algo…  
+Mas entao, você percebe algo…  
 Todos os espelhos vibram com a mesma energia maligna.
-Talvez destruí-los encerre a magia que mantém a sombra viva.
+Talvez destrui-los encerre a magia que mantem a sombra viva.
 
 O que deseja fazer?
 
-1 - Lutar contra a Sombra do Herói em combate direto.  
-2 - Tentar destruir os espelhos usando pedras do chão. (Teste de sorte)
+1 - Lutar contra a Sombra do Heroi em combate direto.  
+2 - Tentar destruir os espelhos usando pedras do chao. (Teste de sorte)
 
-Escolha com sabedoria — seu reflexo sabe tudo o que você sabe.
+Escolha com sabedoria — seu reflexo sabe tudo o que voce sabe.

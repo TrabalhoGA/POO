@@ -1,5 +1,5 @@
 m:Sombra do Héroi,50,12,10;torre:5;
 Diante de voce esta sua propria sombra, distorcida e sombria.  
-Ela conhece cada um dos seus movimentos e pretende superá-lo.
+Ela conhece cada um dos seus movimentos e pretende supera-lo.
 
 Pressione ENTER para continuar...

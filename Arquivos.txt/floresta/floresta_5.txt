@@ -3,8 +3,8 @@ s:1;batalha:4;
  PASSO 4 - O Troll da Floresta
 =========================================
 
-Um imenso troll bloqueia a trilha com um tronco caído.
-Ele olha para você com fome nos olhos e baba escorrendo da boca.
+Um imenso troll bloqueia a trilha com um tronco caido.
+Ele olha para voce com fome nos olhos e baba escorrendo da boca.
 
 O que deseja fazer?
 

@@ -2,7 +2,7 @@
          TESTE DE SORTE - FALHA
 =========================================
 
-Você arrisca… mas desta vez, o destino não sorri para você.
+Voce arrisca… mas desta vez, o destino nao sorri para voce.
 
 Seu instinto falhou ou talvez a sorte tenha simplesmente
 lhe abandonado por um breve momento.

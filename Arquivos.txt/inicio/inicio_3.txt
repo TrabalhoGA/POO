@@ -2,42 +2,42 @@
               MERCADO INICIAL
 =========================================
 
-Antes de partir rumo à Torre de Sparda, você visita uma velha tenda
-de um mercador misterioso. Com seus 50 moedas de ouro, você pode comprar
+Antes de partir rumo a Torre de Sparda, voce visita uma velha tenda
+de um mercador misterioso. Com suas 50 moedas de ouro, voce pode comprar
 itens que podem salvar sua vida na jornada.
 
 Escolha com sabedoria.
 
-Itens disponíveis:
+Itens disponiveis:
 
 1 - Espada de Ferro ............... 20 ouro
-   (Aumenta sua chance de sucesso em combates físicos)
+   (Aumenta sua chance de sucesso em combates fisicos)
    Limite: 1
 
 2 - Varinha de Feitiços .......... 20 ouro
-   (Pode ser usada em situações mágicas e contra inimigos arcanos)
+   (Pode ser usada em situacoes magicas e contra inimigos arcanos)
    Limite: 1
 
-3 - Corda Mágica.......................... 5 ouro
-   (Útil para atravessar lugares perigosos ou escapar de armadilhas)
+3 - Corda Magica.......................... 5 ouro
+   (Util para atravessar lugares perigosos ou escapar de armadilhas)
 
 4 - Tocha Eterna.......................... 5 ouro
    (Ilumina locais escuros e pode afugentar criaturas)
    Limite: 1
 
-5 - Poção de Vida .............. 10 ouro
-   (Recupera todo o seu vigor e disposição durante a aventura)
+5 - Pocao de Vida .............. 10 ouro
+   (Recupera todo o seu vigor e disposicao durante a aventura)
 
 6 - Frasco de Energia ................. 5 ouro
    (Recupera parte da sua energia)
 
 Você tem 50 OURO.
 
-Digite o número do item que deseja comprar seguido da quantidade.
+Digite o numero do item que deseja comprar seguido da quantidade.
 Exemplo: 1 1 (Espada de Ferro, 1 unidade)
 
 Digite "FIM" para encerrar as compras.
 
-Itens comprados serão levados com você durante toda a aventura.
+Itens comprados serao levados com você durante toda a aventura.
 
 =========================================

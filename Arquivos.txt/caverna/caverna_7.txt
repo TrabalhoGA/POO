@@ -3,7 +3,7 @@ torre:1;
      PASSO 5 - A Espada de Dante
 =========================================
 
-Você encontra a espada do filho de Sparda, cravada em uma pedra.
+Voce encontra a espada do filho de Sparda, cravada em uma pedra.
 Ela emana uma energia pura e poderosa.
 
 O que deseja fazer?

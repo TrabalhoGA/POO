@@ -1,9 +1,9 @@
 e;c;
 =========================================
-     PASSO 3 - A Passarela Instável
+     PASSO 3 - A Passarela Instavel
 =========================================
 
-Você chega a uma ponte de madeira podre sobre um abismo escuro.
+Voce chega a uma ponte de madeira podre sobre um abismo escuro.
 Ela range sob o peso de cada passo.
 
 O que deseja fazer?

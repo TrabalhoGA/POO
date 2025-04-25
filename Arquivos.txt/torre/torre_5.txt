@@ -3,19 +3,19 @@
            A ESCOLHA FINAL
 =========================================
 
-Após vencer todos os desafios da Torre de Sparda, você chega ao
-último andar antes da sala do trono.
+Apos vencer todos os desafios da Torre de Sparda, voce chega ao
+ultimo andar antes da sala do trono.
 
-Diante de você, duas portas imponentes:
+Diante de voce, duas portas imponentes:
 
-À frente, a porta principal: por trás dela, está Sparda, o
-feiticeiro responsável pelo caos que consome o reino.
+A frente, a porta principal: por tras dela, esta Sparda, o
+feiticeiro responsavel pelo caos que consome o reino.
 
-À esquerda, uma porta lateral entreaberta, de onde emana uma
-aura instável — uma sala secundária que pode conter um item raro
+A esquerda, uma porta lateral entreaberta, de onde emana uma
+aura instavel — uma sala secundaria que pode conter um item raro
 ou uma armadilha mortal.
 
-Você respira fundo. Esta será sua escolha final.
+Voce respira fundo. Esta sera sua escolha final.
 
 O que deseja fazer?
 
@@ -26,4 +26,4 @@ O que deseja fazer?
    → Pode encontrar um item poderoso… ou cair em uma armadilha.  
    (Teste de Sorte)
 
-Seu destino está em suas mãos. Escolha com sabedoria.
+Seu destino esta em suas maos. Escolha com sabedoria.

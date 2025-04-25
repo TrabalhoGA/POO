@@ -3,9 +3,9 @@ batalha:1;t;
      PASSO 2 - O Rato Gigante
 =========================================
 
-Logo ao entrar na caverna, você é cercado por um rato enorme com olhos vermelhos e dentes afiados.
+Logo ao entrar na caverna, voce e cercado por um rato enorme com olhos vermelhos e dentes afiados.
 
 O que deseja fazer?
 
-1 - Lutar contra eles com sua arma.  
-2 - Usar uma tocha para afugentá-los (se tiver). 
+1 - Lutar contra ele com sua arma.  
+2 - Usar uma tocha para afugenta-lo (se tiver). 

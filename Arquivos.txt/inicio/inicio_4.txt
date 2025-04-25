@@ -3,26 +3,26 @@ floresta:1;caverna:1;
          A ENCRUZILHADA DO DESTINO
 =========================================
 
-Após deixar o vilarejo e abastecer-se com equipamentos,
-você chega ao sopé da Montanha Negra.
+Apos deixar o vilarejo e abastecer-se com equipamentos,
+voce chega ao sope da Montanha Negra.
 
-Diante de você, dois caminhos se abrem:
+Diante de voce, dois caminhos se abrem:
 
- 1 - A Floresta Mística  
-Um lugar antigo e encantado, repleto de árvores retorcidas,
-criaturas místicas e uma atmosfera densa. Poucos saem de lá
+ 1 - A Floresta Mistica  
+Um lugar antigo e encantado, repleto de arvores retorcidas,
+criaturas misticas e uma atmosfera densa. Poucos saem de la
 sem enlouquecer... ou desaparecer.
 
  2 - A Caverna do inferno  
-Uma caverna subterrânea, feito de túneis apertados e cheios
-de armadilhas, espíritos e restos de antigos aventureiros.
+Uma caverna subterranea, feito de tuneis apertados e cheios
+de armadilhas, espiritos e restos de antigos aventureiros.
 
-Ambos os caminhos levam até a Torre de Sparda, mas cada um
-esconde perigos únicos — e talvez, recompensas.
+Ambos os caminhos levam ate a Torre de Sparda, mas cada um
+esconde perigos onicos — e talvez, recompensas.
 
 Qual caminho você escolhe?
 
-Digite o número correspondente:
+Digite o numero correspondente:
 
-1 - Entrar na Floresta Mística  
+1 - Entrar na Floresta Mistica  
 2 - Descer para a Caverna do inferno

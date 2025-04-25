@@ -1,12 +1,12 @@
 batalha:2;s:1;
 =========================================
-     PASSO 4 - O Espectro do Anjo Caído
+     PASSO 4 - O Espectro do Anjo Caido
 =========================================
 
-Um espírito envolto em mantos esfarrapados bloqueia seu caminho.
-Seus olhos brilham com uma luz azul e gélida.
+Um espirito envolto em mantos esfarrapados bloqueia seu caminho.
+Seus olhos brilham com uma luz azul e gelida.
 
 O que deseja fazer?
 
-1 - Enfrentá-lo.   
+1 - Enfrenta-lo.   
 2 - Tentar dialogar com o espectro. (Teste de sorte)

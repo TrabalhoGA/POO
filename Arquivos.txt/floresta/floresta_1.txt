@@ -1,15 +1,15 @@
 e;s:2;
 =========================================
- PASSO 1 - O Demônio Enigmático
+ PASSO 1 - O Demonio Enigmático
 =========================================
 
-Logo ao entrar na floresta, você é abordado por um fauno
+Logo ao entrar na floresta, voce e abordado por um fauno
 com sorriso misterioso e olhos dourados. Ele toca uma melodia
-hipnótica e propõe um enigma.
+hipnotica e propoe um enigma.
 
-"Responda corretamente, e o caminho se abrirá para você."
+"Responda corretamente, e o caminho se abrira para você."
 
 O que deseja fazer?
 
 1 - Ouvir o enigma e tentar responder.   
-2 - Tentar intimidá-lo com sua arma. (Teste de sorte)
+2 - Tentar intimida-lo com sua arma. (Teste de sorte)

@@ -1,20 +1,20 @@
 torre:1;
 =========================================
- PASSO 5 - A Árvore Ancestral
+ PASSO 5 - A Arvore Ancestral
 =========================================
 
-Você chega ao coração da floresta, onde uma imensa árvore de
+Voce chega ao coração da floresta, onde uma imensa arvore de
 tronco retorcido e folhas brilhantes se ergue em meio ao silêncio.
 
-Ela abre os olhos lentamente, revelando uma consciência antiga.
+Ela abre os olhos lentamente, revelando uma consciencia antiga.
 
 Sua voz ecoa suave em sua mente:
 
-“Corajoso viajante... vejo pureza em teu coração.  
+“Corajoso viajante... vejo pureza em teu coracao.  
 Leve contigo o dom da natureza. Que ele te guie na hora mais sombria.”
 
-As folhas sagradas da árvore se movem por conta própria e,
-lentamente, moldam um **cajado mágico de madeira viva**,
-que flutua até suas mãos.
+As folhas sagradas da árvore se movem por conta propria e,
+lentamente, moldam um **cajado magico de madeira viva**,
+que flutua ate suas maos.
 
 1 - Pegar o cajado e seguir o caminho.

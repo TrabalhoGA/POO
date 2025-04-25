@@ -1,12 +1,12 @@
 s:1;c;
 ========================================
- PASSO 3 - O Pântano Mágico
+ PASSO 3 - O Pantano Magico
 =========================================
 
-O caminho leva a um pântano coberto por névoa roxa.  
-Águas turvas escondem formas estranhas sob a superfície.
+O caminho leva a um pantano coberto por nevoa roxa.  
+Aguas turvas escondem formas estranhas sob a superficie.
 
-Você percebe uma trilha de pedras parcialmente submersa.
+Voce percebe uma trilha de pedras parcialmente submersa.
 
 O que deseja fazer?
 

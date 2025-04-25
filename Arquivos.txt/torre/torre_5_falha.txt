@@ -2,23 +2,23 @@
      SALA LATERAL - ARMADILHA!
 =========================================
 
-Você entra na sala lateral com cautela, mas assim que cruza o limiar,
-o chão cede sob seus pés.
+Voce entra na sala lateral com cautela, mas assim que cruza o limiar,
+o chao cede sob seus pes.
 
-Uma armadilha mágica é ativada!
+Uma armadilha magica e ativada!
 
-Dardos encantados disparam das paredes, atingindo você com força
+Dardos encantados disparam das paredes, atingindo voce com forca
 antes que consiga rolar para fora do alcance.
 
-Você escapa por pouco, mas sai ferido.
+Voce escapa por pouco, mas sai ferido.
 
-Você perde 2 pontos de ENERGIA.
+Voce perde 2 pontos de ENERGIA.
 
-A sala não guarda mais nada além de ruínas e veneno.
+A sala nao guarda mais nada alem de ruinas e veneno.
 
-Desgastado, você retorna ao corredor principal, com os músculos
-tensos e o coração acelerado.
+Desgastado, voce retorna ao corredor principal, com os musculos
+tensos e o coracao acelerado.
 
-Agora, só resta enfrentar Sparda.
+Agora, so resta enfrentar Sparda.
 
 Digite ENTER para continuar.

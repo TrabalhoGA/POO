@@ -2,26 +2,26 @@
       O MERCADOR MISTERIOSO
 =========================================
 
-"Finalmente, você chegou..." diz ele com uma voz rouca, quase divertida.  
-"Eu sabia que sobreviveria até aqui. E como todo bom herói, você merece uma última chance de se armar."
+"Finalmente, voce chegou..." diz ele com uma voz rouca, quase divertida.  
+"Eu sabia que sobreviveria ate aqui. E como todo bom heroi, você merece uma ultima chance de se armar."
 
-O mercador misterioso ergue um pano, revelando três itens reluzentes
+O mercador misterioso ergue um pano, revelando tres itens reluzentes
 entre almofadas de veludo e couro antigo.
 
-Você confere sua bolsa — quanto ouro ainda carrega?
+Voce confere sua bolsa — quanto ouro ainda carrega?
 
-Itens disponíveis:
+Itens disponiveis:
 
 1 - Elixir de Vida ............... 20 de ouro  
    (Recupera totalmente sua ENERGIA atual.)
 
 2 - Armadura de Ferro ............ 40 de ouro  
-   (Aumenta sua RESISTENCIA máxima em +7 pontos)
+   (Aumenta sua RESISTENCIA maxima em +7 pontos)
 
-3 - Amuleto Mágico .............. 40 de ouro  
+3 - Amuleto Magico .............. 40 de ouro  
    (Aumenta sua SORTE e sua MAGIA em +10 pontos)
 
-Digite o número do item que deseja comprar seguido da quantidade.
+Digite o numero do item que deseja comprar seguido da quantidade.
 Exemplo: 1 1 (Elixir de Vida, 1 unidade)
 
 Digite "FIM" para encerrar as compras.

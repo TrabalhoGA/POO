@@ -1,11 +1,11 @@
 0;1;
 =========================================
-        CATACUMBAS - PONTE INSTÁVEL
+        CATACUMBAS - PONTE INSTAVEL
 =========================================
 
-Você chega a um grande abismo, cortando o caminho em meio às
-catacumbas silenciosas. A única travessia visível é uma ponte
-de pedras antigas, coberta de musgo e claramente instável.
+Você chega a um grande abismo, cortando o caminho em meio as
+catacumbas silenciosas. A unica travessia visivel e uma ponte
+de pedras antigas, coberta de musgo e claramente instavel.
 
 Uma placa enferrujada está presa ao início da ponte:
 
@@ -13,7 +13,7 @@ Uma placa enferrujada está presa ao início da ponte:
 Apenas aquele que escolhe com sabedoria  
 atravessa sem ruir.”
 
-Logo abaixo, há três pedras com símbolos gravados:
+Logo abaixo, ha duas pedras com simbolos gravados:
 
 1 - Uma Ancora  
 2 - Uma pena  
@@ -21,6 +21,6 @@ Logo abaixo, há três pedras com símbolos gravados:
 Você percebe um mecanismo mágico ligado à base da ponte,
 e entende que precisa ativá-lo com a escolha correta.
 
- Qual símbolo representa a *decisão certa* para atravessar com segurança?
+ Qual simbolo representa a *decisao certa* para atravessar com seguranca?
 
 Escolha sabiamente...

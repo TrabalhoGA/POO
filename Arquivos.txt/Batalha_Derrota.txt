@@ -2,14 +2,14 @@
               GAME OVER 
 =========================================
 
-A batalha foi árdua, e apesar dos seus esforços, seu inimigo
+A batalha foi ardua, e apesar dos seus esforcos, seu inimigo
 levou a melhor.
 
-Seus golpes não foram suficientes… e seu corpo não resistiu.
+Seus golpes nao foram suficientes… e seu corpo nao resistiu.
 
-Você cai no chão, sentindo a energia escapar do seu corpo.
+Voce cai no chao, sentindo a energia escapar do seu corpo.
 
-Você foi derrotado nesta batalha.
+Voce foi derrotado nesta batalha.
  
 
 Digite ENTER para voltar ao menu.

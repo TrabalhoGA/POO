@@ -3,29 +3,29 @@ batalha:7;1;
      ENCONTRO FINAL - SPARDA
 =========================================
 
-As portas douradas do salão do trono se abrem com um rangido
+As portas douradas do salao do trono se abrem com um rangido
 que ecoa por toda a torre.
 
-Você entra, e o mundo parece silenciar.
+Voce entra, e o mundo parece silenciar.
 
 No centro da sala, em um trono entalhado com ossos e pedras negras,
-está ele: Sparda, o feiticeiro que mergulhou o reino na escuridão.
+esta ele: Sparda, o demonio que mergulhou o reino na escuridao.
 
 Seus olhos brilham em tons de vermelho, e sua presença faz o
 ar ao redor vibrar com energia maligna.
 
-SPARDA: "Você chegou longe, bravo herói… mas seu caminho termina aqui."
+SPARDA: "Você chegou longe, bravo heroi… mas seu caminho termina aqui."
 
-Ele se levanta, sua capa ondula como fumaça viva, e uma aura de
+Ele se levanta, sua capa ondula como fumaca viva, e uma aura de
 poder ancestral toma conta do salão.
 
-Você sente seu coração acelerar. Todas as decisões, batalhas
-e escolhas te trouxeram até este momento.
+Voce sente seu coracao acelerar. Todas as decisoes, batalhas
+e escolhas te trouxeram ate este momento.
 
- Não há para onde correr. Não há mais aliados.  
- A única opção agora é LUTAR.
+ Não ha para onde correr. Nao ha mais aliados.  
+ A unica opcao agora e LUTAR.
 
-Prepare-se. O destino do reino será decidido neste confronto.
+Prepare-se. O destino do reino sera decidido neste confronto.
 
 Digite 1 para continuar.
 
