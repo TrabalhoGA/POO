@@ -99,14 +99,14 @@ void Personagem::carregarAtributosAleatoriamente()
         pontos_disponiveis -= pontos;
         i = (i + 1) % 3; // Rotaciona entre os atributos
     }
-    habilidade = atributos[0];
-    max_energia = atributos[1];
-    energia_atual = atributos[1];
-    sorte = atributos[2];
+    habilidade = atributos[0] + 6;
+    max_energia = atributos[1] + 12;
+    energia_atual = atributos[1] + 12;
+    sorte = atributos[2] + 6;
     cout << "Atributos do personagem carregados aleatoriamente:" << endl;
-    cout << "Habilidade: " << habilidade << endl;
-    cout << "Energia: " << max_energia << endl;
-    cout << "Sorte: " << sorte << endl;
+    cout << "Habilidade: " << atributos[0] << endl;
+    cout << "Energia: " << atributos[1] << endl;
+    cout << "Sorte: " << atributos[2] << endl;
     cout << "Pressione ENTER para continuar..." << endl;
     cin.get();
 }

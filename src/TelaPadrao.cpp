@@ -535,7 +535,7 @@ void TelaPadrao::testarSorte(int avancoFase) {
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
     int sorte = jogador->getSorte()*2;
-    int resultado = rand() % 100 + 1; // Gera um número aleatório entre 1 e 100
+    int resultado = rand() % 40 + 1; // Gera um número aleatório entre 1 e 40
     jogo->limparTela();
 
     if (resultado <= sorte) {
@@ -594,7 +594,7 @@ void TelaPadrao::acaoTocha(bool possuiTocha) {
     }
     else {
         // Jogador não possui a tocha, exibe mensagem informando a ausência do item
-        cout << "Você não possui uma tocha no inventário!" << endl;
+        cout << "Voce nao possui uma tocha no inventario!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
     }
@@ -613,7 +613,7 @@ void TelaPadrao::acaoCorda(bool possuiCorda) {
     }
     else {
         // Jogador não possui a tocha, exibe mensagem informando a ausência do item
-        cout << "Você não possui uma corda no inventário!" << endl;
+        cout << "Voce nao possui uma corda no inventario!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
     }
