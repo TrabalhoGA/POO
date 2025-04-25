@@ -173,6 +173,10 @@ void Jogo::salvarJogo() {
 	ArquivoManager::getInstance()->escreverArquivo("save.txt", dadosSalvar);
 }
 
+void Jogo::excluirSave() {
+    remove("save.txt");
+}
+
 bool Jogo::sairJogo() {
     return sair;
 }

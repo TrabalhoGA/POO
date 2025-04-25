@@ -1,6 +1,0 @@
-torre:7
-18,18,28,7,0,6,101
-Armadura de Ferro,Aumenta sua RESISTÊNCIA em combate,0,0,7
-Espada de Dante,Forjada com o sangue do filho de Sparda.,0,0,16
-Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Frasco de Energia,Recupera parte da sua energia,0,9;Elixir de Vida,Recupera totalmente sua ENERGIA atual,0,18;Frasco de Energia,Recupera parte da sua energia,0,9;
-Nenhuma

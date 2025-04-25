@@ -35,6 +35,7 @@ public:
 	void limparTela();
 
 	void salvarJogo();
+	void excluirSave();
 
 	bool sairJogo();
 	void setSairJogo(bool s);

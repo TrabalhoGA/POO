@@ -39,21 +39,18 @@ void TelaPadrao::exibirTela() {
         if (faseAtual == 1) {
             exibirTelaAtributos(caminhoArquivo);
             return;
-        } else if (faseAtual == 3) {
+        } 
+        else if (faseAtual == 3) {
             exibirTelaMercado(caminhoArquivo);
             return;
         }
-    } else if (diretorioAtual == "torre") {
+    } 
+    else if (diretorioAtual == "torre") {
         if (faseAtual == 2) {
             exibirMercadorTorre(caminhoArquivo);
             return;
         }
-        else if (faseAtual == 7) {
-            cin.get();
-			jogo->mudarEstado(new TelaInicial(jogo));
-            return;
-        }
-    }
+    } 
     else if (diretorioAtual == "caverna" && faseAtual == 7) {
         Arma* espadaDante = new Arma("Espada de Dante", "Forjada com o sangue do filho de Sparda.", 0, 0, 16);
         jogador->equiparArma(espadaDante);
@@ -74,6 +71,16 @@ void TelaPadrao::exibirTela() {
         cin.get(); // Espera o usuário pressionar Enter antes de continuar
         jogo->mudarEstado(new TelaBatalha(jogo));
         return;
+    } else if (diretorioAtual == "torre"){
+        if (faseAtual == 7 || faseAtual == 8) {
+            cin.get();
+            jogo->excluirSave();
+			jogo->mudarEstado(new TelaInicial(jogo));
+            // Corrigindo o putback para inserir caracteres individualmente
+            cin.putback('\n');
+            cin.putback('3');
+            return;
+        }
     }
     
     int opcao;
@@ -484,12 +491,14 @@ void TelaPadrao::handleInput(unsigned int input) {
                 cout << conteudo << endl;
                 cin.get();
                 if (!incremento) {
+                    jogo->excluirSave(); // Excluir o save se o jogador falhar no enigma
                     jogo->mudarEstado(new TelaInicial(jogo));
                     return; 
                 }
                 setTelaEnigma(false); // Resetar o estado de tela de enigma
             }
             jogo->setFaseAtual(faseAtual + incremento);
+            testeSorteFalhou = false; // Resetar o estado de teste de sorte falhou
         }
     }
     else {
@@ -524,7 +533,7 @@ void TelaPadrao::testarSorte(int avancoFase) {
             if (faseAtual == 5) {
 				// Dar amuleto mágico ao jogador
 				ReliquiaMagica* amuleto = new ReliquiaMagica("Amuleto de Vergil", "Aumenta muito o dano contra Sparda", 0);
-				amuleto->setBuffHabilidade(jogador->getHabilidade()/ 3); // Ao equipar, o amuleto duplica a habilidade do jogador
+				amuleto->setBuffHabilidade(jogador->getHabilidade()/ 3);
 				jogador->adicionarReliquiaMagica(amuleto);
             }
         }
@@ -564,14 +573,12 @@ void TelaPadrao::acaoTocha(bool possuiTocha) {
         // Exibe o conteúdo do arquivo de vitória
         jogo->limparTela();
         cout << conteudo << endl;
-        cin.ignore();
         cin.get(); 
     }
     else {
         // Jogador não possui a tocha, exibe mensagem informando a ausência do item
         cout << "Você não possui uma tocha no inventário!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
-        cin.ignore();
         cin.get();
     }
 }

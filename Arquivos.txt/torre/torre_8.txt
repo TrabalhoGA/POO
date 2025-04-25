@@ -1,3 +1,4 @@
+
 =========================================
         DERROTA PARA SPARDA
 =========================================
@@ -23,4 +24,5 @@ O mal venceu desta vez…
  GAME OVER 
 
 =========================================
-Digite 1 para voltar ao menu.
+
+Digite ENTER para ir aos creditos.

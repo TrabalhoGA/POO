@@ -73,15 +73,20 @@ string ArquivoManager::lerOpcoesHistoria(const string& caminho) {
     }
 }
 
-bool ArquivoManager::escreverArquivo(const string& caminho, const string& conteudo) {
-    ofstream arquivo(caminho);
+void ArquivoManager::escreverArquivo(const string& caminho, const string& conteudo) {
+    ofstream arquivo(caminho, ios::out | ios::trunc);
     
     if (arquivo.is_open()) {
         arquivo << conteudo;
         arquivo.close();
-        return true;
+        return;
     } else {
-        cerr << "Erro ao abrir o arquivo para escrita: " << caminho << endl;
-        return false;
+        // Tenta criar o arquivo se não existir
+        arquivo.open(caminho, ios::out);
+        if (arquivo.is_open()) {
+            arquivo << conteudo;
+            arquivo.close();
+            return;
+        }
     }
 }

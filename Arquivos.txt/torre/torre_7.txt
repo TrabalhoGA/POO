@@ -28,4 +28,4 @@ Parabéns, aventureiro.
 
 =========================================
 
-Digite 1 para voltar ao menu.
+Digite ENTER para ir aos creditos.

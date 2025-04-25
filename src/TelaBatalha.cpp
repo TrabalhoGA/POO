@@ -128,13 +128,13 @@ bool TelaBatalha::tentarFugir() {
     // Limpar a tela
     jogo->limparTela();
 
-	if (jogo->getDiretorioAtual() == "batalha" && jogo->getFaseAtual() == 7) {
+	if (jogo->getFaseAtual() == 7) {
 		cout << "Voce nao pode fugir desta batalha!" << endl;
 		cout << "Pressione Enter para continuar..." << endl;
 		cin.get();
 		return false;
 	}
-	else if (jogo->getDiretorioAtual() == "batalha" && jogo->getFaseAtual() == 3) {
+	else if (jogo->getFaseAtual() == 3) {
 		cout << "Os lobos te cercaram, voce nao pode fugir desta batalha!" << endl;
 		cout << "Pressione Enter para continuar..." << endl;
 		cin.get();
@@ -239,11 +239,8 @@ void TelaBatalha::finalizarBatalha() {
             cout << "Você recebeu uma " << frascoEnergia->getNome() << "!" << endl;
         }
 
-
         // Mensagens de drop
-  
         cout << "Voce recebeu " << ouroDropado << " moedas de ouro!" << endl;
-       
         cout << "\nPressione Enter para continuar..." << endl;
         cin.get();
 
@@ -263,16 +260,21 @@ void TelaBatalha::finalizarBatalha() {
         // Liberar a instância do monstro
         Monstro::releaseInstance();
 
+        if (jogo->getFaseAtual() == 7) {
+            jogo->setDiretorioAtual("torre");
+            jogo->setFaseAtual(8); // Fase 8 é o texto de derrota
+            jogo->mudarEstado(new TelaPadrao(jogo));
+            return;
+        }
+
+        // Excluir o save do jogador
+        jogo->excluirSave();
         jogo->mudarEstado(new TelaInicial(jogo));
         return;
     }
 }
 
 void TelaBatalha::inicializarMonstro() {
-    // exemplo de configMonstro: "m:Rato Gigante,20,4,5;caverna:4" m:Nome,Energia,Habilidade,Resistencia;diretorioDestino:faseDestino
-    // sempre deixe na primeira linha, com o mostro e destino separados por ";"
-    // e as configurações do monstro separadas por ","
-
     // Ler a configuração do monstro
     string caminhoAtual = "Arquivos.txt/" + jogo->getDiretorioAtual() + "/" + jogo->getDiretorioAtual() + "_" + to_string(jogo->getFaseAtual()) + ".txt";
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
@@ -309,7 +311,7 @@ void TelaBatalha::inicializarMonstro() {
     this->faseDestino = stoi(destinoParte.substr(separadorDestino + 1));
 
     // Se o monstro já estiver inicializado, não faça nada
-    if (Monstro::getInstance()->getNome() != "") {
+    if (Monstro::getInstance()->getNome()!="") { // Sei que não é a melhor forma de verificar, mas é a única que funciona
         this->monstro = Monstro::getInstance();
         return;
     }
@@ -321,7 +323,7 @@ void TelaBatalha::inicializarMonstro() {
         exit(1);
     }
     
-    // Extrair os dados do monstro (Rato Gigante,50,10,15)
+    // Extrair os dados do monstro
     string dadosMonstro = configMonstroParte.substr(separadorMonstro + 1);
     
     // Separar os dados do monstro por vírgulas

@@ -15,7 +15,7 @@ public:
     string lerArquivo(const string& caminho);
     string lerArquivoHistoria(const string& caminho);
     string lerOpcoesHistoria(const string& caminho);
-    bool escreverArquivo(const string& caminho, const string& conteudo);
+    void escreverArquivo(const string& caminho, const string& conteudo);
     
 private:
     ArquivoManager();
