@@ -11,10 +11,9 @@ há um amuleto pulsante envolto em chamas roxas.
 Você se aproxima e, ao tocá-lo, sente uma onda de energia sombria
 correr por seu corpo — mas curiosamente, não o machuca.
 
-Você encontrou o Amuleto Demoníaco!
+Você encontrou o Amuleto de Vergil!
 
-→ Este artefato antigo duplica todo o dano que você 
-causar durante o combate final.
+→ Este artefato antigo aumenta muito o seu dano ao demônio Sparda.
 
 Você guarda o amuleto e retorna silenciosamente ao corredor principal.
 

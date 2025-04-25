@@ -47,8 +47,10 @@ void TelaPadrao::exibirTela() {
             exibirMercadorTorre(caminhoArquivo);
             return;
         }
-        else if (faseAtual == 6) {
+        else if (faseAtual == 7) {
+            cin.get();
 			jogo->mudarEstado(new TelaInicial(jogo));
+            return;
         }
     }
     else if (diretorioAtual == "caverna" && faseAtual == 7) {
@@ -513,8 +515,8 @@ void TelaPadrao::testarSorte(int avancoFase) {
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + "_sucesso.txt");
             if (faseAtual == 5) {
 				// Dar amuleto mágico ao jogador
-				ReliquiaMagica* amuleto = new ReliquiaMagica("Amuleto Demoniaco", "Duplica todo o dano que você causar", 0);
-				amuleto->setBuffHabilidade(jogador->getHabilidade()); // Ao equipar, o amuleto duplica a habilidade do jogador
+				ReliquiaMagica* amuleto = new ReliquiaMagica("Amuleto de Vergil", "Aumenta muito o dano contra Sparda", 0);
+				amuleto->setBuffHabilidade(jogador->getHabilidade()/ 3); // Ao equipar, o amuleto duplica a habilidade do jogador
 				jogador->adicionarReliquiaMagica(amuleto);
             }
         }
