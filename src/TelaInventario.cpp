@@ -27,6 +27,7 @@ void TelaInventario::exibirTela() {
     cout << "HABILIDADE: " << jogador->getHabilidade()
         << "     ENERGIA: " << jogador->getEnergiaAtual() << " / " << jogador->getMaxEnergia()
         << "     SORTE: " << jogador->getSorte()
+        << "     MAGIA: " << jogador->getMagia()
         << "     OURO: " << jogador->getMoedasDeOuro() << endl;
     cout << "---------------------------------------" << endl;
     cout << "    |         LISTA DE ITENS              |" << endl;
