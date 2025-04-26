@@ -411,7 +411,7 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
         }
     }
     
-    cout << "\nCompras finalizadas! Você tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
+    cout << "\nCompras finalizadas! Voce tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
     cout << "Pressione Enter para continuar sua jornada..." << endl;
     cin.get();
     
@@ -453,7 +453,7 @@ void TelaPadrao::handleInput(unsigned int input) {
             if (novoDiretorio == "s") {
                 if (testeSorteFalhou) {
                     // Não é possível testar a sorte novamente se já falhou
-                    cout << "Você já falhou no teste de sorte. Não pode tentar novamente." << endl;
+                    cout << "Voce ja falhou no teste de sorte. Nao pode tentar novamente." << endl;
                     cout << "Pressione Enter para continuar..." << endl;
                     cin.get();
                     delete acoes; // Liberar memória alocada
@@ -570,6 +570,8 @@ void TelaPadrao::testarSorte(int avancoFase) {
 		} else if (jogo->getDiretorioAtual() == "floresta" && faseAtual == 4) {
             // Se o jogador falhou na fase da floresta 4, avança mesmo assim
             jogo->avancarFase(avancoFase);
+            conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
+            testeSorteFalhou = false;
         }
 		else {
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
