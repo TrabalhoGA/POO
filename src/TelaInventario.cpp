@@ -46,7 +46,7 @@ void TelaInventario::exibirTela() {
 
     cout << "---------------------------------------" << endl;
     cout << "[ Usar Item ] = U" << endl;
-    cout << "[ Voltar a Batalha ] = S" << endl;
+    cout << "[ Sair ] = S" << endl;
 
     char opcao;
     cin.clear(); 
@@ -66,7 +66,7 @@ void TelaInventario::handleInput(unsigned int opcao) {
 			return;
 		}
 		
-        // Exibir lista de itens e solicitar ao usuurio que escolha um item
+        // Exibir lista de itens e solicitar ao usuario que escolha um item
         int index;
         cout << "Digite o numero do item para usar: ";
         cin >> index;
@@ -74,8 +74,7 @@ void TelaInventario::handleInput(unsigned int opcao) {
         usarProvisao(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
-		jogo->mudarEstado(new TelaBatalha(jogo)); // Voltar para a tela de batalha
-		cout << "Voltando..." << endl;
+		jogo->voltarEstadoAnterior();
     }
 }
 

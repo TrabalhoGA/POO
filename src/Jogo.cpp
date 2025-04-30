@@ -1,5 +1,6 @@
 #include "../include/Jogo.h"
 #include "../include/TelaInventario.h"
+#include "../include/TelaInicial.h"
 #include "../include/Personagem.h"
 #include "../include/ArquivoManager.h"
 
@@ -32,7 +33,7 @@ void Jogo::resetInstance(){
     }
 }
 
-Jogo::Jogo() : estadoAtual(nullptr), sair(false) {
+Jogo::Jogo() : estadoAtual(nullptr), sair(false), estadoAnterior(nullptr) {
     // Construtor
 }
 
@@ -54,9 +55,29 @@ void Jogo::handleInput(int input) {
 
 void Jogo::mudarEstado(TelaEstado* novoEstado) {
     if (estadoAtual) {
-        delete estadoAtual; // Libera a memória do estado atual
+        if (dynamic_cast<TelaInventario*>(novoEstado)) {
+            // Se o novo estado for TelaInventario, não exclui o estado atual
+            estadoAnterior = estadoAtual;
+        } else {
+            // Se não for TelaInventario, exclui o estado atual
+            delete estadoAtual;
+        }
     }
     estadoAtual = novoEstado; // Define o novo estado
+}
+
+void Jogo::voltarEstadoAnterior() {
+    if (estadoAtual && estadoAnterior) {
+        // Verificar se estamos em uma tela de inventário
+        if (dynamic_cast<TelaInventario*>(estadoAtual) || dynamic_cast<TelaInicial*>(estadoAtual)) {
+            // Deletar a tela de inventário atual
+            delete estadoAtual;
+            
+            // Restaurar o estado anterior
+            estadoAtual = estadoAnterior;
+            estadoAnterior = nullptr;
+        }
+    }
 }
 
 void Jogo::setNomeSave(const string& nome) {
@@ -89,6 +110,10 @@ void Jogo::avancarFase(int incremento) {
 
 TelaEstado* Jogo::getEstadoAtual() const {
     return estadoAtual;
+}
+
+TelaEstado* Jogo::getEstadoAnterior() const {
+    return estadoAnterior;
 }
 
 void Jogo::limparTela() {

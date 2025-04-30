@@ -8,6 +8,7 @@
 using namespace std;
 
 int main() {
+	// Definir o locale para português do Brasil
 	setlocale(LC_ALL, "pt-br.UTF-8");
 
     // Inicializando o jogo
@@ -16,6 +17,7 @@ int main() {
 	jogo->mudarEstado(new TelaInicial(jogo));
     
 	while(!jogo->sairJogo()) {
+		// Exibir a tela atual
 		jogo->exibirTela();
 	}
 

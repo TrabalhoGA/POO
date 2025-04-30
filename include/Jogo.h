@@ -21,12 +21,16 @@ public:
 
 	void exibirTela();
 	void handleInput(int input);
+
 	void mudarEstado(TelaEstado* novoEstado);
+	void voltarEstadoAnterior();
 
 	void setDiretorioAtual(const string& diretorio);
 	string getDiretorioAtual() const;
 
 	TelaEstado* getEstadoAtual() const;
+
+	TelaEstado* getEstadoAnterior() const;
 
 	void setNomeSave(const string& nome);
 	string getNomeSave() const;
@@ -51,6 +55,8 @@ private:
 	static Jogo* instance;
 	
 	TelaEstado* estadoAtual;
+
+	TelaEstado* estadoAnterior;
 
 	// Nome do arquivo de save
 	string nomeSave;

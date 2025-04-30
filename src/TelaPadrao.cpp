@@ -1,6 +1,7 @@
 #include "../include/TelaPadrao.h"
 #include "../include/TelaInicial.h"
 #include "../include/TelaBatalha.h"
+#include "../include/TelaInventario.h"
 #include "../include/Personagem.h"
 #include "../include/Arma.h"
 #include "../include/ArquivoManager.h"
@@ -77,6 +78,7 @@ void TelaPadrao::exibirTela() {
             cin.get();
             jogo->excluirSave();
 			jogo->mudarEstado(new TelaInicial(jogo));
+            jogador->releaseInstance(); // Liberar a instância do jogador
             // Seleciona a opcao 3 da tela inicial (creditos)
             cin.putback('\n');
             cin.putback('3');
@@ -420,6 +422,13 @@ void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
 }
 
 void TelaPadrao::handleInput(unsigned int input) {
+    // Se o input for 9, exibe o inventário
+    if (input == 9) {
+        jogo->mudarEstado(new TelaInventario(jogo));
+        return;
+    }
+
+    // Carregar o diretorio atual e a fase atual do jogo
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
     
@@ -498,6 +507,7 @@ void TelaPadrao::handleInput(unsigned int input) {
                 if (!incremento) {
                     jogo->excluirSave(); // Excluir o save se o jogador falhar no enigma
                     jogo->mudarEstado(new TelaInicial(jogo));
+                    Personagem::getInstance()->releaseInstance(); // Liberar a instância do personagem
                     delete acoes; // Liberar memória alocada
                     return; 
                 }
