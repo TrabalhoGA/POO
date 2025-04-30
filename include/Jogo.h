@@ -24,6 +24,7 @@ public:
 
 	void mudarEstado(TelaEstado* novoEstado);
 	void voltarEstadoAnterior();
+	void gameOver();
 
 	void setDiretorioAtual(const string& diretorio);
 	string getDiretorioAtual() const;

@@ -55,8 +55,8 @@ void Jogo::handleInput(int input) {
 
 void Jogo::mudarEstado(TelaEstado* novoEstado) {
     if (estadoAtual) {
-        if (dynamic_cast<TelaInventario*>(novoEstado)) {
-            // Se o novo estado for TelaInventario, não exclui o estado atual
+        if (dynamic_cast<TelaInventario*>(novoEstado) || dynamic_cast<TelaInicial*>(novoEstado)) {
+            // Se o novo estado for TelaInventario ou TelaInicial, não exclui o estado atual
             estadoAnterior = estadoAtual;
         } else {
             // Se não for TelaInventario, exclui o estado atual
@@ -78,6 +78,23 @@ void Jogo::voltarEstadoAnterior() {
             estadoAnterior = nullptr;
         }
     }
+}
+
+void Jogo::gameOver() {    
+    // Excluir o save do jogador
+    excluirSave();
+    
+    // Voltar para a tela inicial
+    mudarEstado(new TelaInicial(this));
+
+    // Limpar o estado anterior
+    if (estadoAnterior) {
+        delete estadoAnterior;
+        estadoAnterior = nullptr;
+    }
+
+    // Liberar a instância do personagem
+    Personagem::getInstance()->releaseInstance();
 }
 
 void Jogo::setNomeSave(const string& nome) {

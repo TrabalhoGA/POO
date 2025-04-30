@@ -64,7 +64,7 @@ void TelaPadrao::exibirTela() {
     }
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    // Usar a nova função para ler apenas o conteúdo da história (ignorando a primeira linha)
+    // Usa a função para ler apenas o conteúdo da história (ignorando a primeira linha)
     string conteudo = arquivoManager->lerArquivoHistoria(caminhoArquivo);
     
     cout << conteudo << endl;
@@ -76,9 +76,7 @@ void TelaPadrao::exibirTela() {
     } else if (diretorioAtual == "torre"){
         if (faseAtual == 7 || faseAtual == 8) {
             cin.get();
-            jogo->excluirSave();
-			jogo->mudarEstado(new TelaInicial(jogo));
-            jogador->releaseInstance(); // Liberar a instância do jogador
+            jogo->gameOver();
             // Seleciona a opcao 3 da tela inicial (creditos)
             cin.putback('\n');
             cin.putback('3');
@@ -426,6 +424,9 @@ void TelaPadrao::handleInput(unsigned int input) {
     if (input == 9) {
         jogo->mudarEstado(new TelaInventario(jogo));
         return;
+    } else if (input == 0) {
+        jogo->mudarEstado(new TelaInicial(jogo));
+        return;
     }
 
     // Carregar o diretorio atual e a fase atual do jogo
@@ -505,9 +506,7 @@ void TelaPadrao::handleInput(unsigned int input) {
                 cout << conteudo << endl;
                 cin.get();
                 if (!incremento) {
-                    jogo->excluirSave(); // Excluir o save se o jogador falhar no enigma
-                    jogo->mudarEstado(new TelaInicial(jogo));
-                    Personagem::getInstance()->releaseInstance(); // Liberar a instância do personagem
+                    jogo->gameOver();
                     delete acoes; // Liberar memória alocada
                     return; 
                 }

@@ -28,6 +28,10 @@ void TelaInicial::exibirTela() {
     
     // Exibir o conteúdo do arquivo e guardar a opção do usuário
     cout << conteudo << endl;
+    if (jogo->getEstadoAnterior() != nullptr) {
+        cout << "5 - Voltar";
+    }
+    cout << "\n=========================================\n";
     cin >> opcao;
     cin.ignore(); // Limpar o buffer de entrada
 
@@ -50,6 +54,11 @@ void TelaInicial::handleInput(unsigned int input) {
             cout << "Saindo do jogo...\n";
             jogo->setSairJogo(true);
             break;
+        case 5: // Voltar
+            if (jogo->getEstadoAnterior() != nullptr) {
+                jogo->voltarEstadoAnterior();
+                break;
+            }
         default:
             cout << "Opcao inválida. Tente novamente.\n";
             break;

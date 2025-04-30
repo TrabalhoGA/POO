@@ -8,5 +8,3 @@ Escolha uma opcao:
 2 - Novo jogo
 3 - Mostrar creditos
 4 - Encerrar aplicacao
-
-=========================================

@@ -12,8 +12,9 @@ Dizem que Sparda planeja realizar um ritual proibido capaz de quebrar o veu entr
 Sua missao e clara:
 Derrotar Sparda e impedir que ele conclua seu ritual.
 
-Durante sua jornada, voce podera levar consigo itens que melhoraram os seus atributos. 
+Durante sua aventura, voce podera levar consigo itens que melhoraram os seus atributos. 
 Para conferir o seu inventario durante a historia, basta pressionar o numero 9.
+Se quiser voltar ao menu, pressione 0.
 
 Voce esta prestes a iniciar uma jornada onde cada decisao pode significar
 vida ou morte. Escolha com sabedoria, aventureiro.

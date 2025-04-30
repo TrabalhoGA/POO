@@ -279,11 +279,9 @@ void TelaBatalha::finalizarBatalha() {
             return;
         }
 
-        // Excluir o save do jogador
-        jogo->excluirSave();
-        jogo->mudarEstado(new TelaInicial(jogo));
-        jogador->releaseInstance();
-        
+        // Executar método de game over
+        jogo->gameOver();
+
         return;
     }
 }
