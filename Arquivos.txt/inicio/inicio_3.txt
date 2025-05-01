@@ -1,3 +1,4 @@
+mercado:Espada de Ferro,Aumenta sua chance de sucesso em combates físicos,0,0,8,20,Arma,1;Varinha de Feitiços,Pode ser usada em situações mágicas e contra inimigos arcanos,0,0,8,20,Arma,1;Corda,Útil para atravessar lugares perigosos ou escapar de armadilhas,0,0,0,0,0,5,ReliquiaMagica,1;Tocha,Ilumina locais escuros e pode afugentar criaturas,0,0,0,0,0,5,ReliquiaMagica,1;Poção de Vida,Recupera todo o seu vigor e disposição durante a aventura,0,12,10,Provisao,3;Frasco de Energia,Recupera parte da sua energia,0,6,5,Provisao,6;
 =========================================
             MERCADO INICIAL
 =========================================
@@ -20,6 +21,7 @@ Itens disponiveis:
 
 3 - Corda Magica.......................... 5 ouro
    (Util para atravessar lugares perigosos ou escapar de armadilhas)
+   Limite: 1
 
 4 - Tocha Eterna.......................... 5 ouro
    (Ilumina locais escuros e pode afugentar criaturas)
@@ -27,9 +29,11 @@ Itens disponiveis:
 
 5 - Pocao de Vida .............. 10 ouro
    (Recupera todo o seu vigor e disposicao durante a aventura)
+   Limite: 3
 
 6 - Frasco de Energia ................. 5 ouro
    (Recupera parte da sua energia)
+   Limite: 6
 
 Voce tem 50 OURO.
 

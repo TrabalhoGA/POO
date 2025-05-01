@@ -17,22 +17,19 @@ public:
 
 	void exibirTelaAtributos(string caminhoArquivo);
 	void exibirTelaMercado(string caminhoArquivo);
-	void exibirMercadorTorre(string caminhoArquivo);
 
 	bool isTelaEnigma() const;
 	void setTelaEnigma(bool isEnigma);
 
 	void testarSorte(int avancoFase);
-
-	void acaoTocha(bool possuiTocha);
-	void acaoCorda(bool possuiCorda);
+	
+	void verificarItem(string nomeItem, int avancoFase);
 
 private:
 	Jogo* jogo;
 	bool isEnigma;
+	bool isTelaMercado;
 	bool testeSorteFalhou;
-	bool possuiTocha;
-	bool possuiCorda;
 };
 
 #endif // TELAPADRAO_H

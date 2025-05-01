@@ -7,14 +7,14 @@
 #include "../include/ArquivoManager.h"
 #include <iostream>
 #include <limits>
+#include <map>
 
 using namespace std;
 
 TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo) 
 {
     isEnigma = false;
-	possuiTocha = false;
-    possuiCorda = false;
+    isTelaMercado = false;
     testeSorteFalhou = false;
     srand(static_cast<unsigned int>(time(0))); // Inicializa o gerador de números aleatórios
 }
@@ -41,18 +41,8 @@ void TelaPadrao::exibirTela() {
         if (faseAtual == 1) {
             exibirTelaAtributos(caminhoArquivo);
             return;
-        } 
-        else if (faseAtual == 3) {
-            exibirTelaMercado(caminhoArquivo);
-            return;
         }
-    } 
-    else if (diretorioAtual == "torre") {
-        if (faseAtual == 2) {
-            exibirMercadorTorre(caminhoArquivo);
-            return;
-        }
-    } 
+    }
     else if (diretorioAtual == "caverna" && faseAtual == 7) {
         Arma* espadaDante = new Arma("Espada de Dante", "Forjada com o sangue do filho de Sparda.", 0, 0, 16);
         jogador->equiparArma(espadaDante);
@@ -62,13 +52,18 @@ void TelaPadrao::exibirTela() {
         Arma* cajadoAncestral = new Arma("Cajado Ancestral", "Feito com os galhos da arvore sagrada.", 0, 0,jogador->getMagia());
         jogador->equiparArma(cajadoAncestral);
     }
+    
+    if (this->isTelaMercado) {
+        exibirTelaMercado(caminhoArquivo);
+        return;
+    }
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     // Usa a função para ler apenas o conteúdo da história (ignorando a primeira linha)
     string conteudo = arquivoManager->lerArquivoHistoria(caminhoArquivo);
     
     cout << conteudo << endl;
-
+    
     if (diretorioAtual == "batalha") {
         cin.get(); // Espera o usuário pressionar Enter antes de continuar
         jogo->mudarEstado(new TelaBatalha(jogo));
@@ -167,22 +162,65 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
 void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
 {
     Personagem* jogador = Personagem::getInstance();
-    int moedas = 50; // Começamos com 50 moedas
-    jogador->setMoedasDeOuro(moedas);
+    
+    // Se estamos no mercado inicial, damos 50 moedas ao jogador
+    if (jogo->getDiretorioAtual() == "inicio" && jogo->getFaseAtual() == 3) {
+        jogador->setMoedasDeOuro(50);
+    }
+    
     string entrada;
     bool comprasFinalizadas = false;
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
+    string conteudo = arquivoManager->lerArquivoHistoria(caminhoArquivo);
     
     // Exibir o conteúdo do arquivo de mercado
     cout << conteudo << endl;
-
-    // Limites para itens únicos
-    bool temEspada = false;
-    bool temVarinha = false;
-    bool temTocha = false;
-
+    
+    // Obter informações dos itens do cabeçalho (primeira linha do arquivo)
+    string opcoesNavegacao = arquivoManager->lerOpcoesHistoria(caminhoArquivo);
+    
+    // Verificar se a linha começa com "mercado:"
+    if (opcoesNavegacao.substr(0, 8) != "mercado:") {
+        cout << "Erro: Arquivo de mercado não está no formato correto." << endl;
+        cin.get();
+        jogo->avancarFase();
+        return;
+    }
+    
+    // Extrair os itens do mercado
+    string mercadoStr = opcoesNavegacao.substr(8);
+    
+    // Dividir a string em itens individuais separados por ';'
+    vector<vector<string>> itens;
+    size_t pos = 0;
+    string itemStr;
+    
+    while ((pos = mercadoStr.find(';')) != string::npos) {
+        itemStr = mercadoStr.substr(0, pos);
+        vector<string> itemData;
+        
+        // Dividir os dados do item por ','
+        size_t itemPos = 0;
+        while ((itemPos = itemStr.find(',')) != string::npos) {
+            itemData.push_back(itemStr.substr(0, itemPos));
+            itemStr.erase(0, itemPos + 1);
+        }
+        if (!itemStr.empty()) {
+            itemData.push_back(itemStr);
+        }
+        
+        // Adicionar o item à lista apenas se tiver dados
+        if (!itemData.empty()) {
+            itens.push_back(itemData);
+        }
+        
+        mercadoStr.erase(0, pos + 1);
+    }
+    
+    // Registrar os itens que já foram comprados para controle de limite
+    map<int, int> itensComprados; // itemId -> quantidade comprada
+    
     while(!comprasFinalizadas) {
         cout << "\nMoedas restantes: " << jogador->getMoedasDeOuro() << " ouro" << endl;
 
@@ -208,6 +246,13 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
                 cout << "Quantidade inválida. Deve ser maior que zero." << endl;
                 continue;
             }
+            
+            // Verificar se o ID do item é válido (1 a N)
+            if (itemId <= 0 || itemId > itens.size()) {
+                cout << "Item inválido. Escolha um número de 1 a " << itens.size() << "." << endl;
+                continue;
+            }
+            
         } catch (...) {
             cout << "Entrada inválida. Digite o número do item seguido da quantidade." << endl;
             cin.clear();
@@ -215,101 +260,110 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
             continue;
         }
         
-        // Verificar qual item foi selecionado e processar a compra
-        switch(itemId) {
-            case 1: // Espada de Ferro - 20 ouro
-                if (temEspada) {
-                    cout << "Você já comprou uma Espada de Ferro. Limite: 1" << endl;
-                } else if (quantidade > 1) {
-                    cout << "Você só pode comprar 1 Espada de Ferro." << endl;
-                } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    Arma* espada = new Arma("Espada de Ferro", "Aumenta sua chance de sucesso em combates físicos", 0, 0, 8);
-                    jogador->equiparArma(espada);
-                    temEspada = true;
-                    cout << "Você comprou uma Espada de Ferro!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
+        // Dados do item selecionado (ajuste para índice base-0)
+        vector<string>& itemData = itens[itemId - 1];
+        
+        // Verificar se temos dados suficientes
+        if (itemData.size() < 3) {
+            cout << "Erro: Dados insuficientes para o item." << endl;
+            continue;
+        }
+        
+        string nome = itemData[0];
+        string descricao = itemData[1];
+        string tipoItem = "";
+        int preco = 0;
+        int limite = 99; // Limite padrão alto se não for especificado
+        
+        // Pegar o tipo do item, que deve ser um dos últimos campos
+        for (int i = itemData.size() - 2; i >= 0; i--) {
+            if (itemData[i] == "Arma" || itemData[i] == "Armadura" || 
+                itemData[i] == "ReliquiaMagica" || itemData[i] == "Provisao") {
+                tipoItem = itemData[i];
+                // O preço deve estar antes do tipo
+                preco = stoi(itemData[i - 1]);
+                // O limite deve estar após o tipo
+                if (i + 1 < itemData.size()) {
+                    limite = stoi(itemData[i + 1]);
                 }
                 break;
-                
-            case 2: // Varinha de Feitiços - 20 ouro
-                if (temVarinha) {
-                    cout << "Você já comprou uma Varinha de Feitiços. Limite: 1" << endl;
-                } else if (quantidade > 1) {
-                    cout << "Você só pode comprar 1 Varinha de Feitiços." << endl;
-                } else if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-					jogador->setMagia(8);
-                    Arma* varinha = new Arma("Varinha de Feitiços", "Pode ser usada em situações mágicas e contra inimigos arcanos", 0,0, jogador->getMagia());
-					jogador->equiparArma(varinha);
-                    temVarinha = true;
-                    cout << "Você comprou uma Varinha de Feitiços!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
-                }
-                break;
-                
-            case 3: // Corda Mágica - 5 ouro
-                if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
-                    for (int i = 0; i < quantidade; i++) {
-                        ReliquiaMagica* corda = new ReliquiaMagica("Corda Mágica", "Útil para atravessar lugares perigosos ou escapar de armadilhas", 0);
-                        jogador->adicionarReliquiaMagica(corda);
-						possuiCorda = true; // Atualiza o status de possuir a corda
+            }
+        }
+        
+        // Se tipoItem ainda for vazio, algo está errado
+        if (tipoItem.empty()) {
+            cout << "Erro: Tipo de item não reconhecido." << endl;
+            continue;
+        }
+        
+        // Verificar limite do item
+        int compradosAnteriormente = itensComprados[itemId];
+        if (compradosAnteriormente + quantidade > limite) {
+            cout << "Você só pode comprar " << limite << " unidade(s) deste item. ";
+            cout << "Já comprou " << compradosAnteriormente << "." << endl;
+            continue;
+        }
+        
+        // Verificar se tem dinheiro suficiente
+        if (jogador->getMoedasDeOuro() >= preco * quantidade) {
+            // Deduzir o dinheiro
+            jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - preco * quantidade);
+            
+            // Criar e adicionar o item ao inventário conforme o tipo
+            for (int i = 0; i < quantidade; i++) {
+                if (tipoItem == "Arma") {
+                    int buffHabilidade = stoi(itemData[4]); // Posição do BuffHabilidade
+                    Arma* arma = new Arma(nome, descricao, 0, 0, buffHabilidade);
+                    jogador->equiparArma(arma);
+                    
+                    // Se for uma varinha, também define magia
+                    if (nome.find("Varinha") != string::npos) {
+                        jogador->setMagia(buffHabilidade);
                     }
-                    cout << "Você comprou " << quantidade << " Corda(s) Mágica(s)!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
+                    
+                    cout << "Você equipou " << nome << "!" << endl;
                 }
-                break;
-                
-            case 4: // Tocha Eterna - 5 ouro
-                if (temTocha) {
-                    cout << "Você já comprou uma Tocha Eterna. Limite: 1" << endl;
-                } else if (quantidade > 1) {
-                    cout << "Você só pode comprar 1 Tocha Eterna." << endl;
-                } else if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
-                    ReliquiaMagica* tocha = new ReliquiaMagica("Tocha Eterna", "Ilumina locais escuros e pode afugentar criaturas", 0);
-                    jogador->adicionarReliquiaMagica(tocha);
-                    temTocha = true;
-					possuiTocha = true;
-                    cout << "Você comprou uma Tocha Eterna!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
+                else if (tipoItem == "Armadura") {
+                    int buffResistencia = stoi(itemData[4]); // Posição do BuffResistencia
+                    Armadura* armadura = new Armadura(nome, descricao, 0, 0, buffResistencia);
+                    jogador->equiparArmadura(armadura);
+                    cout << "Você equipou " << nome << "!" << endl;
                 }
-                break;
-                
-            case 5: // Poção de Vida - 10 ouro
-                if (jogador->getMoedasDeOuro() >= 10 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 10 * quantidade);
-                    for (int i = 0; i < quantidade; i++) {
-                        Provisao* pocaoVida = new Provisao("Poção de Vida", "Recupera todo o seu vigor e disposição durante a aventura", 0, jogador->getMaxEnergia());
-                        jogador->adicionarProvisao(pocaoVida);
-                    }
-                    cout << "Você comprou " << quantidade << " Poção(ões) de Vida!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
+                else if (tipoItem == "ReliquiaMagica") {
+                    ReliquiaMagica* reliquia = new ReliquiaMagica(nome, descricao, 0);
+                    
+                    // Pegar os buffs da reliquia
+                    int buff_energia = stoi(itemData[2]);
+                    int buff_habilidade = stoi(itemData[3]);
+                    int buff_resistencia = stoi(itemData[4]);
+                    int buffMagia = stoi(itemData[5]);
+                    int buffSorte = stoi(itemData[6]);
+
+                    // Adiciona os buffs à reliquia
+                    reliquia->setBuffEnergia(buff_energia);
+                    reliquia->setBuffHabilidade(buff_habilidade);
+                    reliquia->setBuffResistencia(buff_resistencia);
+                    reliquia->setBuffMagia(buffMagia);
+                    reliquia->setBuffSorte(buffSorte);
+                    
+                    // Adiciona a reliquia ao inventário do jogador
+                    jogador->adicionarReliquiaMagica(reliquia);
+                    
+                    // Não precisamos mais definir possuiTocha ou possuiCorda
+                    // A verificação agora é feita pela função verificarItem
                 }
-                break;
-                
-            case 6: // Frasco de Energia - 5 ouro
-                if (jogador->getMoedasDeOuro() >= 5 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 5 * quantidade);
-                    for (int i = 0; i < quantidade; i++) {
-                        Provisao* frascoEnergia = new Provisao("Frasco de Energia", "Recupera parte da sua energia", 0, int(jogador->getMaxEnergia() / 2)); // Recupera metade da energia máxima
-                        jogador->adicionarProvisao(frascoEnergia);
-                    }
-                    cout << "Você comprou " << quantidade << " Frasco(s) de Energia!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
+                else if (tipoItem == "Provisao") {
+                    int valorRecuperacao = stoi(itemData[3]);
+                    Provisao* provisao = new Provisao(nome, descricao, 0, valorRecuperacao);
+                    jogador->adicionarProvisao(provisao);
                 }
-                break;
-                
-            default:
-                cout << "Opção inválida. Escolha um número entre 1 e 6." << endl;
-                break;
+            }
+            
+            // Atualizar contagem de itens comprados
+            itensComprados[itemId] += quantidade;
+            
+        } else {
+            cout << "Moedas insuficientes para esta compra." << endl;
         }
     }
     
@@ -320,103 +374,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
     
     // Avançar para a próxima fase
     jogo->avancarFase();
-}
-
-void TelaPadrao::exibirMercadorTorre(string caminhoArquivo)
-{
-    Personagem* jogador = Personagem::getInstance();
-    string entrada;
-    bool comprasFinalizadas = false;
-
-    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
-    
-    // Exibir o conteúdo do arquivo do mercador da torre
-    cout << conteudo << endl;
-
-    while(!comprasFinalizadas) {
-        cout << "\nMoedas restantes: " << jogador->getMoedasDeOuro() << " ouro" << endl;
-        
-        cin >> entrada;
-        
-        if (entrada == "FIM" || entrada == "fim" || jogador->getMoedasDeOuro() <= 0) {
-            comprasFinalizadas = true;
-            continue;
-        }
-        
-        int itemId = 0;
-        int quantidade = 0;
-        
-        try {
-            itemId = stoi(entrada);
-            cin >> quantidade;
-            
-            if (quantidade <= 0) {
-                cout << "Quantidade inválida. Deve ser maior que zero." << endl;
-                continue;
-            }
-        } catch (...) {
-            cout << "Entrada inválida. Digite o número do item seguido da quantidade." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
-        }
-        
-        // Verificar qual item foi selecionado e processar a compra
-        switch(itemId) {
-            case 1: // Elixir de Vida - 20 ouro
-                if (jogador->getMoedasDeOuro() >= 20 * quantidade) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 20 * quantidade);
-                    for (int i = 0; i < quantidade; i++) {
-                        Provisao* elixirVida = new Provisao("Elixir de Vida", "Recupera totalmente sua ENERGIA atual", 0, jogador->getMaxEnergia());
-                        jogador->adicionarProvisao(elixirVida);
-                    }
-                    cout << "Você comprou " << quantidade << " Elixir(es) de Vida!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
-                }
-                break;
-                
-            case 2: // Armadura de Ferro - 40 ouro
-                if (quantidade > 1) {
-                    cout << "Você só pode comprar 1 Armadura de Ferro." << endl;
-                } else if (jogador->getMoedasDeOuro() >= 40) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    Armadura* armaduraFerro = new Armadura("Armadura de Ferro", "Aumenta sua RESISTÊNCIA em combate", 0, 0, 5);
-                    jogador->equiparArmadura(armaduraFerro);
-                    cout << "Você comprou uma Armadura de Ferro!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
-                }
-                break;
-                
-            case 3: // Amuleto Mágico - 40 ouro
-                if (quantidade > 1) {
-                    cout << "Você só pode comprar 1 Amuleto Mágico." << endl;
-                } else if (jogador->getMoedasDeOuro() >= 40) {
-                    jogador->setMoedasDeOuro(jogador->getMoedasDeOuro() - 40);
-                    ReliquiaMagica* amuletoMagico = new ReliquiaMagica("Amuleto Mágico", "Aumenta sua SORTE e sua MAGIA em +15 pontos", 0);
-                    amuletoMagico->setBuffSorte(15);
-                    amuletoMagico->setBuffMagia(15);
-                    jogador->adicionarReliquiaMagica(amuletoMagico);
-                    cout << "Você comprou um Amuleto Mágico!" << endl;
-                } else {
-                    cout << "Moedas insuficientes para esta compra." << endl;
-                }
-                break;
-                
-            default:
-                cout << "Opção inválida. Escolha um número entre 1 e 3." << endl;
-                break;
-        }
-    }
-    
-    cout << "\nCompras finalizadas! Voce tem " << jogador->getMoedasDeOuro() << " moedas de ouro restantes." << endl;
-    cout << "Pressione Enter para continuar sua jornada..." << endl;
-    cin.get();
-    
-    // Avançar para a próxima fase
-    jogo->avancarFase();
+    isTelaMercado = false; // Resetar o estado de tela de mercado
 }
 
 void TelaPadrao::handleInput(unsigned int input) {
@@ -457,7 +415,18 @@ void TelaPadrao::handleInput(unsigned int input) {
         // Verificar se é uma mudança de diretório e fase (formato "diretorio:fase")
         size_t separador = acao.find(':'); 
         if (separador != string::npos) {
+            // Extrair o novo diretório
             string novoDiretorio = acao.substr(0, separador);
+
+            if (novoDiretorio == "i") { // fazemos isso antes de converter a fase para int, pois o formato é diferente
+                // Verifica se o jogador possui o item necessário para avançar
+                verificarItem(acao.substr(separador + 1, acao.find(',') - separador - 1), 
+                             stoi(acao.substr(acao.find(',') + 1)));
+                delete acoes;
+                return;
+            }
+            
+            // Extrair a nova fase
             int novaFase = stoi(acao.substr(separador + 1));
 
             if (novoDiretorio == "s") {
@@ -480,17 +449,13 @@ void TelaPadrao::handleInput(unsigned int input) {
         }
         else if (acao == "e"){ // Verifica se a próxima fase é um enigma
             setTelaEnigma(true); 
-            jogo->setFaseAtual(faseAtual + 1);
+            jogo->avancarFase(); // Avança para a próxima fase
             delete acoes; // Liberar memória alocada
             return;
         }
-        else if (acao == "t") { // Verifica se a próxima fase é um teste de tocha
-            acaoTocha(possuiTocha);
-            delete acoes; // Liberar memória alocada
-            return;
-        }
-        else if (acao == "c") { // Verifica se a próxima fase é um teste de corda
-            acaoCorda(possuiCorda);
+        else if (acao == "mercado"){
+            isTelaMercado = true; // Define que estamos na tela de mercado
+            jogo->avancarFase(); // Avança para a próxima fase
             delete acoes; // Liberar memória alocada
             return;
         }
@@ -591,40 +556,39 @@ void TelaPadrao::testarSorte(int avancoFase) {
     jogo->limparTela();
 }
 
-void TelaPadrao::acaoTocha(bool possuiTocha) {
-    if (possuiTocha) {
-        // Jogador possui a tocha, avança a fase e exibe mensagem de vitória
-        jogo->avancarFase();
-        ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Tocha_Vitoria.txt");
+void TelaPadrao::verificarItem(string nomeItem, int avancoFase) {
+    Personagem* jogador = Personagem::getInstance();
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    bool possuiItem = false;
+    
+    // Verificar na lista de relíquias mágicas do jogador
+    vector<ReliquiaMagica*> reliquias = jogador->getReliquiasMagicas();
+    for (auto& reliquia : reliquias) {
+        if (reliquia->getNome().find(nomeItem) != string::npos) {
+            possuiItem = true;
+            break;
+        }
+    }
+    
+    if (possuiItem) {
+        // Jogador possui o item, avança a fase e exibe mensagem de vitória
+        jogo->avancarFase(avancoFase);
+        
+        string arquivoVitoria;
 
+        // Para novos itens, usar um arquivo genérico ou criar novos arquivos conforme necessário
+        arquivoVitoria = "Arquivos.txt/" + nomeItem + "_Vitoria.txt";
+        
+        string conteudo = arquivoManager->lerArquivo(arquivoVitoria);
+        
         // Exibe o conteúdo do arquivo de vitória
         jogo->limparTela();
         cout << conteudo << endl;
-        cin.get(); 
-    }
-    else {
-        // Jogador não possui a tocha, exibe mensagem informando a ausência do item
-        cout << "Voce nao possui uma tocha no inventario!" << endl;
-        cout << "Pressione Enter para continuar..." << endl;
-        cin.get();
-    }
-}
-void TelaPadrao::acaoCorda(bool possuiCorda) {
-    if (possuiCorda) {
-        // Jogador possui a corda, avança a fase e exibe mensagem de vitória
-        jogo->avancarFase(2);
-        ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-        string conteudo = arquivoManager->lerArquivo("Arquivos.txt/Corda_Vitoria.txt");
-
-        // Exibe o conteúdo do arquivo de vitória
-        jogo->limparTela();
-        cout << conteudo << endl;
         cin.get();
     }
     else {
-        // Jogador não possui a tocha, exibe mensagem informando a ausência do item
-        cout << "Voce nao possui uma corda no inventario!" << endl;
+        // Jogador não possui o item, exibe mensagem informando a ausência do item
+        cout << "Voce nao possui " << nomeItem << " no inventario!" << endl;
         cout << "Pressione Enter para continuar..." << endl;
         cin.get();
     }
