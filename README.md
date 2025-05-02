@@ -50,7 +50,13 @@ Subclasse de Item que representa relíquias mágicas especiais que concedem buff
 
 ### Monstro
 
-Classe que representa os inimigos do jogo.
+Classe que representa os inimigos do jogo, implementada usando o padrão Singleton.
+
+#### Padrão Singleton:
+- Implementação de construtor privado para evitar instanciação direta
+- Atributo estático `instance` para armazenar a única instância
+- Método `getInstance` que permite criar ou atualizar a instância existente com novos parâmetros
+- Método `releaseInstance` para liberar a memória corretamente
 
 #### Atributos:
 - `nome`: Nome do monstro
@@ -60,7 +66,7 @@ Classe que representa os inimigos do jogo.
 
 #### Métodos:
 - Getters e setters para todos os atributos
-- Construtor que inicializa nome, energia, habilidade e resistência
+- Construtor privado que inicializa nome, energia, habilidade e resistência
 - Destrutor virtual
 
 ### Equipamento
@@ -125,6 +131,7 @@ Classe que representa o personagem jogável, implementada usando o padrão de pr
 - `arma`: Referência para a arma equipada pelo jogador
 - `provisoes`: Vetor que referencia as provisões no inventário do jogador
 - `reliquias_magicas`: Vetor que referencia as relíquias mágicas do jogador
+- `equipamentos`: Vetor de ponteiros para equipamentos no inventário do jogador, permitindo armazenar itens não equipados
 - `instance`: Atributo estático que armazena a referência para a única instância do personagem (Singleton)
 
 #### Métodos:
@@ -133,16 +140,22 @@ Classe que representa o personagem jogável, implementada usando o padrão de pr
 - `resetInstance()`: Reset da instância para um novo jogo
 - `releaseInstance()`: Libera a instância e os recursos alocados
 - Getters e setters para todos os atributos
-- `equiparArmadura`: Permite equipar uma armadura ao personagem
+- `equiparArmadura`: Permite equipar uma armadura ao personagem, gerenciando itens já equipados
 - `getArmadura`: Retorna a armadura atualmente equipada
-- `equiparArma`: Permite equipar uma arma ao personagem
+- `equiparArma`: Permite equipar uma arma ao personagem, gerenciando itens já equipados
 - `getArma`: Retorna a arma atualmente equipada
 - `adicionarProvisao`: Adiciona a provisão ao inventário do jogador
 - `removerProvisao`: Remove a provisão do inventário do jogador
 - `getProvisoes`: Retorna todas as provisões que estão no inventário do jogador
+- `usarProvisao`: Consome uma provisão e restaura a energia do personagem
 - `adicionarReliquiaMagica`: Adiciona uma relíquia mágica ao jogador
 - `removerReliquiaMagica`: Remove uma relíquia mágica do jogador
 - `getReliquiasMagicas`: Retorna todas as relíquias mágicas do jogador
+- `adicionarEquipamento`: Adiciona um equipamento ao inventário do jogador
+- `removerEquipamento`: Remove um equipamento do inventário do jogador
+- `getEquipamentos`: Retorna todos os equipamentos do inventário
+- `equiparEquipamento`: Permite equipar um item do inventário, identificando automaticamente seu tipo
+- `carregarAtributosAleatoriamente`: Inicializa os atributos do personagem de forma aleatória
 
 ### Jogo
 
@@ -155,8 +168,11 @@ Classe que gerencia o fluxo principal do jogo, implementada usando o padrão Sin
 #### Atributos:
 - `instance`: Atributo estático que armazena a referência para a única instância do jogo (Singleton)
 - `estadoAtual`: Referência para o estado atual do jogo (tela que está sendo exibida)
+- `estadoAnterior`: Armazena o estado anterior do jogo, permitindo retornar a ele quando necessário
 - `diretorioAtual`: Diretório atual do jogo, usado para localização de arquivos
 - `faseAtual`: Fase atual em que o jogador se encontra
+- `nomeSave`: Nome do arquivo para salvamento do jogo
+- `sair`: Flag para controlar a saída do jogo
 
 #### Métodos:
 - Construtor privado para implementar o padrão Singleton
@@ -166,14 +182,19 @@ Classe que gerencia o fluxo principal do jogo, implementada usando o padrão Sin
 - `exibirTela()`: Exibe a tela atual do jogo
 - `handleInput()`: Processa a entrada do usuário
 - `mudarEstado()`: Altera o estado atual do jogo para uma nova tela
+- `voltarEstadoAnterior()`: Retorna ao estado anterior do jogo
+- `gameOver()`: Gerencia condições de fim de jogo, excluindo o save e retornando à tela inicial
 - `setDiretorioAtual()`: Define o diretório atual do jogo
 - `getDiretorioAtual()`: Retorna o diretório atual do jogo
 - `getEstadoAtual()`: Retorna o estado atual do jogo
 - `getFaseAtual()`: Retorna a fase atual do jogo
 - `setFaseAtual()`: Define a fase atual do jogo
+- `getNomeSave()` e `setNomeSave()`: Getters e setters para o nome do arquivo de save
 - `avancarFase()`: Avança o jogo para a próxima fase
 - `limparTela()`: Limpa o terminal para uma nova exibição
-- `salvarJogo()`: Salva o progresso atual do jogo
+- `salvarJogo()`: Salva o progresso atual do jogo, incluindo informações do inventário
+- `excluirSave()`: Remove o arquivo de save do jogador
+- `sairJogo()` e `setSairJogo()`: Controlam a saída do jogo
 
 ### TelaEstado
 
@@ -201,6 +222,8 @@ Subclasse de TelaEstado que representa a tela inicial do jogo.
 - `handleInput()`: Processa a entrada do usuário na tela inicial
 - `exibirCreditos()`: Exibe os créditos do jogo
 - `carregarJogo()`: Carrega um jogo salvo anteriormente
+- `novoJogo()`: Inicia um novo jogo, configurando personagem e fase inicial
+- `escolherSave()`: Permite ao jogador selecionar um arquivo de save
 
 ### TelaPadrao
 
@@ -208,14 +231,20 @@ Subclasse de TelaEstado que representa as telas padrão do jogo durante a aventu
 
 #### Atributos:
 - `jogo`: Referência para a instância do jogo
+- `enigma`: Flag que indica se a tela atual contém um enigma
+- `telaMercado`: Flag que indica se a tela atual é um mercado
+- `testeSorteFalhou`: Flag que indica se um teste de sorte falhou nesta tela
 
 #### Métodos:
 - Construtor que recebe uma referência para o objeto Jogo
+- `TelaPadrao(Jogo* jogo, bool isEnigma, bool isTelaMercado, bool testeSorteFalhou)`: Construtor alternativo que configura as flags da tela
 - `exibirTela()`: Exibe o conteúdo da tela atual da aventura
 - `handleInput()`: Processa a entrada do usuário durante a aventura
 - `exibirTelaAtributos()`: Exibe os atributos do personagem
 - `exibirTelaMercado()`: Exibe a interface do mercado para compra de itens
-- `exibirMercadorTorre()`: Exibe a interface do mercador na torre
+- `testarSorte(int avancoFase)`: Realiza um teste de sorte para o personagem
+- `verificarItem(string nomeItem, int avancoFase)`: Verifica se o personagem possui um item específico
+- `isTesteSorteFalhou()`, `isTelaMercado()`, `isEnigma()`: Métodos getter para as flags da tela
 
 ### TelaInventario
 
@@ -228,7 +257,33 @@ Subclasse de TelaEstado que representa a tela de inventário do personagem.
 - Construtor que recebe uma referência para o objeto Jogo
 - `exibirTela()`: Exibe o conteúdo do inventário do personagem
 - `handleInput()`: Processa a entrada do usuário na tela de inventário
-- `usarItem()`: Método privado para usar um item selecionado
+- `usarProvisao(int index)`: Método privado para usar uma provisão específica do inventário
+- `equiparEquipamento(int index)`: Método privado para equipar um equipamento específico do inventário
+
+### TelaBatalha
+
+Subclasse de TelaEstado que representa a tela de batalha contra monstros.
+
+#### Atributos:
+- `jogo`: Referência para a instância do jogo
+- `jogador`: Referência para o personagem do jogador
+- `monstro`: Referência para o monstro atual
+- `diretorioDestino`: Diretório para onde o jogador irá após a batalha
+- `faseDestino`: Fase para onde o jogador irá após a batalha
+- `jogadorDefendendo`: Flag que indica se o jogador está em posição defensiva
+- `monstroDefendendo`: Flag que indica se o monstro está em posição defensiva
+
+#### Métodos:
+- Construtor que recebe uma referência para o objeto Jogo
+- `exibirTela()`: Exibe a interface de batalha
+- `handleInput()`: Processa a entrada do usuário durante a batalha
+- `inicializarMonstro()`: Inicializa o monstro para a batalha atual
+- `atacar()`: Executa a ação de ataque do jogador
+- `defender()`: Coloca o jogador em modo defensivo
+- `acessarInventario()`: Permite acesso ao inventário durante a batalha
+- `tentarFugir()`: Tenta fugir da batalha (com chance de falha)
+- `acaoMonstro()`: Executa a ação do monstro
+- `finalizarBatalha()`: Encerra a batalha e define o resultado
 
 ### ArquivoManager
 
@@ -248,3 +303,5 @@ Classe responsável pelo gerenciamento de operações de leitura e escrita de ar
 - `lerArquivoHistoria(const string& caminho)`: Lê o conteúdo de um arquivo de história ignorando a primeira linha (opções de navegação)
 - `lerOpcoesHistoria(const string& caminho)`: Lê apenas a primeira linha de um arquivo de história (contendo as opções de navegação)
 - `escreverArquivo(const string& caminho, const string& conteudo)`: Escreve o conteúdo fornecido em um arquivo no caminho especificado
+- `listarArquivos(const string& prefixo)`: Retorna um vetor de strings contendo os nomes dos arquivos que começam com um prefixo específico
+- `liberarListaArquivos(char** listaArquivos)`: Libera a memória alocada pelo método listarArquivos
