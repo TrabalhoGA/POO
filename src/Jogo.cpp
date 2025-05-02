@@ -211,13 +211,42 @@ void Jogo::salvarJogo() {
 		reliquias = "Nenhuma";
 	}
 
+    string equipamentos;
+    if (!p->getEquipamentos().empty()) {
+        for (size_t i = 0; i < p->getEquipamentos().size(); i++) {
+            Equipamento* equipamento = p->getEquipamentos().at(i);
+            // Fazer o cast para o tipo correto
+            if (dynamic_cast<Armadura*>(equipamento)) {
+                Armadura* armadura = dynamic_cast<Armadura*>(equipamento);
+                equipamentos += armadura->getNome() + "," +
+                    armadura->getDescricao() + "," +
+                    to_string(armadura->getHabilidadeMinimaNecessaria()) + "," +
+                    to_string(armadura->getResistenciaMinimaNecessaria()) + "," +
+                    to_string(armadura->getBuffResistencia()) + "," +
+                    "armadura;";
+            }
+            else if (dynamic_cast<Arma*>(equipamento)) {
+                Arma* arma = dynamic_cast<Arma*>(equipamento);
+                equipamentos += arma->getNome() + "," +
+                    arma->getDescricao() + "," +
+                    to_string(arma->getHabilidadeMinimaNecessaria()) + "," +
+                    to_string(arma->getResistenciaMinimaNecessaria()) + "," +
+                    to_string(arma->getBuffHabilidade()) + "," +
+                    "arma;";
+            }
+        }
+    } else {
+        equipamentos = "Nenhum";
+    }
+
 	// Juntar todas as informações em uma string
 	string dadosSalvar = diretorioFase + "\n" +
 		personagemAtributos + "\n" +
         armadura + "\n" +
 		arma + "\n" +
 		provisoes + "\n" +
-		reliquias;
+		reliquias + "\n" +
+        equipamentos + "\n";
 
 	// Salvar os dados no arquivo
 	ArquivoManager::getInstance()->escreverArquivo(getNomeSave(), dadosSalvar);

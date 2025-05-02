@@ -20,6 +20,7 @@ private:
 	Jogo* jogo;
 
 	void usarProvisao(int index);
+	void equiparEquipamento(int index);
 };
 
 #endif // TELAINVENTARIO_H

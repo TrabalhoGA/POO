@@ -29,8 +29,9 @@ class Personagem
         int moedas_de_ouro;
         Armadura* armadura;
         Arma* arma;
-        std::vector<Provisao*>* provisoes;
-        std::vector<ReliquiaMagica*>* reliquias_magicas;
+        vector<Provisao*>* provisoes;
+        vector<ReliquiaMagica*>* reliquias_magicas;
+        vector<Equipamento*>* equipamentos;
 
     public:
         // Proibir cópia e atribuição
@@ -69,10 +70,10 @@ class Personagem
         void setMoedasDeOuro(int m);
         int getMoedasDeOuro();
 
-        void equiparArmadura(Armadura* armadura);
+        void equiparArmadura(Armadura* novaArmadura);
         Armadura* getArmadura();
 
-        void equiparArma(Arma* arma);
+        void equiparArma(Arma* novaArma);
         Arma* getArma();
 
         void adicionarProvisao(Provisao* provisao);
@@ -83,6 +84,11 @@ class Personagem
         void adicionarReliquiaMagica(ReliquiaMagica* reliquia);
         void removerReliquiaMagica(ReliquiaMagica* reliquia);
         vector<ReliquiaMagica*> getReliquiasMagicas();
+
+        void adicionarEquipamento(Equipamento* equipamento);
+        void removerEquipamento(Equipamento* equipamento);
+        vector<Equipamento*> getEquipamentos();
+        void equiparEquipamento(int index);
 };
 
 #endif // PERSONAGEM_H

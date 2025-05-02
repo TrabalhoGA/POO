@@ -21,6 +21,7 @@ Personagem::Personagem()
     // Alocação dinâmica dos vetores
     provisoes = new vector<Provisao*>();
     reliquias_magicas = new vector<ReliquiaMagica*>();
+    equipamentos = new vector<Equipamento*>(); 
 }
 
 Personagem::~Personagem()
@@ -54,6 +55,16 @@ Personagem::~Personagem()
     if (armadura) {
         delete armadura;
         armadura = nullptr;
+    }
+
+    if (equipamentos) {
+        // Liberar cada equipamento individualmente
+        for (Equipamento* e : *equipamentos) {
+            delete e;
+        }
+        equipamentos->clear();
+        delete equipamentos;
+        equipamentos = nullptr;
     }
 }
 
@@ -181,14 +192,37 @@ int Personagem::getMoedasDeOuro()
     return moedas_de_ouro;
 }
 
-void Personagem::equiparArmadura(Armadura* armadura)
+void Personagem::equiparArmadura(Armadura* novaArmadura)
 {
-    if(getArmadura() != nullptr) {
-        setResistencia(getResistencia() - getArmadura()->getBuffResistencia());
-        delete getArmadura();
+    if (!novaArmadura) return; // Proteção contra ponteiro nulo
+
+    if (this->armadura != nullptr) {
+        // Guarda o buff da armadura atual
+        int buffAtual = this->armadura->getBuffResistencia();
+        
+        // Remove o buff da armadura atual
+        setResistencia(getResistencia() - buffAtual);
+        
+        // Guarda uma referência temporária para a armadura atual
+        Armadura* armaduraAntiga = this->armadura;
+        
+        // Atualiza o ponteiro para a nova armadura
+        this->armadura = novaArmadura;
+        
+        // Adiciona a armadura antiga ao inventário (sem manipular a nova armadura)
+        if (equipamentos == nullptr) {
+            equipamentos = new vector<Equipamento*>();
+        }
+        equipamentos->push_back(armaduraAntiga);
+    } else {
+        // Não tinha armadura equipada, simplesmente equipa a nova
+        this->armadura = novaArmadura;
     }
-    this->armadura = armadura;
-    setResistencia(getResistencia() + armadura->getBuffResistencia());
+    
+    // Adiciona o buff da nova armadura
+    if (this->armadura != nullptr) {
+        setResistencia(getResistencia() + this->armadura->getBuffResistencia());
+    }
 }
 
 Armadura* Personagem::getArmadura()
@@ -196,14 +230,37 @@ Armadura* Personagem::getArmadura()
     return armadura;
 }
 
-void Personagem::equiparArma(Arma* arma)
+void Personagem::equiparArma(Arma* novaArma)
 {
-    if(getArma() != nullptr) {
-        setHabilidade(getHabilidade() - getArma()->getBuffHabilidade());
-        delete getArma();
+    if (!novaArma) return; // Proteção contra ponteiro nulo
+
+    if (this->arma != nullptr) {
+        // Guarda o buff da arma atual
+        int buffAtual = this->arma->getBuffHabilidade();
+        
+        // Remove o buff da arma atual
+        setHabilidade(getHabilidade() - buffAtual);
+        
+        // Guarda uma referência temporária para a arma atual
+        Arma* armaAntiga = this->arma;
+        
+        // Atualiza o ponteiro para a nova arma
+        this->arma = novaArma;
+        
+        // Adiciona a arma antiga ao inventário (sem manipular a nova arma)
+        if (equipamentos == nullptr) {
+            equipamentos = new vector<Equipamento*>();
+        }
+        equipamentos->push_back(armaAntiga);
+    } else {
+        // Não tinha arma equipada, simplesmente equipa a nova
+        this->arma = novaArma;
     }
-    this->arma = arma;
-    setHabilidade(getHabilidade() + arma->getBuffHabilidade());
+    
+    // Adiciona o buff da nova arma
+    if (this->arma != nullptr) {
+        setHabilidade(getHabilidade() + this->arma->getBuffHabilidade());
+    }
 }
 
 Arma* Personagem::getArma()
@@ -280,4 +337,58 @@ vector<ReliquiaMagica*> Personagem::getReliquiasMagicas()
         reliquias_magicas = new vector<ReliquiaMagica*>();
     }
     return *reliquias_magicas;
+}
+
+void Personagem::adicionarEquipamento(Equipamento* equipamento)
+{
+    if (!equipamentos) equipamentos = new vector<Equipamento*>();
+    equipamentos->push_back(equipamento);
+}
+
+void Personagem::removerEquipamento(Equipamento* equipamento)
+{
+    if (!equipamentos) return;
+    auto it = find(equipamentos->begin(), equipamentos->end(), equipamento);
+    if (it != equipamentos->end()) {
+        equipamentos->erase(it);
+    }
+}
+
+vector<Equipamento*> Personagem::getEquipamentos()
+{
+    if (!equipamentos) {
+        // Se o vetor ainda não foi alocado, alocar agora
+        equipamentos = new vector<Equipamento*>();
+    }
+    return *equipamentos;
+}
+
+void Personagem::equiparEquipamento(int index)
+{
+    if (!equipamentos || index < 0 || index >= equipamentos->size()) {
+        return;
+    }
+
+    // Guarda uma cópia do ponteiro do equipamento selecionado
+    Equipamento* equipamento = equipamentos->at(index);
+    
+    // Remove o equipamento do vetor antes de tentar equipá-lo
+    // Isso evita problemas se o mesmo objeto for referenciado em lugares diferentes
+    equipamentos->erase(equipamentos->begin() + index);
+
+    // Dynamic cast para verificar se o equipamento é uma armadura ou arma
+    Armadura* armadura = dynamic_cast<Armadura*>(equipamento);
+    if (armadura) {
+        equiparArmadura(armadura);
+        return;
+    }
+    
+    Arma* arma = dynamic_cast<Arma*>(equipamento);
+    if (arma) {
+        equiparArma(arma);
+        return;
+    }
+    
+    // Se chegou aqui, não conseguiu equipar, então devolve para o inventário
+    adicionarEquipamento(equipamento);
 }

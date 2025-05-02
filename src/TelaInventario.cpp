@@ -22,7 +22,7 @@ void TelaInventario::exibirTela() {
 
     // Exibir cabecalho
     cout << "=======================================" << endl;
-    cout << "           INVENTARIO DO AVENTUREIRO   " << endl;
+    cout << "           INVENTÁRIO DO AVENTUREIRO   " << endl;
     cout << "=======================================" << endl;
     cout << "HABILIDADE: " << jogador->getHabilidade()
         << "     ENERGIA: " << jogador->getEnergiaAtual() << " / " << jogador->getMaxEnergia()
@@ -33,19 +33,34 @@ void TelaInventario::exibirTela() {
     cout << "    |         LISTA DE ITENS              |" << endl;
     cout << "---------------------------------------" << endl;
 
-    // Obter lista de provisoes
+    // Obter lista de provisoes e equipamentos
     vector<Provisao*> provisoes = jogador->getProvisoes();
+    vector<Equipamento*> equipamentos = jogador->getEquipamentos();
 
     cout << "Arma equipada: " << (jogador->getArma() ? jogador->getArma()->getNome() : "Nenhuma") << endl;
     cout << "Armadura equipada: " << (jogador->getArmadura() ? jogador->getArmadura()->getNome() : "Nenhuma") << endl;
 
     // Exibir provisoes
+    cout << "---------------------------------------" << endl;
+    cout << "Provisões: " << endl;
     for (size_t i = 0; i < provisoes.size(); ++i) {
         cout << (i + 1) << " - " << provisoes[i]->getNome() << endl;
     }
+    
+    // Exibir equipamentos disponíveis
+    cout << "---------------------------------------" << endl;
+    cout << "Equipamentos: " << endl;
+    if (equipamentos.empty()) {
+        cout << "Nenhum equipamento disponível" << endl;
+    } else {
+        for (size_t i = 0; i < equipamentos.size(); ++i) {
+            cout << (i + 1) << " - " << equipamentos[i]->getNome() << endl;
+        }
+    }
 
     cout << "---------------------------------------" << endl;
-    cout << "[ Usar Item ] = U" << endl;
+    cout << "[ Usar Provisão ] = U" << endl;
+    cout << "[ Equipar Item ] = E" << endl;
     cout << "[ Sair ] = S" << endl;
 
     char opcao;
@@ -60,7 +75,7 @@ void TelaInventario::handleInput(unsigned int opcao) {
         // Verificar se o personagem possui itens
 		vector<Provisao*> provisoes = Personagem::getInstance()->getProvisoes();
 		if (provisoes.empty()) {
-			cout << "Voce nao possui itens para usar!" << endl;
+			cout << "Você não possui itens para usar!" << endl;
 			cout << "Pressione Enter para voltar ao inventário..." << endl;
 			cin.get(); // Remover o cin.ignore() antes
 			return;
@@ -68,10 +83,27 @@ void TelaInventario::handleInput(unsigned int opcao) {
 		
         // Exibir lista de itens e solicitar ao usuario que escolha um item
         int index;
-        cout << "Digite o numero do item para usar: ";
+        cout << "Digite o número do item para usar: ";
         cin >> index;
         cin.ignore(); // Adicionar esta linha para limpar o buffer
         usarProvisao(index - 1);
+    }
+    else if (opcao == 'E' || opcao == 'e') {
+        // Verificar se o personagem possui equipamentos
+        vector<Equipamento*> equipamentos = Personagem::getInstance()->getEquipamentos();
+        if (equipamentos.empty()) {
+            cout << "Você não possui equipamentos para equipar!" << endl;
+            cout << "Pressione Enter para voltar ao inventário..." << endl;
+            cin.get();
+            return;
+        }
+        
+        // Exibir lista de equipamentos e solicitar que escolha um
+        int index;
+        cout << "Digite o número do equipamento para equipar: ";
+        cin >> index;
+        cin.ignore();
+        equiparEquipamento(index - 1);
     }
     else if (opcao == 'S' || opcao == 's') {
 		jogo->voltarEstadoAnterior();
@@ -88,5 +120,15 @@ void TelaInventario::usarProvisao(int index) {
         jogador->usarProvisao(provisao);
 
         delete provisao; // Liberar memoria da provisao
+    }
+}
+
+void TelaInventario::equiparEquipamento(int index) {
+    Personagem* jogador = Personagem::getInstance();
+    vector<Equipamento*> equipamentos = jogador->getEquipamentos();
+
+    if (index >= 0 && index < static_cast<int>(equipamentos.size())) {
+        // Chama o método do personagem para equipar o item selecionado
+        jogador->equiparEquipamento(index);
     }
 }

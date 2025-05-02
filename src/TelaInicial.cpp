@@ -263,17 +263,17 @@ void TelaInicial::carregarJogo() {
                 }
                 relInfo->push_back(relStr);
                 
-                if (relInfo->size() >= 4) {
+                if (relInfo->size() >= 8) {
                     ReliquiaMagica* rel = new ReliquiaMagica(
-                        (*relInfo)[0], // nome
-                        (*relInfo)[1], // descrição
-                        stoi((*relInfo)[2]) // magia mínima
+                        (*relInfo)[0],
+                        (*relInfo)[1],
+                        stoi((*relInfo)[2])
                     );
-                    rel->setBuffEnergia(stoi((*relInfo)[3])); // buff energia
-                    rel->setBuffHabilidade(stoi((*relInfo)[4])); // buff habilidade
-                    rel->setBuffResistencia(stoi((*relInfo)[5])); // buff resistência
-                    rel->setBuffMagia(stoi((*relInfo)[6])); // buff magia
-                    rel->setBuffSorte(stoi((*relInfo)[7])); // buff sorte
+                    rel->setBuffEnergia(stoi((*relInfo)[3]));
+                    rel->setBuffHabilidade(stoi((*relInfo)[4]));
+                    rel->setBuffResistencia(stoi((*relInfo)[5]));
+                    rel->setBuffMagia(stoi((*relInfo)[6]));
+                    rel->setBuffSorte(stoi((*relInfo)[7]));
                     p->adicionarReliquiaMagica(rel);
                 }
                 
@@ -284,7 +284,62 @@ void TelaInicial::carregarJogo() {
             // Liberar memória do vetor
             delete reliquiasArray;
         }
-        
+
+        if (linhas->size() > 6 && (*linhas)[6] != "Nenhum") {
+            string equipamentosStr = (*linhas)[6];
+            vector<string>* equipamentosArray = new vector<string>();
+            
+            // Dividir a string de equipamentos por ponto e vírgula (cada equipamento)
+            size_t pos_eq = 0;
+            string equipamento;
+            while ((pos_eq = equipamentosStr.find(";")) != string::npos) {
+                equipamento = equipamentosStr.substr(0, pos_eq);
+                equipamentosArray->push_back(equipamento);
+                equipamentosStr.erase(0, pos_eq + 1);
+            }
+            
+            // Processar cada equipamento
+            for (int i = 0; i < equipamentosArray->size(); i++) {
+                string eqStr = (*equipamentosArray)[i];
+                vector<string>* eqInfo = new vector<string>();
+                
+                // Dividir a string de equipamento por vírgulas
+                pos_attr = 0;
+                while ((pos_attr = eqStr.find(",")) != string::npos) {
+                    attr = eqStr.substr(0, pos_attr);
+                    eqInfo->push_back(attr);
+                    eqStr.erase(0, pos_attr + 1);
+                }
+                eqInfo->push_back(eqStr);
+                
+                if (eqInfo->size() >= 6) {  // Alterar para >= 6
+                    Equipamento* equip = nullptr;
+                    if ((*eqInfo)[5] == "armadura") {
+                        equip = new Armadura(
+                            (*eqInfo)[0], // nome
+                            (*eqInfo)[1], // descrição
+                            stoi((*eqInfo)[2]), // habilidade mínima
+                            stoi((*eqInfo)[3]), // resistência mínima
+                            stoi((*eqInfo)[4])  // buff resistência
+                        );
+                    } else if ((*eqInfo)[5] == "arma") {
+                        equip = new Arma(
+                            (*eqInfo)[0], // nome
+                            (*eqInfo)[1], // descrição
+                            stoi((*eqInfo)[2]), // habilidade mínima
+                            stoi((*eqInfo)[3]), // resistência mínima
+                            stoi((*eqInfo)[4])  // buff habilidade
+                        );
+                    }
+                    if (equip) {
+                        p->adicionarEquipamento(equip);
+                    }
+                }
+                
+                // Liberar memória do vetor
+                delete eqInfo;
+            }
+        }
         // Liberar memória do vetor
         delete atributosArray;
     }
