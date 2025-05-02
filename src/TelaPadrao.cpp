@@ -95,54 +95,55 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
 
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
     string conteudo = arquivoManager->lerArquivo(caminhoArquivo);
-    
+
     // Exibir o conteúdo do arquivo de atributos
     cout << conteudo << endl;
 
     // Obter habilidade
     habilidade = 0;
-    cout << "Habilidade (1-" << pontosDisponiveis << "): ";
-    while (habilidade < 1 || habilidade > pontosDisponiveis) {
+    cout << "Habilidade (1-" << min(pontosDisponiveis, 6) << "): ";
+    while (habilidade < 1 || habilidade > min(pontosDisponiveis, 6)) {
         cin >> habilidade;
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada inválida. Digite um número entre 1 e " << pontosDisponiveis << ": ";
+            cout << "Entrada inválida. Digite um número entre 1 e " << min(pontosDisponiveis, 6) << ": ";
             continue;
         }
-        if (habilidade < 1 || habilidade > pontosDisponiveis) {
-            cout << "Habilidade deve ser entre 1 e " << pontosDisponiveis << ". Tente novamente: ";
+        if (habilidade < 1 || habilidade > min(pontosDisponiveis, 6)) {
+            cout << "Habilidade deve ser entre 1 e " << min(pontosDisponiveis, 6) << ". Tente novamente: ";
         }
     }
-        
+
     int pontosRestantes = pontosDisponiveis - habilidade;
     cout << "Pontos restantes: " << pontosRestantes << endl;
-        
+
     // Obter energia
     energia = 0;
-    cout << "Energia (1-" << pontosRestantes << "): ";
-    while (energia < 1 || energia > pontosRestantes) {
+    cout << "Energia (1-" << min(pontosRestantes, 12) << "): ";
+    while (energia < 1 || energia > min(pontosRestantes, 12)) {
         cin >> energia;
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada inválida. Digite um número entre 1 e " << pontosRestantes << ": ";
+            cout << "Entrada inválida. Digite um número entre 1 e " << min(pontosRestantes, 12) << ": ";
             continue;
         }
-        if (energia < 1 || energia > pontosRestantes) {
-            cout << "Energia deve ser entre 1 e " << pontosRestantes << ". Tente novamente: ";
+        if (energia < 1 || energia > min(pontosRestantes, 12)) {
+            cout << "Energia deve ser entre 1 e " << min(pontosRestantes, 12) << ". Tente novamente: ";
         }
     }
-        
+
     pontosRestantes -= energia;
-    cout << "Pontos restantes: " << pontosRestantes << endl;    
-    // A sorte recebe automaticamente os pontos restantes
-    sorte = pontosRestantes;
+    cout << "Pontos restantes: " << pontosRestantes << endl;
+
+    // A sorte recebe automaticamente os pontos restantes, mas respeita o limite de 6
+    sorte = min(pontosRestantes, 6);
     cout << "Sorte definida automaticamente como: " << sorte << endl;
 
-	int habilidadeFinal = habilidade + 6;
-	int energiaFinal = energia + 12;
-	int sorteFinal = sorte + 6;
+    int habilidadeFinal = habilidade + 6;
+    int energiaFinal = energia + 12;
+    int sorteFinal = sorte + 6;
 
     Personagem::getInstance()->setHabilidade(habilidadeFinal);
     Personagem::getInstance()->setMaxEnergia(energiaFinal);
@@ -152,12 +153,13 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
     cout << "Pressione Enter para continuar..." << endl;
     cin.ignore();
     cin.get();
-    
+
     // Avançar para a próxima fase
     jogo->avancarFase();
 
     return;
 }
+
 
 void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
 {
