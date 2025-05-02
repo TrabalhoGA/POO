@@ -32,6 +32,8 @@ void TelaPadrao::exibirTela() {
     
     string diretorioAtual = jogo->getDiretorioAtual();
     int faseAtual = jogo->getFaseAtual();
+
+    bool ultimaFaseDoDiretorio = false;
     
     // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
     string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
@@ -42,15 +44,6 @@ void TelaPadrao::exibirTela() {
             exibirTelaAtributos(caminhoArquivo);
             return;
         }
-    }
-    else if (diretorioAtual == "caverna" && faseAtual == 7) {
-        Arma* espadaDante = new Arma("Espada de Dante", "Forjada com o sangue do filho de Sparda.", 0, 0, 16);
-        jogador->equiparArma(espadaDante);
-    }
-    else if (diretorioAtual == "floresta" && faseAtual == 6) {
-        jogador->setMagia(16);
-        Arma* cajadoAncestral = new Arma("Cajado Ancestral", "Feito com os galhos da arvore sagrada.", 0, 0,jogador->getMagia());
-        jogador->equiparArma(cajadoAncestral);
     }
     
     if (this->isTelaMercado) {
@@ -68,22 +61,157 @@ void TelaPadrao::exibirTela() {
         cin.get(); // Espera o usuário pressionar Enter antes de continuar
         jogo->mudarEstado(new TelaBatalha(jogo));
         return;
-    } else if (diretorioAtual == "torre"){
-        if (faseAtual == 7 || faseAtual == 8) {
-            cin.get();
-            jogo->gameOver();
-            // Seleciona a opcao 3 da tela inicial (creditos)
-            cin.putback('\n');
-            cin.putback('3');
-            return;
+    } else if (diretorioAtual == "fim"){
+        cin.get();
+        jogo->gameOver();
+        // Seleciona a opcao 3 da tela inicial (creditos)
+        cin.putback('\n');
+        cin.putback('3');
+        return;
+    }
+
+    // Verifica se o arquivo é o último do diretório, lendo o proximo arquivo
+    string proximoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual + 1) + ".txt";
+    ifstream arquivoTeste(proximoArquivo);
+    if (!arquivoTeste) {
+        ultimaFaseDoDiretorio = true;
+    }
+
+    if (ultimaFaseDoDiretorio) {
+        if (diretorioAtual == "caverna") {
+            Arma* espadaDante = new Arma("Espada de Dante", "Forjada com o sangue do filho de Sparda.", 0, 0, 16);
+            jogador->equiparArma(espadaDante);
+        }
+        else if (diretorioAtual == "floresta"){
+            jogador->setMagia(16);
+            Arma* cajadoAncestral = new Arma("Cajado Ancestral", "Feito com os galhos da arvore sagrada.", 0, 0,jogador->getMagia());
+            jogador->equiparArma(cajadoAncestral);
         }
     }
-    
+
+    // Lidar com o input do usuário
     int opcao;
     cin >> opcao;
     cin.ignore();
     
     handleInput(opcao);
+}
+
+void TelaPadrao::handleInput(unsigned int input) {
+    // Se o input for 9, exibe o inventário
+    if (input == 9) {
+        jogo->mudarEstado(new TelaInventario(jogo));
+        return;
+    } else if (input == 0) {
+        jogo->mudarEstado(new TelaInicial(jogo));
+        return;
+    }
+
+    // Carregar o diretorio atual e a fase atual do jogo
+    string diretorioAtual = jogo->getDiretorioAtual();
+    int faseAtual = jogo->getFaseAtual();
+    
+    // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
+    string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
+    
+    // Obter as opções de navegação da primeira linha do arquivo
+    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
+    string opcoesNavegacao = arquivoManager->lerOpcoesHistoria(caminhoArquivo);
+    
+    // Analisar as opções de navegação - Alocação dinâmica do vetor
+    vector<string>* acoes = new vector<string>();
+    size_t pos = 0;
+    string token;
+    while ((pos = opcoesNavegacao.find(';')) != string::npos) {
+        token = opcoesNavegacao.substr(0, pos);
+        acoes->push_back(token);
+        opcoesNavegacao.erase(0, pos + 1);
+    }
+    
+    // Verificar se a opção selecionada pelo usuário é válida
+    if (input > 0 && input <= acoes->size()) {
+        string acao = (*acoes)[input-1];
+        
+        // Verificar se é uma mudança de diretório e fase (formato "diretorio:fase")
+        size_t separador = acao.find(':'); 
+        if (separador != string::npos) {
+            // Extrair o novo diretório
+            string novoDiretorio = acao.substr(0, separador);
+
+            if (novoDiretorio == "i") { // fazemos isso antes de converter a fase para int, pois o formato é diferente
+                // Verifica se o jogador possui o item necessário para avançar
+                verificarItem(acao.substr(separador + 1, acao.find(',') - separador - 1), 
+                             stoi(acao.substr(acao.find(',') + 1)));
+                delete acoes;
+                return;
+            }
+            
+            // Extrair a nova fase
+            int novaFase = stoi(acao.substr(separador + 1));
+
+            if (novoDiretorio == "s") {
+                if (testeSorteFalhou) {
+                    // Não é possível testar a sorte novamente se já falhou
+                    cout << "Voce ja falhou no teste de sorte. Nao pode tentar novamente." << endl;
+                    cout << "Pressione Enter para continuar..." << endl;
+                    cin.get();
+                    delete acoes; // Liberar memória alocada
+                    return;
+                }
+                testarSorte(novaFase);
+                delete acoes; // Liberar memória alocada
+                return;
+            }
+            
+            // Mudança de diretório e fase
+            jogo->setDiretorioAtual(novoDiretorio);
+            jogo->setFaseAtual(novaFase);
+        }
+        else if (acao == "e"){ // Verifica se a próxima fase é um enigma
+            isEnigma = true; 
+            jogo->avancarFase(); // Avança para a próxima fase
+            delete acoes; // Liberar memória alocada
+            return;
+        }
+        else if (acao == "mercado"){
+            isTelaMercado = true; // Define que estamos na tela de mercado
+            jogo->avancarFase(); // Avança para a próxima fase
+            delete acoes; // Liberar memória alocada
+            return;
+        }
+        else {
+            // Avançar o número específico de fases
+            int incremento = stoi(acao);
+            if(isEnigma) {
+                // Se for um enigma, exibir a tela de sucesso ou falha
+                string arquivo = incremento>0?"Desafio_Sucesso.txt":"Desafio_Falha.txt";
+                string conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + arquivo);
+                // Exibir o conteúdo do arquivo de enigma
+                jogo->limparTela();
+                cout << conteudo << endl;
+                cin.get();
+                if (!incremento) {
+                    jogo->gameOver();
+                    delete acoes; // Liberar memória alocada
+                    return; 
+                }
+                isEnigma = false; // Resetar o estado de tela de enigma
+            }
+
+            if (jogo->getDiretorioAtual()=="inicio" && faseAtual == 0 && incremento == 2) {
+                Personagem::getInstance()->carregarAtributosAleatoriamente();
+            }
+    
+            jogo->setFaseAtual(faseAtual + incremento);
+            testeSorteFalhou = false; // Resetar o estado de teste de sorte falhou
+        }
+    }
+    else {
+        delete acoes; // Liberar memória alocada
+        return; // Opção inválida, não faz nada
+    }
+
+    delete acoes; // Liberar memória alocada
 }
 
 void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
@@ -164,11 +292,6 @@ void TelaPadrao::exibirTelaAtributos(string caminhoArquivo)
 void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
 {
     Personagem* jogador = Personagem::getInstance();
-    
-    // Se estamos no mercado inicial, damos 50 moedas ao jogador
-    if (jogo->getDiretorioAtual() == "inicio" && jogo->getFaseAtual() == 3) {
-        jogador->setMoedasDeOuro(50);
-    }
     
     string entrada;
     bool comprasFinalizadas = false;
@@ -379,131 +502,6 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
     isTelaMercado = false; // Resetar o estado de tela de mercado
 }
 
-void TelaPadrao::handleInput(unsigned int input) {
-    // Se o input for 9, exibe o inventário
-    if (input == 9) {
-        jogo->mudarEstado(new TelaInventario(jogo));
-        return;
-    } else if (input == 0) {
-        jogo->mudarEstado(new TelaInicial(jogo));
-        return;
-    }
-
-    // Carregar o diretorio atual e a fase atual do jogo
-    string diretorioAtual = jogo->getDiretorioAtual();
-    int faseAtual = jogo->getFaseAtual();
-    
-    // Corrigindo o caminho do arquivo para usar "Arquivos.txt/"
-    string caminhoArquivo = "Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + ".txt";
-    
-    // Obter as opções de navegação da primeira linha do arquivo
-    ArquivoManager* arquivoManager = ArquivoManager::getInstance();
-    string opcoesNavegacao = arquivoManager->lerOpcoesHistoria(caminhoArquivo);
-    
-    // Analisar as opções de navegação - Alocação dinâmica do vetor
-    vector<string>* acoes = new vector<string>();
-    size_t pos = 0;
-    string token;
-    while ((pos = opcoesNavegacao.find(';')) != string::npos) {
-        token = opcoesNavegacao.substr(0, pos);
-        acoes->push_back(token);
-        opcoesNavegacao.erase(0, pos + 1);
-    }
-    
-    // Verificar se a opção selecionada pelo usuário é válida
-    if (input > 0 && input <= acoes->size()) {
-        string acao = (*acoes)[input-1];
-        
-        // Verificar se é uma mudança de diretório e fase (formato "diretorio:fase")
-        size_t separador = acao.find(':'); 
-        if (separador != string::npos) {
-            // Extrair o novo diretório
-            string novoDiretorio = acao.substr(0, separador);
-
-            if (novoDiretorio == "i") { // fazemos isso antes de converter a fase para int, pois o formato é diferente
-                // Verifica se o jogador possui o item necessário para avançar
-                verificarItem(acao.substr(separador + 1, acao.find(',') - separador - 1), 
-                             stoi(acao.substr(acao.find(',') + 1)));
-                delete acoes;
-                return;
-            }
-            
-            // Extrair a nova fase
-            int novaFase = stoi(acao.substr(separador + 1));
-
-            if (novoDiretorio == "s") {
-                if (testeSorteFalhou) {
-                    // Não é possível testar a sorte novamente se já falhou
-                    cout << "Voce ja falhou no teste de sorte. Nao pode tentar novamente." << endl;
-                    cout << "Pressione Enter para continuar..." << endl;
-                    cin.get();
-                    delete acoes; // Liberar memória alocada
-                    return;
-                }
-                testarSorte(novaFase);
-                delete acoes; // Liberar memória alocada
-                return;
-            }
-            
-            // Mudança de diretório e fase
-            jogo->setDiretorioAtual(novoDiretorio);
-            jogo->setFaseAtual(novaFase);
-        }
-        else if (acao == "e"){ // Verifica se a próxima fase é um enigma
-            setTelaEnigma(true); 
-            jogo->avancarFase(); // Avança para a próxima fase
-            delete acoes; // Liberar memória alocada
-            return;
-        }
-        else if (acao == "mercado"){
-            isTelaMercado = true; // Define que estamos na tela de mercado
-            jogo->avancarFase(); // Avança para a próxima fase
-            delete acoes; // Liberar memória alocada
-            return;
-        }
-        else {
-            // Avançar o número específico de fases
-            int incremento = stoi(acao);
-            if(isTelaEnigma()) {
-                // Se for um enigma, exibir a tela de sucesso ou falha
-                string arquivo = incremento>0?"Desafio_Sucesso.txt":"Desafio_Falha.txt";
-                string conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + arquivo);
-                // Exibir o conteúdo do arquivo de enigma
-                jogo->limparTela();
-                cout << conteudo << endl;
-                cin.get();
-                if (!incremento) {
-                    jogo->gameOver();
-                    delete acoes; // Liberar memória alocada
-                    return; 
-                }
-                setTelaEnigma(false); // Resetar o estado de tela de enigma
-            }
-
-            if (jogo->getDiretorioAtual()=="inicio" && faseAtual == 0 && incremento == 2) {
-                Personagem::getInstance()->carregarAtributosAleatoriamente();
-            }
-    
-            jogo->setFaseAtual(faseAtual + incremento);
-            testeSorteFalhou = false; // Resetar o estado de teste de sorte falhou
-        }
-    }
-    else {
-        delete acoes; // Liberar memória alocada
-        return; // Opção inválida, não faz nada
-    }
-
-    delete acoes; // Liberar memória alocada
-}
-
-bool TelaPadrao::isTelaEnigma() const {
-    return isEnigma;
-}
-
-void TelaPadrao::setTelaEnigma(bool isEnigma) {
-    this->isEnigma = isEnigma;
-}
-
 void TelaPadrao::testarSorte(int avancoFase) {
     Personagem* jogador = Personagem::getInstance();
     ArquivoManager* arquivoManager = ArquivoManager::getInstance();
@@ -543,12 +541,7 @@ void TelaPadrao::testarSorte(int avancoFase) {
             if (faseAtual == 5) {
                 jogo->avancarFase(avancoFase);
             }
-		} else if (jogo->getDiretorioAtual() == "floresta" && faseAtual == 4) {
-            // Se o jogador falhou na fase da floresta 4, avança mesmo assim
-            jogo->avancarFase(avancoFase);
-            conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
-            testeSorteFalhou = false;
-        }
+		}
 		else {
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");
 		}

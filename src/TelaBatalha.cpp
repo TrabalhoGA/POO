@@ -298,9 +298,12 @@ void TelaBatalha::finalizarBatalha() {
         // Liberar a instância do monstro
         Monstro::releaseInstance();
 
-        if (jogo->getFaseAtual() == 7) {
-            jogo->setDiretorioAtual("torre");
-            jogo->setFaseAtual(8); // Fase 8 é o texto de derrota
+        // Verificar se é a ultima fase
+        string proximoArquivo = "Arquivos.txt/" + jogo->getDiretorioAtual() + "/" + jogo->getDiretorioAtual() + "_" + to_string(jogo->getFaseAtual() + 1) + ".txt";
+        ifstream arquivoTeste(proximoArquivo);
+        if (!arquivoTeste) {
+            jogo->setDiretorioAtual(diretorioDestino);
+            jogo->setFaseAtual(faseDestino+1);
             jogo->mudarEstado(new TelaPadrao(jogo));
             return;
         }

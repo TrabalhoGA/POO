@@ -1,4 +1,4 @@
-m:Troll da Floresta,50,6,5;floresta:6;
+m:Troll da Floresta,50,6,5;floresta:7;
 O Troll da floresta bloqueia o caminho com sua enorme massa.  
 Sua pele e como pedra e seu rugido ecoa entre as arvores.
 

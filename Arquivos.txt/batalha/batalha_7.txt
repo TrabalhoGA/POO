@@ -1,4 +1,4 @@
-m:Sparda,80,14,10;torre:7;
+m:Sparda,80,14,10;fim:1;
 Sparda, o Rei Demonio, o espera no topo da torre.  
 Seus olhos brilham em vermelho enquanto sorri com desprezo.
 

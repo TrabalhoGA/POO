@@ -18,9 +18,6 @@ public:
 	void exibirTelaAtributos(string caminhoArquivo);
 	void exibirTelaMercado(string caminhoArquivo);
 
-	bool isTelaEnigma() const;
-	void setTelaEnigma(bool isEnigma);
-
 	void testarSorte(int avancoFase);
 	
 	void verificarItem(string nomeItem, int avancoFase);

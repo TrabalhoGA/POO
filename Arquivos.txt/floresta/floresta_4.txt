@@ -1,14 +1,17 @@
-s:1;i:Corda,1;
+s:2;i:Corda,2;e;
 ========================================
- PASSO 3 - O Pantano Magico
+ PASSO 3 - O Pântano Mágico
 =========================================
 
-O caminho leva a um pantano coberto por nevoa roxa.  
-Aguas turvas escondem formas estranhas sob a superficie.
+O caminho leva a um pântano coberto por névoa roxa.  
+Águas turvas escondem formas estranhas sob a superfície.
 
-Voce percebe uma trilha de pedras parcialmente submersa.
+Você percebe uma trilha de pedras parcialmente submersa.
+Sobre uma grande vitória-régia, um sapo observa você com uma feição suspeita. Ele coaxando diz:  
+"Se quiser sair deste pântano, eu possuo o caminho."
 
 O que deseja fazer?
 
 1 - Tentar atravessar pulando pelas pedras. (Teste de Sorte)  
 2 - Usar uma corda para se apoiar (se tiver).
+3 - Conversar com o Sapo.

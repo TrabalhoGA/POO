@@ -1,13 +1,26 @@
-s:1;batalha:4;
+0;1;0;
 =========================================
- PASSO 4 - O Troll da Floresta
+ PASSO 4 - O Templo dos Enigmas
 =========================================
 
-Um imenso troll bloqueia a trilha com um tronco caido.
-Ele olha para voce com fome nos olhos e baba escorrendo da boca.
+O sapo lhe guia por um caminho oculto até um templo ancestral 
+semicoberto por vegetação. Na entrada, uma estátua de pedra 
+segura uma placa com inscrições antigas.
 
-O que deseja fazer?
+Na placa está escrito:
 
-1 - Tentar passar despercebido (teste de SORTE).  
-2 - Enfrenta-lo.  
+"Para além desta porta, o tesouro aguarda
+Mas antes, resolva este enigma ou parta:
 
+Não sou visto, mas estou em todo lugar
+Dou vida, mas posso também matar
+Sem peso, mas difícil de segurar
+O que eu sou, você precisa acertar?"
+
+Na base da estátua estão gravadas quatro opções:
+
+1 - Tempo
+2 - Ar
+3 - Magia
+
+O que você responde?

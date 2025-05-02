@@ -14,7 +14,7 @@ Personagem::Personagem()
     resistencia = 0;
     magia = 0;
     sorte = 0;
-    moedas_de_ouro = 0;
+    moedas_de_ouro = 50; // O jogador começa com 50 moedas de ouro
     armadura = nullptr;
     arma = nullptr;
     
