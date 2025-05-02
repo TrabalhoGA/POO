@@ -10,6 +10,7 @@ using namespace std;
 class TelaPadrao : public TelaEstado {
 public:
 	TelaPadrao(Jogo* jogo);
+	TelaPadrao(Jogo* jogo, bool isEnigma, bool isTelaMercado, bool testeSorteFalhou);
 	~TelaPadrao();
 
 	void exibirTela() override;
@@ -22,10 +23,14 @@ public:
 	
 	void verificarItem(string nomeItem, int avancoFase);
 
+	bool isTesteSorteFalhou() const { return testeSorteFalhou; }
+	bool isTelaMercado() const { return telaMercado; }
+	bool isEnigma() const { return enigma; }
+
 private:
 	Jogo* jogo;
-	bool isEnigma;
-	bool isTelaMercado;
+	bool enigma;
+	bool telaMercado;
 	bool testeSorteFalhou;
 };
 

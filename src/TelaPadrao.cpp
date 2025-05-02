@@ -13,9 +13,15 @@ using namespace std;
 
 TelaPadrao::TelaPadrao(Jogo* jogo) : jogo(jogo) 
 {
-    isEnigma = false;
-    isTelaMercado = false;
+    enigma = false;
+    telaMercado = false;
     testeSorteFalhou = false;
+    srand(static_cast<unsigned int>(time(0))); // Inicializa o gerador de números aleatórios
+}
+
+TelaPadrao::TelaPadrao(Jogo* jogo, bool enigma, bool telaMercado, bool testeSorteFalhou) 
+    : jogo(jogo), enigma(enigma), telaMercado(telaMercado), testeSorteFalhou(testeSorteFalhou) 
+{
     srand(static_cast<unsigned int>(time(0))); // Inicializa o gerador de números aleatórios
 }
 
@@ -46,7 +52,7 @@ void TelaPadrao::exibirTela() {
         }
     }
     
-    if (this->isTelaMercado) {
+    if (this->telaMercado) {
         exibirTelaMercado(caminhoArquivo);
         return;
     }
@@ -168,13 +174,13 @@ void TelaPadrao::handleInput(unsigned int input) {
             jogo->setFaseAtual(novaFase);
         }
         else if (acao == "e"){ // Verifica se a próxima fase é um enigma
-            isEnigma = true; 
+            enigma = true; 
             jogo->avancarFase(); // Avança para a próxima fase
             delete acoes; // Liberar memória alocada
             return;
         }
         else if (acao == "mercado"){
-            isTelaMercado = true; // Define que estamos na tela de mercado
+            telaMercado = true; // Define que estamos na tela de mercado
             jogo->avancarFase(); // Avança para a próxima fase
             delete acoes; // Liberar memória alocada
             return;
@@ -182,7 +188,7 @@ void TelaPadrao::handleInput(unsigned int input) {
         else {
             // Avançar o número específico de fases
             int incremento = stoi(acao);
-            if(isEnigma) {
+            if(enigma) {
                 // Se for um enigma, exibir a tela de sucesso ou falha
                 string arquivo = incremento>0?"Desafio_Sucesso.txt":"Desafio_Falha.txt";
                 string conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + arquivo);
@@ -195,7 +201,7 @@ void TelaPadrao::handleInput(unsigned int input) {
                     delete acoes; // Liberar memória alocada
                     return; 
                 }
-                isEnigma = false; // Resetar o estado de tela de enigma
+                enigma = false; // Resetar o estado de tela de enigma
             }
 
             if (jogo->getDiretorioAtual()=="inicio" && faseAtual == 0 && incremento == 2) {
@@ -499,7 +505,7 @@ void TelaPadrao::exibirTelaMercado(string caminhoArquivo)
     
     // Avançar para a próxima fase
     jogo->avancarFase();
-    isTelaMercado = false; // Resetar o estado de tela de mercado
+    telaMercado = false; // Resetar o estado de tela de mercado
 }
 
 void TelaPadrao::testarSorte(int avancoFase) {

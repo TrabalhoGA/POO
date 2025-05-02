@@ -1,6 +1,7 @@
 #include "../include/Jogo.h"
 #include "../include/TelaInventario.h"
 #include "../include/TelaInicial.h"
+#include "../include/TelaPadrao.h"
 #include "../include/Personagem.h"
 #include "../include/ArquivoManager.h"
 
@@ -148,6 +149,18 @@ void Jogo::salvarJogo() {
 	// Obter o diretório atual e a fase atual
     string diretorioFase = diretorioAtual + ":" + to_string(faseAtual);
 
+    // Declare the variable before usage
+    string telaPadraoAtributos;
+
+    if(estadoAtual != nullptr) {
+        TelaPadrao* telaPadrao = dynamic_cast<TelaPadrao*>(estadoAtual);
+        if (telaPadrao != nullptr) {
+            telaPadraoAtributos = to_string(telaPadrao->isTesteSorteFalhou()) + "," +
+                to_string(telaPadrao->isTelaMercado()) + "," +
+                to_string(telaPadrao->isEnigma());
+        }
+    }
+
 	// Obter os atributos do personagem
     string personagemAtributos = to_string(p->getMaxEnergia()) + "," +
         to_string(p->getEnergiaAtual()) + "," +
@@ -246,7 +259,8 @@ void Jogo::salvarJogo() {
 		arma + "\n" +
 		provisoes + "\n" +
 		reliquias + "\n" +
-        equipamentos + "\n";
+        equipamentos + "\n" +
+        telaPadraoAtributos;
 
 	// Salvar os dados no arquivo
 	ArquivoManager::getInstance()->escreverArquivo(getNomeSave(), dadosSalvar);
