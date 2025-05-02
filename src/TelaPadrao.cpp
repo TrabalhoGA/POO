@@ -538,9 +538,6 @@ void TelaPadrao::testarSorte(int avancoFase) {
 		if (jogo->getDiretorioAtual() == "torre") {
 			// Se o jogador falhou na fase da torre, exibe o conteúdo do arquivo de falha
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/" + diretorioAtual + "/" + diretorioAtual + "_" + to_string(faseAtual) + "_falha.txt");
-            if (faseAtual == 5) {
-                jogo->avancarFase(avancoFase);
-            }
 		}
 		else {
 			conteudo = arquivoManager->lerArquivo("Arquivos.txt/TesteSorte_Derrota.txt");

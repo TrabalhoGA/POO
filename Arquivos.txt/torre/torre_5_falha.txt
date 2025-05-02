@@ -19,6 +19,4 @@ A sala nao guarda mais nada alem de ruinas e veneno.
 Desgastado, voce retorna ao corredor principal, com os musculos
 tensos e o coracao acelerado.
 
-Agora, so resta enfrentar Sparda.
-
 Digite ENTER para continuar.
