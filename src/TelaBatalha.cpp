@@ -200,9 +200,9 @@ bool TelaBatalha::tentarFugir() {
 void TelaBatalha::acaoMonstro() {
     jogo->limparTela();
 
-    int acao = rand() % 2;
+    int acao = rand() % 6 + 1;
 
-    if (acao == 0) {
+    if (acao <= 4) {
         Personagem* jogador = Personagem::getInstance();
 
         int habilidadeMonstro = monstro->getHabilidade();
