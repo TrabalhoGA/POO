@@ -94,13 +94,28 @@ void TelaBatalha::handleInput(unsigned int input) {
 }
 
 void TelaBatalha::atacar() {
+    jogo->limparTela();
     Personagem* jogador = Personagem::getInstance();
 
     int habilidadeJogador = jogador->getHabilidade();
     // removi o bonus arma, pois já é somado quando equipamos ela
     int resistenciaMonstro = monstro->getResistencia();
 
+	// ataque critico/miss: um dado sera gerado que determinará se o ataque foi critico ou se falhou
+    int dado = rand() % 6 + 1;
+
     int dano = habilidadeJogador - resistenciaMonstro;
+
+    // ajusta o dano com base no valor do dado
+    if (dado == 6) {
+        dano *= 2; // Dano dobrado para ataque crítico
+        cout << "Ataque crítico! O dano foi dobrado!" << endl;
+    }
+    else if (dado == 1) {
+        dano = 0; // Ataque falhou
+        cout << "Ataque falhou! Você errou o ataque." << endl;
+    }
+
     if (dano < 0) dano = 0;
 
     if (monstroDefendendo == true) {
@@ -109,7 +124,6 @@ void TelaBatalha::atacar() {
 
     monstro->setEnergia(monstro->getEnergia() - dano);
 
-    jogo->limparTela();
     cout << "Voce atacou o " << monstro->getNome() << " causando " << dano << " de dano!" << endl;
     if (monstro->getEnergia() <= 0) {
         cout << "Parabens! Voce derrotou o " << monstro->getNome() << "!" << endl;
@@ -195,7 +209,19 @@ void TelaBatalha::acaoMonstro() {
         int resistenciaJogador = jogador->getResistencia();
         int bonusArmadura = jogador->getArmadura() ? jogador->getArmadura()->getBuffResistencia() : 0;
 
+        int dado = rand() % 6 + 1;
+
         int dano = habilidadeMonstro - resistenciaJogador; // removi tambem o bonus da armadura
+        
+        if (dado == 6) {
+            dano = static_cast<int>(dano * 1.5); // Aumenta o dano em 50%
+            cout << "Ataque crítico do monstro! O dano foi aumentado em 50%!" << endl;
+        }
+        else if (dado == 1) {
+            dano = 0; // Ataque falhou
+            cout << "O ataque do monstro falhou! Ele não causou dano." << endl;
+        }
+        
         if (dano < 0) dano = 0;
 
         // Reduz o dano se o jogador estiver defendendo
