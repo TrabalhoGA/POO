@@ -1,6 +1,10 @@
 # Documentação do Projeto POO
 
-Este projeto implementa um sistema de personagem com itens, equipamentos e armaduras, utilizando conceitos de Programação Orientada a Objetos.
+## Introdução
+
+Este projeto implementa um jogo no estilo Interactive eBook baseado nos livros-jogos da série Aventuras Fantásticas dos anos 90. Neste tipo de jogo, os leitores criam um personagem usando um sistema de regras simplificado e fazem escolhas que determinam quais trechos serão lidos em seguida, criando uma narrativa única a cada aventura.
+
+Durante a jornada, o personagem pode encontrar itens para seu inventário, como provisões, relíquias mágicas, armas e armaduras, além de participar de combates com diversas criaturas e monstros que habitam o mundo fantástico do jogo.
 
 ## Classes
 
